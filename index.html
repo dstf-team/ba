@@ -15,14 +15,14 @@
             --accent-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
             --surface-bg: #ffffff;
-            --body-bg: #f8fafc;
+            --body-bg: #f1f5f9;
             --border-color: #e2e8f0;
             --text-main: #0f172a;
             --text-muted: #64748b;
             
-            --dstf-blue: #2563eb;       
-            --dstf-bronze: #c2410c;     
-            --dstf-red: #dc2626;        
+            --dstf-blue: #3b82f6;       
+            --dstf-bronze: #f97316;     
+            --dstf-red: #ef4444;        
         }
 
         body { 
@@ -33,261 +33,119 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* PIN LOCK SCREEN UPGRADE */
+        /* PIN LOCK SCREEN */
         #pinLockScreen { 
             position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
+            top: 0; left: 0; width: 100%; height: 100%; 
             background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%); 
-            z-index: 9999; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: white; 
+            z-index: 9999; display: flex; align-items: center; justify-content: center; color: white; 
         }
         .pin-box { 
-            width: 100%; 
-            max-width: 380px; 
-            padding: 40px 30px; 
-            text-align: center; 
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 100%; max-width: 380px; padding: 40px 30px; text-align: center; 
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
         .pin-input-field { 
-            letter-spacing: 18px; 
-            font-size: 28px; 
-            font-weight: 800; 
-            text-align: center; 
-            background: rgba(255,255,255,0.05) !important; 
-            border: 2px solid rgba(255,255,255,0.1); 
-            color: white !important; 
-            border-radius: 14px; 
-            padding: 12px; 
-            transition: all 0.3s ease;
+            letter-spacing: 18px; font-size: 28px; font-weight: 800; text-align: center; 
+            background: rgba(255,255,255,0.05) !important; border: 2px solid rgba(255,255,255,0.1); 
+            color: white !important; border-radius: 14px; padding: 12px; transition: all 0.3s ease;
         }
-        .pin-input-field:focus { 
-            background: rgba(255,255,255,0.08) !important; 
-            border-color: #3b82f6; 
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25); 
-        }
+        .pin-input-field:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25); }
 
-        /* HEADER UPGRADE */
+        /* HEADER */
         .brand-header { 
-            background: var(--primary-gradient); 
-            color: #ffffff; 
-            padding: 32px 28px; 
-            border-radius: 24px; 
-            margin-bottom: 28px; 
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12); 
-            position: relative;
-            overflow: hidden;
+            background: var(--primary-gradient); color: #ffffff; padding: 32px 28px; border-radius: 24px; 
+            margin-bottom: 28px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08); position: relative; overflow: hidden;
         }
-        .brand-header::before {
-            content: '';
-            position: absolute;
-            top: -50%; right: -20%;
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .brand-header h2 { font-weight: 800; font-size: 1.9rem; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .brand-header h2 { font-weight: 800; font-size: 1.8rem; letter-spacing: -0.5px; margin-bottom: 8px; }
         .subtitle-badge { 
-            background: rgba(255, 255, 255, 0.06); 
-            backdrop-filter: blur(4px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            color: #93c5fd; 
-            font-size: 0.75rem; 
-            font-weight: 700; 
-            padding: 6px 14px; 
-            border-radius: 8px; 
-            display: inline-block; 
-            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); 
+            color: #93c5fd; font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 8px; letter-spacing: 1px;
         }
 
-        /* PROFESSIONAL CARD */
+        /* CARD PROFESSIONAL */
         .card-professional { 
-            border: 1px solid var(--border-color); 
-            border-radius: 24px; 
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.02); 
-            background: var(--surface-bg); 
-            padding: 28px; 
-            margin-bottom: 28px; 
+            border: none; border-radius: 24px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); 
+            background: var(--surface-bg); padding: 28px; margin-bottom: 28px; 
         }
 
-        /* SEARCH BAR DESIGN */
-        .search-wrapper {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        .search-wrapper .bi-search {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-        .search-input-custom {
-            padding-left: 46px !important;
-            background-color: #f8fafc;
-            border: 1.5px solid var(--border-color);
-            border-radius: 14px;
-            font-weight: 500;
-        }
-        .search-input-custom:focus {
-            background-color: #fff;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
-        }
+        /* SEARCH BAR */
+        .search-wrapper { position: relative; margin-bottom: 24px; }
+        .search-wrapper .bi-search { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .search-input-custom { padding-left: 48px !important; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; height: 48px; font-weight: 500; }
+        .search-input-custom:focus { background-color: #fff; border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08); }
 
-        /* MODERN TABLES */
-        .table-responsive-custom { border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); }
-        .table-custom th { 
-            background-color: #f8fafc; 
-            color: var(--text-muted); 
-            font-weight: 700; 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            padding: 16px 20px; 
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .table-custom td { padding: 18px 20px; vertical-align: middle; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; }
-        .table-custom tr:last-child td { border-bottom: none; }
-        .table-custom tr { transition: background-color 0.2s ease; }
+        /* TABLES */
+        .table-responsive-custom { border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; }
+        .table-custom th { background-color: #f8fafc; color: var(--text-muted); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; padding: 16px 20px; letter-spacing: 0.5px; }
+        .table-custom td { padding: 16px 20px; vertical-align: middle; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; }
         .table-custom tr:hover { background-color: #f8fafc; }
         
         /* MOBILE CARDS */
         .mobile-card-list { display: none; }
-        .ba-mobile-card { 
-            background: #ffffff; 
-            border: 1px solid var(--border-color) !important; 
-            border-radius: 20px; 
-            padding: 20px; 
-            margin-bottom: 16px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.01) !important;
-            transition: transform 0.2s ease;
-        }
-        .ba-mobile-card:active { transform: scale(0.99); }
+        .ba-mobile-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 18px; padding: 18px; margin-bottom: 14px; }
         
-        /* BADGES */
-        .badge-shift { font-weight: 700; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; display: inline-flex; align-items: center; }
+        /* BADGES & ICONS */
+        .badge-shift { font-weight: 700; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; }
         .bg-siang { background-color: #fef3c7; color: #b45309; }
         .bg-malam { background-color: #e0e7ff; color: #3730a3; }
+        .badge-status { font-weight: 700; font-size: 0.75rem; padding: 6px 12px; border-radius: 8px; text-transform: uppercase; }
+        .stat-pending { background-color: #fef2f2; color: #ef4444; }
+        .stat-approved { background-color: #f0fdf4; color: #16a34a; }
 
-        .badge-status { font-weight: 700; font-size: 0.75rem; padding: 6px 14px; border-radius: 12px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px; }
-        .stat-pending { background-color: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; }
-        .stat-approved { background-color: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7; }
-
-        /* DIVISI ICON DESIGN */
-        .divisi-badge-wrapper {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-        }
-        .divisi-icon-box {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
+        /* DIVISI BADGE STYLE */
+        .divisi-badge-wrapper { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+        .divisi-icon-box { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
         .icon-earthwork { background: #ffe4e6; color: #e11d48; }
         .icon-hydro { background: #e0f2fe; color: #0284c7; }
         .icon-ipal { background: #ccfbf1; color: #0d9488; }
         .icon-geotech { background: #fef3c7; color: #d97706; }
         .icon-planner { background: #f3e8ff; color: #9333ea; }
 
-        .txt-dstf-blue { color: var(--dstf-blue) !important; font-weight: 600; }
-        .txt-dstf-bronze { color: var(--dstf-bronze) !important; font-weight: 600; }
-        .txt-dstf-red { color: var(--dstf-red) !important; font-weight: 600; }
+        /* LOGBOOK VIEW DESIGN (MODAL DETAIL) */
+        .logbook-section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+        .logbook-header { font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 6px; }
+        .log-item { margin-bottom: 8px; }
+        .log-item:last-child { margin-bottom: 0; }
+        .log-lbl { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+        .log-val { font-size: 0.9rem; font-weight: 600; color: #1e293b; }
+        .log-val.highlight-main { color: #2563eb; font-weight: 700; }
 
         /* FORM CUSTOMIZATION */
-        .form-section-header { 
-            font-size: 0.8rem; 
-            font-weight: 800; 
-            padding: 12px 16px; 
-            margin-top: 28px; 
-            margin-bottom: 20px; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            letter-spacing: 0.5px;
-        }
+        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 12px 16px; margin-top: 24px; margin-bottom: 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
         .sec-utama { background: #eff6ff; color: #2563eb; }
         .sec-tim { background: #ecfdf5; color: #059669; }
         .sec-progress { background: #fff7ed; color: #ea580c; }
         .sec-serah { background: #f0fdfa; color: #0d9488; }
-
-        .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 8px;}
-        .form-control, .form-select { 
-            border-radius: 12px; 
-            padding: 11px 16px; 
-            border: 1.5px solid var(--border-color); 
-            font-size: 0.9rem; 
-            color: var(--text-main);
-            transition: all 0.2s ease;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        }
+        .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 6px;}
+        .form-control, .form-select { border-radius: 12px; padding: 11px 16px; border: 1.5px solid var(--border-color); font-size: 0.9rem; }
+        .form-control:focus, .form-select:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08); }
         .auto-filled { background-color: #f0fdf4 !important; border-color: #10b981 !important; font-weight: 600; color: #16a34a !important; }
 
         /* BUTTONS */
         .btn { border-radius: 12px; padding: 10px 20px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease; }
         .btn-action-primary { background: var(--accent-gradient); color: white; border: none; }
-        .btn-action-primary:hover { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); transform: translateY(-1px); }
+        .btn-action-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
         .btn-action-success { background: var(--success-gradient); color: white; border: none; }
-        .btn-action-success:hover { background: linear-gradient(135deg, #059669 0%, #047857 100%); transform: translateY(-1px); }
+        .btn-action-success:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
 
         /* MODAL DESIGN */
         .modal-content { border-radius: 24px; border: none; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-        .modal-header { border-bottom: 1px solid var(--border-color); padding: 20px 24px; }
-        .modal-footer { border-top: 1px solid var(--border-color); padding: 16px 24px; }
-        .detail-row { border-bottom: 1px solid #f1f5f9; padding: 14px 4px; }
-        .detail-row:last-child { border-bottom: none; }
-        .detail-label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .detail-value { font-size: 0.95rem; font-weight: 600; white-space: pre-line; margin-top: 4px; color: #1e293b; }
-
+        .modal-header { border-bottom: 1px solid var(--border-color); padding: 20px 24px; background: #fafafa; }
+        
         /* SIGNATURE BOXES */
-        .ttd-container-box { 
-            border: 1px dashed var(--border-color); 
-            background: #f8fafc; 
-            border-radius: 16px; 
-            padding: 20px; 
-            text-align: center; 
-            height: 160px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            transition: all 0.2s ease;
-        }
-        .ttd-container-box:hover { background: #f1f5f9; border-color: var(--text-muted); }
-        .ttd-img { max-height: 90px; max-width: 100%; object-fit: contain; filter: multiply(1.2); mix-blend-mode: multiply;}
-        .ttd-title { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); margin-top: 10px; text-transform: uppercase; border-top: 1px solid var(--border-color); width: 85%; pt: 6px; letter-spacing: 0.5px; }
+        .ttd-container-box { border: 1px dashed var(--border-color); background: #f8fafc; border-radius: 16px; padding: 12px; text-align: center; height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .ttd-img { max-height: 70px; object-fit: contain; mix-blend-mode: multiply;}
+        .ttd-title { font-size: 0.68rem; font-weight: 800; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; border-top: 1px solid var(--border-color); width: 90%; pt: 4px; }
 
         @media (max-width: 767.98px) {
             body { padding: 8px 2px; }
-            .container { padding-left: 14px; padding-right: 14px; }
-            .brand-header { padding: 24px 20px; border-radius: 20px; margin-bottom: 20px; }
-            .brand-header h2 { font-size: 1.5rem; }
+            .brand-header { padding: 24px 20px; border-radius: 20px; }
+            .brand-header h2 { font-size: 1.4rem; }
             .card-professional { padding: 20px 16px; border-radius: 20px; }
             .table-responsive-custom { display: none; }
             .mobile-card-list { display: block; }
-            .ctrl-title-area { text-align: left; width: 100%; margin-bottom: 4px; }
-            .ctrl-btn-area { width: 100%; justify-content: stretch; }
+            .ctrl-btn-area { width: 100%; justify-content: stretch; gap: 8px; }
             .ctrl-btn-area .btn { flex-grow: 1; }
         }
     </style>
@@ -318,14 +176,14 @@
     </div>
 
     <div id="pageDashboard" class="card card-professional">
-        <div class="row align-items-center mb-3 g-3">
+        <div class="row align-items-center mb-4 g-3">
             <div class="col-md-7 ctrl-title-area">
                 <h4 class="fw-bold m-0">Records Database</h4>
-                <p class="text-muted small m-0">Sinkronisasi serah terima shift kerja</p>
+                <p class="text-muted small m-0">Sinkronisasi data serah terima shift kerja di lapangan</p>
             </div>
-            <div class="col-md-5 d-flex gap-2 ctrl-btn-area">
+            <div class="col-md-5 d-flex gap-2 ctrl-btn-area justify-content-md-end">
                 <button class="btn btn-light border rounded-3 px-3 text-secondary" onclick="loadDaftarBA()"><i class="bi bi-arrow-clockwise"></i></button>
-                <button class="btn btn-action-success w-100" onclick="bukaHalamanInput()"><i class="bi bi-plus-circle me-1"></i> Input BA Baru</button>
+                <button class="btn btn-action-success px-4" onclick="bukaHalamanInput()"><i class="bi bi-plus-circle me-1"></i> Input BA Baru</button>
             </div>
         </div>
 
@@ -392,16 +250,19 @@
 </div>
 
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title fw-bold" id="modalTitleID"></h6>
+            <div class="modal-header d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="modal-title fw-bold m-0 text-secondary" style="font-size: 0.8rem;">BERITA ACARA LOGBOOK</h6>
+                    <h5 class="fw-extrabold text-primary m-0" id="modalTitleID" style="letter-spacing:-0.5px;"></h5>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-3">
+            <div class="modal-body p-3 bg-white">
                 <div id="modalDetailContent"></div>
                 
-                <div class="row g-3 mt-3 px-2">
+                <div class="row g-2 mt-2">
                     <div class="col-6">
                         <div class="ttd-container-box">
                             <div id="areaTtdPembuat"></div>
@@ -449,6 +310,7 @@ function verifikasiPinAwal() {
     }
 }
 
+// BYPASS
 function BypassLoginKeAplikasi() {
     document.getElementById("pinLockScreen").classList.add("d-none");
     document.getElementById("mainAppContent").classList.remove("d-none");
@@ -476,7 +338,6 @@ function kembaliKeDashboard() {
     document.getElementById("pageDashboard").classList.remove("d-none");
     loadDaftarBA();
 }
-
 
 function ubahShiftOtomatis() {
     const shiftUtama = document.getElementById("shift").value;
@@ -507,13 +368,9 @@ function ubahShiftOtomatis() {
 }
 document.getElementById("tanggal").addEventListener("change", ubahShiftOtomatis);
 
-
-// =========================================================================
-// TARUH KODE PERBAIKAN INI TEPAT DI SINI (DI BAWAH ADDEVENTLISTENER TANGGAL)
-// =========================================================================
+// SUBMIT DATA
 document.getElementById("formBA").addEventListener("submit", function(e) {
     e.preventDefault(); 
-
     const btnSimpan = document.getElementById("btnSimpan");
     const hasilDiv = document.getElementById("hasil");
     
@@ -542,52 +399,43 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
         tanggal_shift_berikut: document.getElementById("tanggal_shift_berikut").value
     };
 
-    fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify(payload)
-    })
+    fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
     .then(res => res.json())
     .then(data => {
         btnSimpan.disabled = false;
         btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
-
         if (data.success || data.status === "success") {
             alert("✓ Berita Acara Sukses Tersimpan di Cloud Database!");
             document.getElementById("formBA").reset();
             kembaliKeDashboard(); 
         } else {
-            hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Gagal Menyimpan: ${data.message || 'Respons cloud tidak valid.'}</div>`;
+            hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Gagal: ${data.message || 'Koneksi bermasalah.'}</div>`;
         }
     })
     .catch(err => {
         btnSimpan.disabled = false;
         btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
-        hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Error Jaringan: Gagal menghubungi server cloud. Periksa kembali API_URL Anda.</div>`;
-        console.error("Error submit form:", err);
+        hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Error Jaringan Cloud.</div>`;
     });
 });
-// =========================================================================
 
-
-// FUNGSI LOGIKA IKON DIVISI
 function dapatkanIkonDivisi(namaDivisi) {
     let divClean = (namaDivisi || "").toString().trim().toUpperCase();
     if(divClean.includes("EARTHWORK")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-earthwork"><i class="bi bi-cone-striped"></i></div><span class="txt-dstf-blue">Earthwork</span></div>`;
+        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-earthwork"><i class="bi bi-cone-striped"></i></div><span class="text-dark">Earthwork</span></div>`;
     } else if(divClean.includes("HYDRO")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-hydro"><i class="bi bi-droplet-fill"></i></div><span class="txt-dstf-blue">Hydro</span></div>`;
+        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-hydro"><i class="bi bi-droplet-fill"></i></div><span class="text-dark">Hydro</span></div>`;
     } else if(divClean.includes("IPAL")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-ipal"><i class="bi bi-moisture"></i></div><span class="txt-dstf-blue">IPAL</span></div>`;
+        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-ipal"><i class="bi bi-moisture"></i></div><span class="text-dark">IPAL</span></div>`;
     } else if(divClean.includes("GEOTECH")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-geotech"><i class="bi bi-layers-half"></i></div><span class="txt-dstf-blue">Geotech</span></div>`;
+        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-geotech"><i class="bi bi-layers-half"></i></div><span class="text-dark">Geotech</span></div>`;
     } else if(divClean.includes("PLAN") || divClean.includes("PLANNER")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-planner"><i class="bi bi-journal-code"></i></div><span class="txt-dstf-blue">Planner</span></div>`;
+        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-planner"><i class="bi bi-journal-code"></i></div><span class="text-dark">Planner</span></div>`;
     } else {
         return `<span class="text-secondary fw-semibold">${namaDivisi || '-'}</span>`;
     }
 }
 
-// FUNGSI UNTUK MERENDER ULANG DAFTAR SETELAH DI-FILTER SEARCH
 function renderDaftarBA(dataSaring) {
     const tbody = document.getElementById("tabelBodyBA");
     const mobileContainer = document.getElementById("mobileCardContainer");
@@ -602,51 +450,47 @@ function renderDaftarBA(dataSaring) {
     dataSaring.forEach((row) => {
         let badgeShift = row.shift === "Siang" ? 'bg-siang' : 'bg-malam';
         let statusBadge = (row.status || "PENDING").toString().toUpperCase() === "APPROVED" ? 
-                           '<span class="badge-status stat-approved">✓ Approved</span>' : 
+                           '<span class="badge-status stat-approved"><i class="bi bi-check-circle-fill"></i> Approved</span>' : 
                            '<span class="badge-status stat-pending">⏳ Pending</span>';
         
         let htmlDivisi = dapatkanIkonDivisi(row.devisi);
         
         let tr = document.createElement("tr");
         tr.innerHTML = `
-            <td class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</td>
+            <td class="fw-bold text-primary font-monospace">${row.id_ba || '-'}</td>
             <td class="text-secondary fw-semibold">${row.tanggal || '-'}</td>
             <td><span class="badge-shift ${badgeShift}">${row.shift || '-'}</span></td>
             <td>${htmlDivisi}</td>
-            <td>${row.dibuat_oleh || '-'}</td>
+            <td class="fw-medium">${row.dibuat_oleh || '-'}</td>
             <td>${statusBadge}</td>
             <td class="text-center"><button class="btn btn-sm btn-outline-primary py-1 px-3 rounded-3" onclick="tampilkanDetail(${row._oriIndex})">👁️ Detail</button></td>
         `;
         tbody.appendChild(tr);
 
         let mCard = document.createElement("div");
-        mCard.className = "ba-mobile-card shadow-sm border";
+        mCard.className = "ba-mobile-card shadow-sm";
         mCard.innerHTML = `
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</span>
                 <div>${statusBadge}</div>
             </div>
-            <div class="mb-2">${htmlDivisi}</div>
-            <div class="row g-0 small mb-2">
-                <div class="col-6 text-muted"><i class="bi bi-calendar3 me-1"></i> ${row.tanggal || '-'}</div>
-                <div class="col-6 text-muted"><i class="bi bi-clock me-1"></i> ${row.shift || '-'}</div>
+            <div class="mb-3">${htmlDivisi}</div>
+            <div class="row g-0 small mb-2 text-muted border-bottom pb-2">
+                <div class="col-6"><i class="bi bi-calendar3 me-1"></i> ${row.tanggal || '-'}</div>
+                <div class="col-6"><i class="bi bi-clock me-1"></i> Shift: <span class="badge-shift ${badgeShift}">${row.shift || '-'}</span></div>
             </div>
-            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+            <div class="d-flex justify-content-between align-items-center pt-1">
                 <div class="small text-muted">Oleh: <b>${row.dibuat_oleh || '-'}</b></div>
-                <button class="btn btn-sm btn-primary py-1 px-3 rounded-2" style="font-size:0.75rem;" onclick="tampilkanDetail(${row._oriIndex})"><i class="bi bi-eye"></i> Detail</button>
+                <button class="btn btn-sm btn-primary py-1.5 px-3 rounded-2" style="font-size:0.8rem;" onclick="tampilkanDetail(${row._oriIndex})">👁️ Detail</button>
             </div>
         `;
         mobileContainer.appendChild(mCard);
     });
 }
 
-// FUNGSI UTAMA FITUR SEARCH
 function filterDaftarBA() {
     const kueri = document.getElementById("inputSearchBA").value.toLowerCase().trim();
-    if(!kueri) {
-        renderDaftarBA(databaseBA);
-        return;
-    }
+    if(!kueri) { renderDaftarBA(databaseBA); return; }
     const filtered = databaseBA.filter(item => {
         return (item.id_ba || "").toLowerCase().includes(kueri) || 
                (item.devisi || "").toLowerCase().includes(kueri) || 
@@ -660,13 +504,12 @@ function loadDaftarBA() {
     const mobileContainer = document.getElementById("mobileCardContainer");
     document.getElementById("inputSearchBA").value = "";
     
-    tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Menghubungkan ke Cloud...</td></tr>`;
-    mobileContainer.innerHTML = `<div class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Menghubungkan ke Cloud...</div>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Sinkronisasi Cloud...</td></tr>`;
+    mobileContainer.innerHTML = `<div class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Sinkronisasi Cloud...</div>`;
 
     fetch(API_URL)
     .then(res => res.json())
     .then(data => {
-        // Berikan penanda index asli cloud agar tombol detail tidak salah membaca data setelah di-filter pencarian
         databaseBA = data.map((item, idx) => ({...item, _oriIndex: idx}));
         renderDaftarBA(databaseBA);
     })
@@ -676,42 +519,62 @@ function loadDaftarBA() {
     });
 }
 
+/* REVISI TOTAL DISPLAY LOGBOOK TERARAH DI DETAIL */
 function tampilkanDetail(index) {
     const item = databaseBA[index];
-    document.getElementById("modalTitleID").innerHTML = `<i class="bi bi-search text-primary me-2"></i>Data: <span class="font-monospace text-dark">${item.id_ba || 'N/A'}</span>`;
+    document.getElementById("modalTitleID").innerText = item.id_ba || 'N/A';
     
-    let items = [
-        { label: "Tanggal Penginputan", val: item.tanggal, highlight: 'txt-dstf-blue' }, 
-        { label: "Shift Kerja", val: item.shift },
-        { label: "Divisi", val: item.devisi, highlight: 'txt-dstf-blue' }, 
-        { label: "Dibuat Oleh", val: item.dibuat_oleh },
-        { label: "Supervisor / PLT", val: item.supervisor },
-        { label: "Foreman", val: item.foreman },
-        { label: "Rincian Tim Manpower", val: item.jumlah_manpower },
-        { label: "Ketercapaian Target Job", val: `${item.ketercapaian_job || '0'}%`, highlight: 'text-success fw-bold' },
-        { label: "Temuan Masalah Lapangan", val: item.temuan, highlight: 'txt-dstf-red' },
-        { label: "Job Pendding", val: item.job_pending, highlight: 'txt-dstf-bronze' }, 
-        { label: "Keterangan Tambahan", val: item.keterangan },
-        { label: "Supervisor / PLT (Penerima)", val: item.supervisor_pelaksana },
-        { label: "Foreman Penerima", val: item.foreman_pelaksana },
-        { label: "Crew Pelaksana Berikutnya", val: item.crew_pelaksana },
-        { label: "Serah Terima Ke Shift", val: item.shift_berikut },
-        { label: "Tanggal Shift Berikut", val: item.tanggal_shift_berikut }
-    ];
+    // Desain Logbook Terstruktur & Compact
+    let contentHtml = `
+    <div id="viewDetailMode">
+        <div class="logbook-section">
+            <div class="logbook-header text-primary"><i class="bi bi-clock-history"></i> Administrasi & Waktu Shift</div>
+            <div class="row g-2">
+                <div class="col-6 log-item"><div class="log-lbl">Tanggal Penginputan</div><div class="log-val">${item.tanggal || '-'}</div></div>
+                <div class="col-6 log-item"><div class="log-lbl">Shift Aktual</div><div class="log-val"><span class="badge-shift ${item.shift==='Siang'?'bg-siang':'bg-malam'}">${item.shift || '-'}</span></div></div>
+                <div class="col-6 log-item"><div class="log-lbl">Divisi Kerja</div><div class="log-val highlight-main">${item.devisi || '-'}</div></div>
+                <div class="col-6 log-item"><div class="log-lbl">Dibuat Oleh</div><div class="log-val">${item.dibuat_oleh || '-'}</div></div>
+            </div>
+        </div>
 
-    let contentHtml = `<div id="viewDetailMode" class="container-fluid"><div class="row">`;
-    items.forEach(el => {
-        contentHtml += `
-            <div class="col-md-6 col-12 detail-row">
-                <div class="detail-label">${el.label}</div>
-                <div class="detail-value ${el.highlight || ''}">${el.val || '-'}</div>
-            </div>`;
-    });
-    contentHtml += `</div></div>`;
-    
-    contentHtml += `
+        <div class="logbook-section">
+            <div class="logbook-header text-success"><i class="bi bi-people"></i> Manpower & Pengawas Lapangan</div>
+            <div class="row g-2">
+                <div class="col-12 log-item"><div class="log-lbl">Supervisor / PLT</div><div class="log-val">${item.supervisor || '-'}</div></div>
+                <div class="col-12 log-item"><div class="log-lbl">Foreman On Duty</div><div class="log-val" style="white-space: pre-line;">${item.foreman || '-'}</div></div>
+                <div class="col-12 log-item"><div class="log-lbl">Kekuatan Manpower</div><div class="log-val" style="white-space: pre-line; font-size:0.85rem;">${item.jumlah_manpower || '-'}</div></div>
+            </div>
+        </div>
+
+        <div class="logbook-section">
+            <div class="logbook-header text-warning"><i class="bi bi-activity"></i> Progres Aktual & Masalah</div>
+            <div class="row g-2">
+                <div class="col-12 log-item mb-2">
+                    <div class="log-lbl">Ketercapaian Target Job</div>
+                    <div class="progress mt-1" style="height: 18px; border-radius:6px;">
+                        <div class="progress-bar bg-success font-monospace fw-bold" role="progressbar" style="width: ${item.ketercapaian_job || 0}%; font-size:0.75rem;" aria-valuenow="${item.ketercapaian_job || 0}" aria-valuemin="0" aria-valuemax="100">${item.ketercapaian_job || 0}%</div>
+                    </div>
+                </div>
+                <div class="col-12 log-item"><div class="log-lbl" style="color:var(--dstf-red);"><i class="bi bi-exclamation-triangle-fill"></i> Temuan Kendala / Masalah</div><div class="log-val text-danger" style="white-space: pre-line;">${item.temuan || '- No Record -'}</div></div>
+                <div class="col-12 log-item"><div class="log-lbl" style="color:var(--dstf-bronze);"><i class="bi bi-pause-circle-fill"></i> Job Pending (Pekerjaan Tertunda)</div><div class="log-val text-warning" style="white-space: pre-line;">${item.job_pending || '- No Record -'}</div></div>
+                <div class="col-12 log-item"><div class="log-lbl">Keterangan Catatan Tambahan</div><div class="log-val text-secondary" style="font-size:0.85rem; white-space: pre-line;">${item.keterangan || '-'}</div></div>
+            </div>
+        </div>
+
+        <div class="logbook-section" style="border-left: 4px solid #0d9488;">
+            <div class="logbook-header text-info"><i class="bi bi-arrow-left-right"></i> Target Rencana Handover Shift</div>
+            <div class="row g-2">
+                <div class="col-6 log-item"><div class="log-lbl">Target Shift Berikut</div><div class="log-val"><span class="badge-shift ${item.shift_berikut==='Siang'?'bg-siang':'bg-malam'}">${item.shift_berikut || '-'}</span></div></div>
+                <div class="col-6 log-item"><div class="log-lbl">Tanggal Shift Berikut</div><div class="log-val">${item.tanggal_shift_berikut || '-'}</div></div>
+                <div class="col-6 log-item"><div class="log-lbl">Supervisor Penerima</div><div class="log-val">${item.supervisor_pelaksana || '-'}</div></div>
+                <div class="col-6 log-item"><div class="log-lbl">Foreman Penerima</div><div class="log-val">${item.foreman_pelaksana || '-'}</div></div>
+                <div class="col-12 log-item"><div class="log-lbl">Kru Pelaksana Stanby</div><div class="log-val" style="font-size:0.85rem; white-space: pre-line;">${item.crew_pelaksana || '-'}</div></div>
+            </div>
+        </div>
+    </div>
+
     <div id="editFormMode" class="container-fluid d-none">
-        <div class="alert alert-warning small py-2"><i class="bi bi-exclamation-triangle-fill"></i> Anda sedang merubah data untuk ID: <b>${item.id_ba}</b></div>
+        <div class="alert alert-warning small py-2"><i class="bi bi-exclamation-triangle-fill"></i> Mengedit ID: <b>${item.id_ba}</b></div>
         <div class="row g-2">
             <div class="col-6"><label class="form-label small">Tanggal</label><input type="date" class="form-control form-control-sm" id="edit_tanggal" value="${item.tanggal}"></div>
             <div class="col-6"><label class="form-label small">Shift</label><select class="form-select form-select-sm" id="edit_shift"><option ${item.shift==='Siang'?'selected':''}>Siang</option><option ${item.shift==='Malam'?'selected':''}>Malam</option></select></div>
@@ -737,6 +600,7 @@ function tampilkanDetail(index) {
 
     document.getElementById("modalDetailContent").innerHTML = contentHtml;
 
+    // TTD Pembuat
     if(item.ttd_pembuat && item.ttd_pembuat.startsWith("http")) {
         document.getElementById("areaTtdPembuat").innerHTML = `<img src="${item.ttd_pembuat}" class="ttd-img" alt="Ttd Pembuat">`;
     } else {
@@ -744,6 +608,7 @@ function tampilkanDetail(index) {
     }
     document.getElementById("lblTtdPembuat").innerText = item.dibuat_oleh || "Penyerah";
 
+    // TTD Penerima
     if(item.ttd_penerima && item.ttd_penerima.startsWith("http")) {
         document.getElementById("areaTtdPenerima").innerHTML = `<img src="${item.ttd_penerima}" class="ttd-img" alt="Ttd Penerima">`;
     } else {
@@ -751,13 +616,14 @@ function tampilkanDetail(index) {
     }
     document.getElementById("lblTtdPenerima").innerText = item.supervisor_pelaksana || "Penerima";
 
+    // Action Area Button
     const btnArea = document.getElementById("actionApproveArea");
     if ((item.status || "PENDING").toString().toUpperCase() === "APPROVED") {
-        btnArea.innerHTML = `<span class="text-success small fw-bold"><i class="bi bi-shield-fill-check"></i> Valid & Sah</span>`;
+        btnArea.innerHTML = `<span class="text-success small fw-bold"><i class="bi bi-shield-fill-check"></i> Dokumen Sah (Approved)</span>`;
     } else {
         btnArea.innerHTML = `
             <div class="d-flex gap-1">
-                <button type="button" class="btn btn-sm btn-outline-warning rounded-3 px-2" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit Data</button>
+                <button type="button" class="btn btn-sm btn-outline-warning rounded-3 px-2" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit</button>
                 <button type="button" class="btn btn-sm btn-success rounded-3 px-3 fw-bold" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="bi bi-pencil-fill"></i> Approve</button>
             </div>`;
     }
@@ -769,16 +635,11 @@ function tampilkanDetail(index) {
 }
 
 function prosesApproveCloud(idBa, index) {
-    if(!confirm("Apakah Anda setuju untuk menandatangani dan mengesahkan Berita Acara " + idBa + " ini?")) return;
-
+    if(!confirm("Apakah Anda setuju untuk menandatangani Berita Acara " + idBa + " ini?")) return;
     const btnArea = document.getElementById("actionApproveArea");
-    btnArea.innerHTML = `<div class="spinner-border spinner-border-sm text-success me-2"></div>Menandatangani Dokumen...`;
+    btnArea.innerHTML = `<div class="spinner-border spinner-border-sm text-success me-2"></div>Proses Ttd...`;
 
-    let payload = {
-        action: "approve",
-        auth_pin: PIN_MASTER,
-        id_ba: idBa
-    };
+    let payload = { action: "approve", auth_pin: PIN_MASTER, id_ba: idBa };
 
     fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
     .then(res => res.json())
@@ -805,11 +666,10 @@ function aktifkanModeEdit() {
 
 function simpanPerubahanEdit(idBa, index) {
     if(!confirm("Simpan perubahan untuk data BA " + idBa + "?")) return;
-    
     const btnArea = document.getElementById("actionApproveArea");
     document.getElementById("editFormMode").classList.add("d-none");
     document.getElementById("viewDetailMode").classList.remove("d-none");
-    document.getElementById("modalDetailContent").innerHTML = `<div class="text-center py-4"><div class="spinner-border text-primary sm mb-2"></div><br>Sedang mengupdate data ke Cloud...</div>`;
+    document.getElementById("modalDetailContent").innerHTML = `<div class="text-center py-4"><div class="spinner-border text-primary sm mb-2"></div><br>Mengirim pembaruan ke Cloud...</div>`;
     btnArea.innerHTML = "Processing...";
 
     let updatePayload = {
@@ -853,5 +713,3 @@ function simpanPerubahanEdit(idBa, index) {
 </script>
 </body>
 </html>
-
-
