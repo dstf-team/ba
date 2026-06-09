@@ -76,57 +76,62 @@
         .brand-header { 
             background: var(--primary-gradient); 
             color: #ffffff; 
-            padding: 32px 28px; 
-            border-radius: 24px; 
-            margin-bottom: 28px; 
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12); 
+            padding: 24px; 
+            border-radius: 16px; 
+            margin-bottom: 24px; 
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08); 
         }
-        .brand-header h2 { font-weight: 800; font-size: 1.9rem; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .brand-header h2 { font-weight: 800; font-size: 1.6rem; letter-spacing: -0.5px; margin: 0; }
         .subtitle-badge { 
-            background: rgba(255, 255, 255, 0.06); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            background: rgba(255, 255, 255, 0.07); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
             color: #93c5fd; 
-            font-size: 0.75rem; 
+            font-size: 0.72rem; 
             font-weight: 700; 
-            padding: 6px 14px; 
-            border-radius: 8px; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-top: 6px;
         }
 
-        /* PROFESSIONAL CARD */
+        /* CARD WORKSPACE */
         .card-professional { 
-            border: 1px solid var(--border-color); 
-            border-radius: 24px; 
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.02); 
+            border: none; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03); 
             background: var(--surface-bg); 
-            padding: 28px; 
-            margin-bottom: 28px; 
+            padding: 24px; 
+            margin-bottom: 24px; 
         }
 
         /* SEARCH BAR */
         .search-wrapper { position: relative; margin-bottom: 20px; }
         .search-wrapper .bi-search { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-        .search-input-custom { padding-left: 46px !important; background-color: #f8fafc; border-radius: 14px; }
+        .search-input-custom { padding-left: 46px !important; background-color: #f8fafc; border-radius: 12px; border: 1.5px solid var(--border-color); height: 46px; }
+        .search-input-custom:focus { border-color: #2563eb; box-shadow: none; background-color: #fff; }
 
         /* TABLES */
-        .table-responsive-custom { border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); }
-        .table-custom th { background-color: #f8fafc; color: var(--text-muted); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; padding: 16px 20px; }
-        .table-custom td { padding: 18px 20px; vertical-align: middle; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; }
+        .table-responsive-custom { border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #fff; }
+        .table-custom th { background-color: #f8fafc; color: #475569; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; padding: 14px 18px; border-bottom: 2px solid var(--border-color); }
+        .table-custom td { padding: 14px 18px; vertical-align: middle; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9; white-space: nowrap; }
         
         /* MOBILE LIST */
         .mobile-card-list { display: none; }
-        .ba-mobile-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; margin-bottom: 16px; }
+        .ba-mobile-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.01); }
         
         /* BADGES */
-        .badge-shift { font-weight: 700; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; }
+        .badge-shift { font-weight: 700; padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; display: inline-block; text-align: center; }
         .bg-siang { background-color: #fef3c7; color: #b45309; }
         .bg-malam { background-color: #e0e7ff; color: #3730a3; }
-        .badge-status { font-weight: 700; font-size: 0.75rem; padding: 6px 14px; border-radius: 12px; text-transform: uppercase; }
+        
+        .badge-status { font-weight: 700; font-size: 0.75rem; padding: 6px 14px; border-radius: 10px; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; min-width: 115px; width: auto; text-align: center; }
         .stat-pending { background-color: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; }
         .stat-approved { background-color: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7; }
 
-        /* DIVISI ICON DESIGN */
+        /* DIVISI BADGE STYLE */
         .divisi-badge-wrapper { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
-        .divisi-icon-box { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+        .divisi-icon-box { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
         .icon-earthwork { background: #ffe4e6; color: #e11d48; }
         .icon-hydro { background: #e0f2fe; color: #0284c7; }
         .icon-ipal { background: #ccfbf1; color: #0d9488; }
@@ -137,38 +142,141 @@
         .txt-dstf-bronze { color: var(--dstf-bronze) !important; font-weight: 600; }
         .txt-dstf-red { color: var(--dstf-red) !important; font-weight: 600; }
 
-        /* FORM */
-        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 12px 16px; margin-top: 28px; margin-bottom: 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+        /* FORM FIELD DESIGN */
+        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 10px 14px; margin-top: 20px; margin-bottom: 14px; border-radius: 8px; display: flex; align-items: center; gap: 10px; letter-spacing: 0.5px; }
         .sec-utama { background: #eff6ff; color: #2563eb; }
         .sec-tim { background: #ecfdf5; color: #059669; }
         .sec-progress { background: #fff7ed; color: #ea580c; }
         .sec-serah { background: #f0fdfa; color: #0d9488; }
 
-        .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 8px;}
-        .form-control, .form-select { border-radius: 12px; padding: 11px 16px; border: 1.5px solid var(--border-color); font-size: 0.9rem; }
+        .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 6px;}
+        .form-control, .form-select { border-radius: 10px; padding: 10px 14px; border: 1.5px solid var(--border-color); font-size: 0.9rem; background-color: #fff; }
+        .form-control:focus, .form-select:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08); }
         .auto-filled { background-color: #f0fdf4 !important; border-color: #10b981 !important; font-weight: 600; color: #16a34a !important; }
 
         /* BUTTONS */
-        .btn { border-radius: 12px; padding: 10px 20px; font-weight: 600; font-size: 0.9rem; }
+        .btn { border-radius: 10px; padding: 9px 18px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+        .btn:active { transform: scale(0.98); }
         .btn-action-primary { background: var(--accent-gradient); color: white; border: none; }
+        .btn-action-primary:hover { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); color: white; }
         .btn-action-success { background: var(--success-gradient); color: white; border: none; }
+        .btn-action-success:hover { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; }
 
-        /* DETAIL / RESUME DESIGN */
-        .detail-row { border-bottom: 1px solid #f1f5f9; padding: 14px 4px; }
-        .detail-label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-        .detail-value { font-size: 0.95rem; font-weight: 600; white-space: pre-line; margin-top: 4px; color: #1e293b; }
+        /* ==================== DESAIN POLESAN BARU: MODAL DETAIL PREMIUM (SUPER WAH) ==================== */
+        .detail-card-section {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-left: 5px solid #cbd5e1; /* Default Border Left Accent */
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.03), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .detail-card-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px -5px rgba(15, 23, 42, 0.06), 0 8px 16px -2px rgba(15, 23, 42, 0.04);
+        }
+        
+        /* Tema Warna Aksen Sisi Kiri Card */
+        .card-accent-admin { border-left-color: #3b82f6 !important; background: linear-gradient(to right, #f8fafc 0%, #ffffff 100%); }
+        .card-accent-team { border-left-color: #10b981 !important; background: linear-gradient(to right, #f6fdf9 0%, #ffffff 100%); }
+        .card-accent-metrics { border-left-color: #ef4444 !important; background: linear-gradient(to right, #fffafb 0%, #ffffff 100%); }
+        .card-accent-nextshift { border-left-color: #06b6d4 !important; background: linear-gradient(to right, #f7fdfd 0%, #ffffff 100%); }
 
+        .section-premium-title {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .detail-premium-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 6px 4px;
+        }
+        .detail-premium-icon {
+            width: 40px;
+            height: 40px;
+            background: #ffffff;
+            color: #475569;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+            border: 1px solid #f1f5f9;
+        }
+        .detail-premium-info {
+            flex-grow: 1;
+        }
+        .detail-premium-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+        .detail-premium-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            white-space: pre-line;
+        }
+        
+        /* Highlight khusus pencapaian besar */
+        .metric-large-box {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+            color: white;
+        }
+        .metric-large-box .detail-premium-label {
+            color: rgba(255, 255, 255, 0.75) !important;
+            font-weight: 700;
+        }
+        
         /* TTD BOXES */
-        .ttd-container-box { border: 1px dashed var(--border-color); background: #f8fafc; border-radius: 16px; padding: 20px; text-align: center; height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .ttd-img { max-height: 90px; max-width: 100%; mix-blend-mode: multiply;}
-        .ttd-title { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); margin-top: 10px; text-transform: uppercase; border-top: 1px solid var(--border-color); width: 85%; pt: 6px; }
+        .ttd-container-box { 
+            border: 1px dashed #cbd5e1; 
+            background: #ffffff; 
+            border-radius: 16px; 
+            padding: 18px; 
+            text-align: center; 
+            height: 150px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+        }
+        .ttd-img { max-height: 85px; max-width: 100%; mix-blend-mode: multiply; filter: contrast(1.15); }
+        .ttd-title { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); margin-top: 10px; text-transform: uppercase; border-top: 1px solid var(--border-color); width: 90%; padding-top: 6px; letter-spacing: 0.5px; }
+        /* =========================================================================== */
 
-        /* PREVIEW BOX TEXT WA */
-        .wa-preview-box { background: #efeae2; border-left: 4px solid #075e54; padding: 15px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 0.85rem; color: #303030; max-height: 250px; overflow-y: auto;}
+        /* PREVIEW MESSAGE */
+        .wa-preview-box { background: #efeae2; border-left: 4px solid #075e54; padding: 14px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 0.85rem; color: #303030; max-height: 240px; overflow-y: auto;}
 
         @media (max-width: 767.98px) {
             .table-responsive-custom { display: none; }
             .mobile-card-list { display: block; }
+            .brand-header h2 { font-size: 1.35rem; }
         }
     </style>
 </head>
@@ -178,11 +286,11 @@
     <div class="pin-box">
         <div class="display-6 mb-3"><i class="bi bi-shield-lock-fill text-warning"></i></div>
         <h4 class="fw-bold mb-1">Otorisasi Internal</h4>
-        <p class="text-white-50 small mb-4">Masukkan 4 digit PIN untuk mendaftarkan perangkat ini ke sistem DSTF</p>
+        <p class="text-white-50 small mb-4">Masukkan 4 digit PIN untuk mengakses sistem DSTF</p>
         <div class="mb-3">
             <input type="password" id="inputPinLog" class="form-control pin-input-field" maxlength="4" placeholder="••••" autocomplete="off">
         </div>
-        <button class="btn btn-warning w-100 py-2.5 fw-bold rounded-3" onclick="verifikasiPinAwal()">Daftarkan Perangkat</button>
+        <button class="btn btn-warning w-100 py-2.5 fw-bold rounded-3" onclick="verifikasiPinAwal()">Buka Aplikasi</button>
         <div id="errPinMsg" class="text-danger small mt-2 fw-bold"></div>
     </div>
 </div>
@@ -198,14 +306,14 @@
     </div>
 
     <div id="pageDashboard" class="card card-professional">
-        <div class="row align-items-center mb-3 g-3">
+        <div class="row align-items-center mb-4 g-3">
             <div class="col-md-7">
-                <h4 class="fw-bold m-0">Records Database</h4>
-                <p class="text-muted small m-0">Sinkronisasi serah terima shift kerja</p>
+                <h4 class="fw-bold m-0 text-dark">Records Database</h4>
+                <p class="text-muted small m-0">Sinkronisasi serah terima shift kerja operasional</p>
             </div>
             <div class="col-md-5 d-flex gap-2">
                 <button class="btn btn-light border rounded-3 px-3 text-secondary" onclick="loadDaftarBA()"><i class="bi bi-arrow-clockwise"></i></button>
-                <button class="btn btn-action-success w-100" onclick="bukaHalamanInput()"><i class="bi bi-plus-circle me-1"></i> Input BA Baru</button>
+                <button class="btn btn-action-success w-100 py-2.5" onclick="bukaHalamanInput()"><i class="bi bi-plus-circle me-1"></i> Input BA Baru</button>
             </div>
         </div>
 
@@ -256,8 +364,8 @@
             <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
             <div class="row g-2">
                 <div class="col-md-6 mb-2"><label class="form-label">Supervisor / PLT (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap"></div>
-                <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><input type="text" class="form-control" id="foreman_pelaksana"></div>
-                <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2"></textarea></div>
+                <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><input type="text" class="form-control" id="foreman_pelaksana" placeholder="Nama-nama pengawas"></div>
+                <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2" placeholder="Jika tidak ada pengawas"></textarea></div>
                 <div class="col-6 mb-2"><label class="form-label">Shift Berikut</label><select class="form-select" id="shift_berikut"><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
                 <div class="col-6 mb-2"><label class="form-label">Tanggal Shift Berikut</label><input type="date" class="form-control" id="tanggal_shift_berikut"></div>
             </div>
@@ -299,31 +407,35 @@
 
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title fw-bold" id="modalTitleID"></h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content" style="border-radius: 24px; border: none; box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.3);">
+            <div class="modal-header bg-dark text-white border-0 py-3.5 px-4">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="bg-primary rounded-3 p-1.5 px-2.5 font-monospace text-white fw-bold small" style="letter-spacing: 0.5px;" id="modalTitleID"></div>
+                    <span class="text-white-50 small">| Executive Review Board</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-3">
+            <div class="modal-body p-4" style="background-color: #fcfdfe;">
                 <div id="modalDetailContent"></div>
-                <div class="row g-3 mt-3 px-2">
+                
+                <div class="row g-3 mt-1">
                     <div class="col-6">
-                        <div class="ttd-container-box">
+                        <div class="ttd-container-box bg-white">
                             <div id="areaTtdPembuat"></div>
                             <div class="ttd-title" id="lblTtdPembuat">Penyerah BA</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="ttd-container-box">
+                        <div class="ttd-container-box bg-white">
                             <div id="areaTtdPenerima"></div>
                             <div class="ttd-title" id="lblTtdPenerima">Penerima BA</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer bg-light p-2 d-flex justify-content-between">
+            <div class="modal-footer bg-light border-top p-3 d-flex justify-content-between">
                 <div id="actionApproveArea"></div>
-                <button type="button" class="btn btn-sm btn-secondary rounded-3 px-3" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-sm btn-secondary rounded-3 px-4 py-2" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
@@ -398,40 +510,28 @@ function ubahShiftOtomatis() {
         return;
     }
 
-    // 1. Pecah string tanggal murni (YYYY-MM-DD) agar AMAN dari gangguan zona waktu dunia (UTC)
     const [tahunStr, bulanStr, hariStr] = tanggalUtama.split('-');
-    
-    // 2. Buat objek Date dengan mengunci jam ke 12:00 Siang sebagai buffer/jarak aman
     let tanggalObj = new Date(parseInt(tahunStr), parseInt(bulanStr) - 1, parseInt(hariStr), 12, 0, 0);
 
-    // 3. Aturan rotasi Shift & Tanggal
     if (shiftUtama === "Siang") {
         shiftBerikut.value = "Malam";
-        // Shift siang -> Tanggal tetap hari yang sama
     } else if (shiftUtama === "Malam") {
         shiftBerikut.value = "Siang";
-        // Shift malam -> Besoknya baru masuk siang (tambah 1 hari)
         tanggalObj.setDate(tanggalObj.getDate() + 1);
     }
 
-    // 4. Paksa format output teks ke standar 'YYYY-MM-DD' terkunci pada Waktu Jayapura (GMT+9)
     const opsiFormat = { timeZone: 'Asia/Jayapura', year: 'numeric', month: '2-digit', day: '2-digit' };
     const formatter = new Intl.DateTimeFormat('fr-CA', opsiFormat);
     
-    // 5. Masukkan ke input form tanggal berikutnya
     tanggalBerikut.value = formatter.format(tanggalObj);
     
-    // Beri penanda visual sukses auto-fill
     shiftBerikut.classList.add("auto-filled");
     tanggalBerikut.classList.add("auto-filled");
 }
 
-// === BERSIHKAN BAGIAN INI (PASTIKAN MASING-MASING HANYA ADA 1 BARIS) ===
 document.getElementById("tanggal").addEventListener("change", ubahShiftOtomatis);
 document.getElementById("shift").addEventListener("change", ubahShiftOtomatis);
 
-
-// LOGIKA UTAMA SUBMIT FORM BARU
 document.getElementById("formBA").addEventListener("submit", function(e) {
     e.preventDefault(); 
 
@@ -487,7 +587,6 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
         if (data.success || data.status === "success") {
             const generatedID = data.id_ba || data.message || "BA-PROCESSED";
 
-            // MENYUSUN FORMULASI RESUME UNTUK PREVIEW & TOMBOL WA
             let textWA = `📋 *BA OVERSHIFT DSTF*\n` +
                          `--------------------------------------\n` +
                          `*No BA:* ${generatedID}\n` +
@@ -503,19 +602,11 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
                          `*Keterangan Tambahan*\n${valKeterangan || '-'}\n\n` +
                          `⏩ *Shift Berikut:* ${valShiftBerikut || '-'} (${valTanggalBerikut || '-'})`;
 
-            // Reset formulir input terlebih dahulu
             document.getElementById("formBA").reset();
-
-            // Sembunyikan halaman input, tampilkan HALAMAN LANJUTAN/SUKSES
             document.getElementById("pageInputForm").classList.add("d-none");
             document.getElementById("pageSukses").classList.remove("d-none");
-
-            // Masukkan data preview teks ke halaman sukses
             document.getElementById("waPreviewText").innerText = textWA;
-            
-            // Set link href tombol WhatsApp agar dinamis dan bisa diklik manual
             document.getElementById("btnKirimWA").href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textWA);
-            
             window.scrollTo(0,0);
         } else {
             hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Gagal Menyimpan: ${data.message || 'Respons cloud tidak valid.'}</div>`;
@@ -527,7 +618,6 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
         hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Error Jaringan: Gagal menghubungi server cloud.</div>`;
     });
 });
-
 
 function dapatkanIkonDivisi(namaDivisi) {
     let divClean = (namaDivisi || "").toString().trim().toUpperCase();
@@ -571,7 +661,7 @@ function renderDaftarBA(dataSaring) {
             <td class="text-secondary fw-semibold">${row.tanggal || '-'}</td>
             <td><span class="badge-shift ${badgeShift}">${row.shift || '-'}</span></td>
             <td>${htmlDivisi}</td>
-            <td>${row.dibuat_oleh || '-'}</td>
+            <td><b>${row.dibuat_oleh || '-'}</b></td>
             <td>${statusBadge}</td>
             <td class="text-center"><button class="btn btn-sm btn-outline-primary py-1 px-3 rounded-3" onclick="tampilkanDetail(${row._oriIndex})">👁️ Detail</button></td>
         `;
@@ -628,61 +718,191 @@ function loadDaftarBA() {
     });
 }
 
+// ==================== OPERASI POLESAN: DETAIL MODAL EXECUTIVE SCREEN (SUPER WAH) ====================
 function tampilkanDetail(index) {
     const item = databaseBA[index];
-    document.getElementById("modalTitleID").innerHTML = `<i class="bi bi-search text-primary me-2"></i>Data: <span class="font-monospace text-dark">${item.id_ba || 'N/A'}</span>`;
+    document.getElementById("modalTitleID").innerText = item.id_ba || 'N/A';
     
-    let items = [
-        { label: "Tanggal Penginputan", val: item.tanggal, highlight: 'txt-dstf-blue' }, 
-        { label: "Shift Kerja", val: item.shift },
-        { label: "Divisi", val: item.devisi, highlight: 'txt-dstf-blue' }, 
-        { label: "Dibuat Oleh", val: item.dibuat_oleh },
-        { label: "Supervisor / PLT", val: item.supervisor },
-        { label: "Foreman", val: item.foreman },
-        { label: "Rincian Tim Manpower", val: item.jumlah_manpower },
-        { label: "Ketercapaian Target Job", val: `${item.ketercapaian_job || '0'}%`, highlight: 'text-success fw-bold' },
-        { label: "Temuan Masalah Lapangan", val: item.temuan, highlight: 'txt-dstf-red' },
-        { label: "Job Pending", val: item.job_pending, highlight: 'txt-dstf-bronze' }, 
-        { label: "Keterangan Tambahan", val: item.keterangan },
-        { label: "Supervisor / PLT (Penerima)", val: item.supervisor_pelaksana },
-        { label: "Foreman Penerima", val: item.foreman_pelaksana },
-        { label: "Crew Pelaksana Berikutnya", val: item.crew_pelaksana },
-        { label: "Serah Terima Ke Shift", val: item.shift_berikut },
-        { label: "Tanggal Shift Berikut", val: item.tanggal_shift_berikut }
-    ];
-
-    let contentHtml = `<div id="viewDetailMode" class="container-fluid"><div class="row">`;
-    items.forEach(el => {
-        contentHtml += `
-            <div class="col-md-6 col-12 detail-row">
-                <div class="detail-label">${el.label}</div>
-                <div class="detail-value ${el.highlight || ''}">${el.val || '-'}</div>
-            </div>`;
-    });
-    contentHtml += `</div></div>`;
-    
-    contentHtml += `
-    <div id="editFormMode" class="container-fluid d-none">
-        <div class="row g-2">
-            <div class="col-6"><label class="form-label small">Tanggal</label><input type="date" class="form-control form-control-sm" id="edit_tanggal" value="${item.tanggal}"></div>
-            <div class="col-6"><label class="form-label small">Shift</label><select class="form-select form-select-sm" id="edit_shift"><option ${item.shift==='Siang'?'selected':''}>Siang</option><option ${item.shift==='Malam'?'selected':''}>Malam</option></select></div>
-            <div class="col-6"><label class="form-label small">Divisi</label><select class="form-select form-select-sm" id="edit_devisi"><option ${item.devisi==='Earthwork'?'selected':''}>Earthwork</option><option ${item.devisi==='Hydro'?'selected':''}>Hydro</option><option ${item.devisi==='IPAL'?'selected':''}>IPAL</option><option ${item.devisi==='Geotech'?'selected':''}>Geotech</option><option ${item.devisi==='Planner'?'selected':''}>Planner</option></select></div>
-            <div class="col-6"><label class="form-label small">Supervisor</label><input type="text" class="form-control form-control-sm" id="edit_supervisor" value="${item.supervisor}"></div>
-            <div class="col-12"><label class="form-label small">Foreman</label><input type="text" class="form-control form-control-sm" id="edit_foreman" value="${item.foreman}"></div>
-            <div class="col-12"><label class="form-label small">Manpower</label><textarea class="form-control form-control-sm" id="edit_manpower" rows="1">${item.jumlah_manpower}</textarea></div>
-            <div class="col-4"><label class="form-label small">Ketercapaian (%)</label><input type="number" class="form-control form-control-sm" id="edit_ketercapaian" value="${item.ketercapaian_job}"></div>
-            <div class="col-8"><label class="form-label small">Temuan</label><input type="text" class="form-control form-control-sm" id="edit_temuan" value="${item.temuan}"></div>
-            <div class="col-12"><label class="form-label small">Job Pending</label><textarea class="form-control form-control-sm" id="edit_pending" rows="1">${item.job_pending}</textarea></div>
-            <div class="col-12"><label class="form-label small">Keterangan</label><textarea class="form-control form-control-sm" id="edit_keterangan" rows="1">${item.keterangan}</textarea></div>
-            <div class="col-6"><label class="form-label small">Supt Penerima</label><input type="text" class="form-control form-control-sm" id="edit_supt_penerima" value="${item.supervisor_pelaksana}"></div>
-            <div class="col-6"><label class="form-label small">Foreman Penerima</label><input type="text" class="form-control form-control-sm" id="edit_foreman_penerima" value="${item.foreman_pelaksana}"></div>
-            <div class="col-12"><label class="form-label small">Crew Penerima</label><textarea class="form-control form-control-sm" id="edit_crew_penerima" rows="1">${item.crew_pelaksana}</textarea></div>
-            <div class="col-6"><label class="form-label small">Shift Berikut</label><select class="form-select form-select-sm" id="edit_shift_berikut"><option ${item.shift_berikut==='Siang'?'selected':''}>Siang</option><option ${item.shift_berikut==='Malam'?'selected':''}>Malam</option></select></div>
-            <div class="col-6"><label class="form-label small">Tanggal Shift Berikut</label><input type="date" class="form-control form-control-sm" id="edit_tanggal_berikut" value="${item.tanggal_shift_berikut}"></div>
+    let contentHtml = `
+    <div id="viewDetailMode">
+        <div class="detail-card-section card-accent-admin">
+            <div class="section-premium-title"><i class="bi bi-shield-check text-primary"></i> Administrasi & Validitas Berita Acara</div>
+            <div class="row g-3">
+                <div class="col-md-4 col-6">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-primary"><i class="bi bi-calendar3"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Tanggal Input</div>
+                            <div class="detail-premium-value">${item.tanggal || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-warning"><i class="bi bi-clock-history"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Shift Penyerah</div>
+                            <div class="detail-premium-value">${item.shift || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-info"><i class="bi bi-diagram-3-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Divisi / Sektor</div>
+                            <div class="detail-premium-value text-primary fw-bold">${item.devisi || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-sm btn-primary w-100 py-2" onclick="simpanPerubahanEdit('${item.id_ba}', ${index})"><i class="bi bi-cloud-check-fill"></i> Simpan Perubahan</button>
-            <button class="btn btn-sm btn-light border w-50 py-2" onclick="document.getElementById('viewDetailMode').classList.remove('d-none'); document.getElementById('editFormMode').classList.add('d-none');"><i class="bi bi-x"></i> Batal</button>
+
+        <div class="detail-card-section card-accent-team">
+            <div class="section-premium-title"><i class="bi bi-people text-success"></i> Tim Operasional & Manpower Aktif</div>
+            <div class="row g-3">
+                <div class="col-md-4 col-6">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-secondary"><i class="bi bi-person-badge"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Dibuat Oleh</div>
+                            <div class="detail-premium-value fw-bold">${item.dibuat_oleh || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-secondary"><i class="bi bi-person-workspace"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Supervisor / PLT</div>
+                            <div class="detail-premium-value">${item.supervisor || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-secondary"><i class="bi bi-person-lines-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Foreman</div>
+                            <div class="detail-premium-value">${item.foreman || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 border-top pt-3 mt-1">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-success"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Rincian Anggota & Kekuatan Manpower</div>
+                            <div class="detail-premium-value text-secondary small fw-medium">${item.jumlah_manpower || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card-section card-accent-metrics">
+            <div class="section-premium-title"><i class="bi bi-bar-chart-line text-danger"></i> Metrik Kinerja & Catatan Lapangan</div>
+            <div class="row g-3">
+                <div class="col-md-4 col-12">
+                    <div class="metric-large-box">
+                        <div class="detail-premium-label">Ketercapaian Job</div>
+                        <h2 class="fw-extrabold m-0 mt-1" style="font-size: 2.2rem; font-weight: 800; letter-spacing: -1px;">${item.ketercapaian_job || '0'}%</h2>
+                    </div>
+                </div>
+                <div class="col-md-8 col-12">
+                    <div class="row g-2">
+                        <div class="col-12">
+                            <div class="p-2.5 px-3 rounded-3 text-danger" style="background-color: #fef2f2; border: 1px solid #fee2e2;">
+                                <div class="detail-premium-label text-danger" style="font-size:0.65rem;"><i class="bi bi-exclamation-triangle-fill"></i> Temuan Hambatan Lapangan</div>
+                                <div class="small fw-bold mt-0.5">${item.temuan || 'Tidak ada hambatan kritikal.'}</div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="p-2.5 px-3 rounded-3 text-warning-emphasis" style="background-color: #fffbeb; border: 1px solid #fef3c7;">
+                                <div class="detail-premium-label text-warning-emphasis" style="font-size:0.65rem;"><i class="bi bi-hourglass-split"></i> Pekerjaan Tertunda (Job Pending)</div>
+                                <div class="small fw-bold mt-0.5">${item.job_pending || 'Semua target shift terpenuhi.'}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 border-top pt-3 mt-1">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-secondary"><i class="bi bi-chat-right-quote-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Keterangan Tambahan</div>
+                            <div class="detail-premium-value text-secondary small fw-medium">${item.ketergan || item.keterangan || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card-section card-accent-nextshift">
+            <div class="section-premium-title"><i class="bi bi-arrow-right-square text-info"></i> Rencana Kerja & Serah Terima Shift Berikutnya</div>
+            <div class="row g-3">
+                <div class="col-md-4 col-6">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-info"><i class="bi bi-person-check-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Supervisor / PLT Penerima</div>
+                            <div class="detail-premium-value fw-bold">${item.supervisor_pelaksana || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-info"><i class="bi bi-person-badge-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Foreman Pelaksana</div>
+                            <div class="detail-premium-value">${item.foreman_pelaksana || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-info"><i class="bi bi-calendar-event-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Jadwal Shift Esok</div>
+                            <div class="detail-premium-value small text-dark-emphasis font-monospace">Shift ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 border-top pt-3 mt-1">
+                    <div class="detail-premium-box">
+                        <div class="detail-premium-icon text-info"><i class="bi bi-people-fill"></i></div>
+                        <div class="detail-premium-info">
+                            <div class="detail-premium-label">Crew Pelaksana Bertugas</div>
+                            <div class="detail-premium-value text-secondary small fw-medium">${item.crew_pelaksana || '-'}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="editFormMode" class="container-fluid d-none px-0">
+        <div class="card p-3 border rounded-4 bg-white shadow-sm mb-3">
+            <div class="row g-2">
+                <div class="col-6"><label class="form-label small mb-1">Tanggal</label><input type="date" class="form-control form-control-sm" id="edit_tanggal" value="${item.tanggal}"></div>
+                <div class="col-6"><label class="form-label small mb-1">Shift</label><select class="form-select form-select-sm" id="edit_shift"><option ${item.shift==='Siang'?'selected':''}>Siang</option><option ${item.shift==='Malam'?'selected':''}>Malam</option></select></div>
+                <div class="col-6"><label class="form-label small mb-1">Divisi</label><select class="form-select form-select-sm" id="edit_devisi"><option ${item.devisi==='Earthwork'?'selected':''}>Earthwork</option><option ${item.devisi==='Hydro'?'selected':''}>Hydro</option><option ${item.devisi==='IPAL'?'selected':''}>IPAL</option><option ${item.devisi==='Geotech'?'selected':''}>Geotech</option><option ${item.devisi==='Planner'?'selected':''}>Planner</option></select></div>
+                <div class="col-6"><label class="form-label small mb-1">Supervisor</label><input type="text" class="form-control form-control-sm" id="edit_supervisor" value="${item.supervisor}"></div>
+                <div class="col-12"><label class="form-label small mb-1">Foreman</label><input type="text" class="form-control form-control-sm" id="edit_foreman" value="${item.foreman}"></div>
+                <div class="col-12"><label class="form-label small mb-1">Manpower</label><textarea class="form-control form-control-sm" id="edit_manpower" rows="2">${item.jumlah_manpower}</textarea></div>
+                <div class="col-4"><label class="form-label small mb-1">Ketercapaian (%)</label><input type="number" class="form-control form-control-sm" id="edit_ketercapaian" value="${item.ketercapaian_job}"></div>
+                <div class="col-8"><label class="form-label small mb-1">Temuan Hambatan</label><input type="text" class="form-control form-control-sm" id="edit_temuan" value="${item.temuan}"></div>
+                <div class="col-12"><label class="form-label small mb-1">Job Pending</label><textarea class="form-control form-control-sm" id="edit_pending" rows="2">${item.job_pending}</textarea></div>
+                <div class="col-12"><label class="form-label small mb-1">Keterangan</label><textarea class="form-control form-control-sm" id="edit_keterangan" rows="2">${item.keterangan || item.ketergan}</textarea></div>
+                <div class="col-6"><label class="form-label small mb-1">Supt Penerima</label><input type="text" class="form-control form-control-sm" id="edit_supt_penerima" value="${item.supervisor_pelaksana}"></div>
+                <div class="col-6"><label class="form-label small mb-1">Foreman Penerima</label><input type="text" class="form-control form-control-sm" id="edit_foreman_penerima" value="${item.foreman_pelaksana}"></div>
+                <div class="col-12"><label class="form-label small mb-1">Crew Penerima</label><textarea class="form-control form-control-sm" id="edit_crew_penerima" rows="2">${item.crew_pelaksana}</textarea></div>
+                <div class="col-6"><label class="form-label small mb-1">Shift Berikut</label><select class="form-select form-select-sm" id="edit_shift_berikut"><option ${item.shift_berikut==='Siang'?'selected':''}>Siang</option><option ${item.shift_berikut==='Malam'?'selected':''}>Malam</option></select></div>
+                <div class="col-6"><label class="form-label small mb-1">Tanggal Shift Berikut</label><input type="date" class="form-control form-control-sm" id="edit_tanggal_berikut" value="${item.tanggal_shift_berikut}"></div>
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-primary w-100 py-2.5 rounded-3 shadow-sm" onclick="simpanPerubahanEdit('${item.id_ba}', ${index})"><i class="bi bi-cloud-check-fill"></i> Simpan Perubahan</button>
+            <button class="btn btn-sm btn-light border w-50 py-2.5 rounded-3" onclick="document.getElementById('viewDetailMode').classList.remove('d-none'); document.getElementById('editFormMode').classList.add('d-none');"><i class="bi bi-x"></i> Batal</button>
         </div>
     </div>`;
 
@@ -691,16 +911,16 @@ function tampilkanDetail(index) {
     if(item.ttd_pembuat && item.ttd_pembuat.startsWith("http")) {
         document.getElementById("areaTtdPembuat").innerHTML = `<img src="${item.ttd_pembuat}" class="ttd-img" alt="Ttd Pembuat">`;
     } else {
-        document.getElementById("areaTtdPembuat").innerHTML = `<span class="text-muted small italic">Ttd Terdaftar</span>`;
+        document.getElementById("areaTtdPembuat").innerHTML = `<span class="text-muted small italic">Ttd Tersemat Cloud</span>`;
     }
-    document.getElementById("lblTtdPembuat").innerText = item.dibuat_oleh || "Penyerah";
+    document.getElementById("lblTtdPembuat").innerText = "Penyerah: " + (item.dibuat_oleh || "N/A");
 
     if(item.ttd_penerima && item.ttd_penerima.startsWith("http")) {
         document.getElementById("areaTtdPenerima").innerHTML = `<img src="${item.ttd_penerima}" class="ttd-img" alt="Ttd Penerima">`;
     } else {
-        document.getElementById("areaTtdPenerima").innerHTML = `<span class="text-danger small fw-bold"><i class="bi bi-clock"></i> Belum Approve</span>`;
+        document.getElementById("areaTtdPenerima").innerHTML = `<span class="text-danger small fw-bold px-2 py-1 bg-danger-subtle rounded"><i class="bi bi-clock-history"></i> Menunggu Approve</span>`;
     }
-    document.getElementById("lblTtdPenerima").innerText = item.supervisor_pelaksana || "Penerima";
+    document.getElementById("lblTtdPenerima").innerText = "Penerima: " + (item.supervisor_pelaksana || "N/A");
 
     const btnArea = document.getElementById("actionApproveArea");
     
@@ -716,31 +936,32 @@ function tampilkanDetail(index) {
                        `*Rincian Tim Manpower*\n${item.jumlah_manpower || '-'}\n` +
                        `*Temuan Masalah Lapangan*\n${item.temuan || '-'}\n` +
                        `*Job Pending*\n${item.job_pending || '-'}\n` +
-                       `*Keterangan Tambahan*\n${item.keterangan || '-'}\n\n` +
+                       `*Keterangan Tambahan*\n${item.ketergan || item.keterangan || '-'}\n\n` +
                        `⏩ *Shift Berikut:* ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})`;
     
     let urlWhatsApp = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textDetailWA);
-    let tombolShareWA = `<a href="${urlWhatsApp}" target="_blank" class="btn btn-sm btn-success rounded-3 px-2 me-1"><i class="bi bi-whatsapp"></i> Share WA</a>`;
+    let tombolShareWA = `<a href="${urlWhatsApp}" target="_blank" class="btn btn-sm btn-success rounded-3 px-3 py-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>`;
 
     if ((item.status || "PENDING").toString().toUpperCase() === "APPROVED") {
-        btnArea.innerHTML = `<div class="d-flex align-items-center gap-1">${tombolShareWA} <span class="text-success small fw-bold"><i class="bi bi-shield-fill-check"></i> Valid</span></div>`;
+        btnArea.innerHTML = `<div class="d-flex align-items-center gap-2">${tombolShareWA} <span class="badge bg-success-subtle text-success py-2 px-3 rounded-3 border border-success"><i class="bi bi-shield-fill-check me-1"></i> Terverifikasi Valid</span></div>`;
     } else {
         btnArea.innerHTML = `
-            <div class="d-flex gap-1">
+            <div class="d-flex gap-2">
                 ${tombolShareWA}
-                <button type="button" class="btn btn-sm btn-outline-warning rounded-3 px-2" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit Data</button>
-                <button type="button" class="btn btn-sm btn-primary rounded-3 px-3 fw-bold" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="bi bi-pencil-fill"></i> Approve</button>
+                <button type="button" class="btn btn-sm btn-outline-warning rounded-3 px-3 py-2" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit</button>
+                <button type="button" class="btn btn-sm btn-primary rounded-3 px-4 py-2 fw-bold" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="bi bi-check2-circle"></i> Approve Sign</button>
             </div>`;
     }
 
     if (!modalAktif) { modalAktif = new bootstrap.Modal(document.getElementById('modalDetail')); }
     modalAktif.show();
 }
+// =====================================================================================================
 
 function prosesApproveCloud(idBa, index) {
     if(!confirm("Apakah Anda setuju mendelegasikan tanda tangan pada Berita Acara ini?")) return;
     const btnArea = document.getElementById("actionApproveArea");
-    btnArea.innerHTML = `Processing...`;
+    btnArea.innerHTML = `<div class="spinner-border spinner-border-sm text-primary"></div> Menandatangani...`;
 
     let payload = { action: "approve", auth_pin: PIN_MASTER, id_ba: idBa };
     fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
@@ -762,7 +983,7 @@ function simpanPerubahanEdit(idBa, index) {
     const btnArea = document.getElementById("actionApproveArea");
     document.getElementById("editFormMode").classList.add("d-none");
     document.getElementById("viewDetailMode").classList.remove("d-none");
-    document.getElementById("modalDetailContent").innerHTML = `<div class="text-center py-4"><div class="spinner-border text-primary sm mb-2"></div><br>Mengupdate cloud...</div>`;
+    document.getElementById("modalDetailContent").innerHTML = `<div class="text-center py-5"><div class="spinner-border text-primary mb-2"></div><br>Menyinkronkan data cloud baru...</div>`;
     btnArea.innerHTML = "Processing...";
 
     let updatePayload = {
