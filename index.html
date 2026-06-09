@@ -33,7 +33,7 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* PIN LOCK SCREN */
+        /* PIN LOCK SCREEN */
         #pinLockScreen { 
             position: fixed; 
             top: 0; 
@@ -333,23 +333,6 @@
         </div>
         <button class="btn btn-sm btn-outline-light mt-3 mt-md-0" onclick="logoutPerangkat()"><i class="bi bi-box-arrow-right"></i> Keluar</button>
     </div>
-
-    <div id="pageDashboard" class="card card-professional">
-        <div class="row align-items-center mb-4 g-3">
-            <div class="col-md-7">
-                <h4 class="fw-bold m-0 text-dark" style="letter-spacing: -0.5px;">Database Berita Acara</h4>
-                <p class="text-muted small m-0 mt-1">Sistem manajemen pemantauan serah terima shift kerja operasional.</p>
-            </div>
-            <div class="col-md-5 d-flex gap-2 justify-content-md-end">
-                <button class="btn btn-white bg-white border border-secondary-subtle rounded-3 px-3 text-secondary shadow-sm" onclick="loadDaftarBA()" title="Refresh Data">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </button>
-                <button class="btn btn-action-success px-4 py-2.5 shadow-sm" onclick="bukaHalamanInput()">
-                    <i class="bi bi-plus-circle me-1.5"></i> Input BA Baru
-                </button>
-            </div>
-        </div>
-
         <div class="row g-3 mb-4">
             <div class="col-md-4 col-6">
                 <div class="stat-widget-card">
@@ -385,6 +368,23 @@
                 </div>
             </div>
         </div>
+    <div id="pageDashboard" class="card card-professional">
+        <div class="row align-items-center mb-4 g-3">
+            <div class="col-md-7">
+                <h4 class="fw-bold m-0 text-dark" style="letter-spacing: -0.5px;">Database Berita Acara</h4>
+                <p class="text-muted small m-0 mt-1">Sistem manajemen pemantauan serah terima shift kerja operasional.</p>
+            </div>
+            <div class="col-md-5 d-flex gap-2 justify-content-md-end">
+                <button class="btn btn-white bg-white border border-secondary-subtle rounded-3 px-3 text-secondary shadow-sm" onclick="loadDaftarBA()" title="Refresh Data">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+                <button class="btn btn-action-success px-4 py-2.5 shadow-sm" onclick="bukaHalamanInput()">
+                    <i class="bi bi-plus-circle me-1.5"></i> Input BA Baru
+                </button>
+            </div>
+        </div>
+
+
 
         <div class="search-wrapper">
             <i class="bi bi-search"></i>
