@@ -105,28 +105,54 @@
             margin-bottom: 24px; 
         }
 
-        /* SEARCH BAR */
-        .search-wrapper { position: relative; margin-bottom: 20px; }
-        .search-wrapper .bi-search { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-        .search-input-custom { padding-left: 46px !important; background-color: #f8fafc; border-radius: 12px; border: 1.5px solid var(--border-color); height: 46px; }
-        .search-input-custom:focus { border-color: #2563eb; box-shadow: none; background-color: #fff; }
+        /* AREA DASHBOARD DEPAN */
+        .stat-widget-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.01);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .stat-widget-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03);
+        }
+        .stat-icon-wrapper {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+        }
 
-        /* TABLES */
-        .table-responsive-custom { border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background: #fff; }
-        .table-custom th { background-color: #f8fafc; color: #475569; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; padding: 14px 18px; border-bottom: 2px solid var(--border-color); }
-        .table-custom td { padding: 14px 18px; vertical-align: middle; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9; white-space: nowrap; }
+        .search-wrapper { position: relative; margin-bottom: 22px; }
+        .search-wrapper .bi-search { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.95rem; }
+        .search-input-custom { padding-left: 48px !important; background-color: #ffffff; border-radius: 12px; border: 1.5px solid #e2e8f0; height: 48px; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01); }
+        .search-input-custom:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.06); background-color: #fff; }
+
+        .table-responsive-custom { border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; background: #fff; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.01); }
+        .table-custom th { background-color: #f8fafc; color: #64748b; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; padding: 16px 18px; border-bottom: 1px solid #e2e8f0; letter-spacing: 0.5px; }
+        .table-custom td { padding: 16px 18px; vertical-align: middle; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9; white-space: nowrap; color: #334155; }
+        .table-custom tbody tr { transition: background-color 0.2s; }
+        .table-custom tbody tr:hover { background-color: #f8fafc; }
         
         /* MOBILE LIST */
         .mobile-card-list { display: none; }
-        .ba-mobile-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.01); }
+        .ba-mobile-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.01); }
         
         /* BADGES */
-        .badge-shift { font-weight: 700; padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; display: inline-block; text-align: center; }
-        .bg-siang { background-color: #fef3c7; color: #b45309; }
-        .bg-malam { background-color: #e0e7ff; color: #3730a3; }
+        .badge-shift { font-weight: 700; padding: 5px 10px; border-radius: 6px; font-size: 0.72rem; display: inline-block; text-align: center; letter-spacing: 0.3px; }
+        .bg-siang { background-color: #fffbeb; color: #d97706; border: 1px solid #fef3c7; }
+        .bg-malam { background-color: #eef2ff; color: #4f46e5; border: 1px solid #e0e7ff; }
         
-        .badge-status { font-weight: 700; font-size: 0.75rem; padding: 6px 14px; border-radius: 10px; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; min-width: 115px; width: auto; text-align: center; }
-        .stat-pending { background-color: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; }
+        .badge-status { font-weight: 700; font-size: 0.72rem; padding: 5px 12px; border-radius: 8px; letter-spacing: 0.3px; display: inline-flex; align-items: center; justify-content: center; min-width: 105px; gap: 4px; }
+        .stat-pending { background-color: #fff5f5; color: #e11d48; border: 1px solid #ffe4e6; }
         .stat-approved { background-color: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7; }
 
         /* DIVISI BADGE STYLE */
@@ -162,11 +188,11 @@
         .btn-action-success { background: var(--success-gradient); color: white; border: none; }
         .btn-action-success:hover { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; }
 
-        /* ==================== DESAIN POLESAN BARU: MODAL DETAIL PREMIUM (SUPER WAH) ==================== */
+        /* MODAL DETAIL PREMIUM */
         .detail-card-section {
             background: #ffffff;
             border: 1px solid rgba(226, 232, 240, 0.8);
-            border-left: 5px solid #cbd5e1; /* Default Border Left Accent */
+            border-left: 5px solid #cbd5e1;
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 18px;
@@ -178,7 +204,6 @@
             box-shadow: 0 16px 30px -5px rgba(15, 23, 42, 0.06), 0 8px 16px -2px rgba(15, 23, 42, 0.04);
         }
         
-        /* Tema Warna Aksen Sisi Kiri Card */
         .card-accent-admin { border-left-color: #3b82f6 !important; background: linear-gradient(to right, #f8fafc 0%, #ffffff 100%); }
         .card-accent-team { border-left-color: #10b981 !important; background: linear-gradient(to right, #f6fdf9 0%, #ffffff 100%); }
         .card-accent-metrics { border-left-color: #ef4444 !important; background: linear-gradient(to right, #fffafb 0%, #ffffff 100%); }
@@ -233,10 +258,9 @@
             font-weight: 700;
             color: #0f172a;
             margin: 0;
-            white-space: pre-line;
+            white-space: pre-wrap; /* MENJAGA FORMAT ENTER DARI USER */
         }
         
-        /* Highlight khusus pencapaian besar */
         .metric-large-box {
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             border: none;
@@ -249,6 +273,12 @@
         .metric-large-box .detail-premium-label {
             color: rgba(255, 255, 255, 0.75) !important;
             font-weight: 700;
+        }
+
+        /* AREA DENGAN DUKUNGAN MULTI-LINE ENTER */
+        .preserve-newlines {
+            white-space: pre-wrap !important;
+            word-break: break-word;
         }
         
         /* TTD BOXES */
@@ -268,7 +298,6 @@
         }
         .ttd-img { max-height: 85px; max-width: 100%; mix-blend-mode: multiply; filter: contrast(1.15); }
         .ttd-title { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); margin-top: 10px; text-transform: uppercase; border-top: 1px solid var(--border-color); width: 90%; padding-top: 6px; letter-spacing: 0.5px; }
-        /* =========================================================================== */
 
         /* PREVIEW MESSAGE */
         .wa-preview-box { background: #efeae2; border-left: 4px solid #075e54; padding: 14px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 0.85rem; color: #303030; max-height: 240px; overflow-y: auto;}
@@ -308,12 +337,52 @@
     <div id="pageDashboard" class="card card-professional">
         <div class="row align-items-center mb-4 g-3">
             <div class="col-md-7">
-                <h4 class="fw-bold m-0 text-dark">Records Database</h4>
-                <p class="text-muted small m-0">Sinkronisasi serah terima shift kerja operasional</p>
+                <h4 class="fw-bold m-0 text-dark" style="letter-spacing: -0.5px;">Database Berita Acara</h4>
+                <p class="text-muted small m-0 mt-1">Sistem manajemen pemantauan serah terima shift kerja operasional.</p>
             </div>
-            <div class="col-md-5 d-flex gap-2">
-                <button class="btn btn-light border rounded-3 px-3 text-secondary" onclick="loadDaftarBA()"><i class="bi bi-arrow-clockwise"></i></button>
-                <button class="btn btn-action-success w-100 py-2.5" onclick="bukaHalamanInput()"><i class="bi bi-plus-circle me-1"></i> Input BA Baru</button>
+            <div class="col-md-5 d-flex gap-2 justify-content-md-end">
+                <button class="btn btn-white bg-white border border-secondary-subtle rounded-3 px-3 text-secondary shadow-sm" onclick="loadDaftarBA()" title="Refresh Data">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+                <button class="btn btn-action-success px-4 py-2.5 shadow-sm" onclick="bukaHalamanInput()">
+                    <i class="bi bi-plus-circle me-1.5"></i> Input BA Baru
+                </button>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4 col-6">
+                <div class="stat-widget-card">
+                    <div class="stat-icon-wrapper bg-primary-subtle text-primary">
+                        <i class="bi bi-folder2-open"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Penyimpanan</div>
+                        <h6 class="fw-bold m-0 mt-1 text-dark">Cloud Sync</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="stat-widget-card">
+                    <div class="stat-icon-wrapper bg-danger-subtle text-danger">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Otorisasi</div>
+                        <h6 class="fw-bold m-0 mt-1 text-dark">Secure PIN</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="stat-widget-card">
+                    <div class="stat-icon-wrapper bg-success-subtle text-success">
+                        <i class="bi bi-cloud-check"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Status Jaringan</div>
+                        <h6 class="fw-bold m-0 mt-1 text-success small"><span class="spinner-grow spinner-grow-sm me-1 text-success" style="width:8px; height:8px;"></span> Live Cloud</h6>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -323,10 +392,16 @@
         </div>
         
         <div class="table-responsive table-responsive-custom">
-            <table class="table table-custom m-0">
+            <table class="table table-custom table-hover align-middle m-0">
                 <thead>
                     <tr>
-                        <th>ID BA</th><th>Tanggal</th><th>Shift</th><th>Divisi</th><th>Dibuat Oleh</th><th>Status</th><th class="text-center">Aksi</th>
+                        <th style="width: 13%;">ID BA</th>
+                        <th style="width: 15%;">Tanggal</th>
+                        <th style="width: 12%;">Shift</th>
+                        <th style="width: 20%;">Divisi</th>
+                        <th style="width: 18%;">Dibuat Oleh</th>
+                        <th style="width: 12%;">Status</th>
+                        <th style="width: 10%;" class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody id="tabelBodyBA"></tbody>
@@ -358,7 +433,7 @@
             <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
             <div class="mb-2"><label class="form-label">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job"><span class="input-group-text bg-light">%</span></div></div>
             <div class="mb-2"><label class="form-label">Temuan</label><textarea class="form-control" id="temuan" rows="2"></textarea></div>
-            <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="2"></textarea></div>
+            <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="3"></textarea></div>
             <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan_tambahan" rows="2"></textarea></div>
 
             <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
@@ -650,8 +725,8 @@ function renderDaftarBA(dataSaring) {
     dataSaring.forEach((row) => {
         let badgeShift = row.shift === "Siang" ? 'bg-siang' : 'bg-malam';
         let statusBadge = (row.status || "PENDING").toString().toUpperCase() === "APPROVED" ? 
-                           '<span class="badge-status stat-approved">✓ Approved</span>' : 
-                           '<span class="badge-status stat-pending">⏳ Pending</span>';
+                           '<span class="badge-status stat-approved"><i class="bi bi-check2-circle"></i> Approved</span>' : 
+                           '<span class="badge-status stat-pending"><i class="bi bi-hourglass-split"></i> Pending</span>';
         
         let htmlDivisi = dapatkanIkonDivisi(row.devisi);
         
@@ -668,7 +743,7 @@ function renderDaftarBA(dataSaring) {
         tbody.appendChild(tr);
 
         let mCard = document.createElement("div");
-        mCard.className = "ba-mobile-card shadow-sm border";
+        mCard.className = "ba-mobile-card border";
         mCard.innerHTML = `
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</span>
@@ -718,7 +793,6 @@ function loadDaftarBA() {
     });
 }
 
-// ==================== OPERASI POLESAN: DETAIL MODAL EXECUTIVE SCREEN (SUPER WAH) ====================
 function tampilkanDetail(index) {
     const item = databaseBA[index];
     document.getElementById("modalTitleID").innerText = item.id_ba || 'N/A';
@@ -766,7 +840,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-secondary"><i class="bi bi-person-badge"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Dibuat Oleh</div>
-                            <div class="detail-premium-value fw-bold">${item.dibuat_oleh || '-'}</div>
+                            <div class="detail-premium-value fw-bold preserve-newlines">${item.dibuat_oleh || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -775,7 +849,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-secondary"><i class="bi bi-person-workspace"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Supervisor / PLT</div>
-                            <div class="detail-premium-value">${item.supervisor || '-'}</div>
+                            <div class="detail-premium-value preserve-newlines">${item.supervisor || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -784,7 +858,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-secondary"><i class="bi bi-person-lines-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Foreman</div>
-                            <div class="detail-premium-value">${item.foreman || '-'}</div>
+                            <div class="detail-premium-value preserve-newlines">${item.foreman || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -793,7 +867,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-success"><i class="bi bi-grid-3x3-gap-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Rincian Anggota & Manpower</div>
-                            <div class="detail-premium-value text-secondary small fw-medium">${item.jumlah_manpower || '-'}</div>
+                            <div class="detail-premium-value text-secondary small fw-medium preserve-newlines">${item.jumlah_manpower || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -814,13 +888,13 @@ function tampilkanDetail(index) {
                         <div class="col-12">
                             <div class="p-2.5 px-3 rounded-3 text-danger" style="background-color: #fef2f2; border: 1px solid #fee2e2;">
                                 <div class="detail-premium-label text-danger" style="font-size:0.65rem;"><i class="bi bi-exclamation-triangle-fill"></i> Temuan Hambatan Lapangan</div>
-                                <div class="small fw-bold mt-0.5">${item.temuan || 'Tidak ada hambatan kritikal.'}</div>
+                                <div class="small fw-bold mt-0.5 preserve-newlines">${item.temuan || 'Tidak ada hambatan kritikal.'}</div>
                             </div>
                         </div>
                         <div class="col-12 mt-2">
                             <div class="p-2.5 px-3 rounded-3 text-warning-emphasis" style="background-color: #fffbeb; border: 1px solid #fef3c7;">
                                 <div class="detail-premium-label text-warning-emphasis" style="font-size:0.65rem;"><i class="bi bi-hourglass-split"></i> Job Pending</div>
-                                <div class="small fw-bold mt-0.5">${item.job_pending || 'Semua target shift terpenuhi.'}</div>
+                                <div class="small fw-bold mt-0.5 preserve-newlines">${item.job_pending || 'Semua target shift terpenuhi.'}</div>
                             </div>
                         </div>
                     </div>
@@ -830,7 +904,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-secondary"><i class="bi bi-chat-right-quote-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Keterangan Tambahan</div>
-                            <div class="detail-premium-value text-secondary small fw-medium">${item.ketergan || item.keterangan || '-'}</div>
+                            <div class="detail-premium-value text-secondary small fw-medium preserve-newlines">${item.ketergan || item.keterangan || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -845,7 +919,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-info"><i class="bi bi-person-check-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Supervisor / PLT Penerima</div>
-                            <div class="detail-premium-value fw-bold">${item.supervisor_pelaksana || '-'}</div>
+                            <div class="detail-premium-value fw-bold preserve-newlines">${item.supervisor_pelaksana || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -854,7 +928,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-info"><i class="bi bi-person-badge-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Foreman Pelaksana</div>
-                            <div class="detail-premium-value">${item.foreman_pelaksana || '-'}</div>
+                            <div class="detail-premium-value preserve-newlines">${item.foreman_pelaksana || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -872,7 +946,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-info"><i class="bi bi-people-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Crew Pelaksana Bertugas</div>
-                            <div class="detail-premium-value text-secondary small fw-medium">${item.crew_pelaksana || '-'}</div>
+                            <div class="detail-premium-value text-secondary small fw-medium preserve-newlines">${item.crew_pelaksana || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -891,7 +965,7 @@ function tampilkanDetail(index) {
                 <div class="col-12"><label class="form-label small mb-1">Manpower</label><textarea class="form-control form-control-sm" id="edit_manpower" rows="2">${item.jumlah_manpower}</textarea></div>
                 <div class="col-4"><label class="form-label small mb-1">Ketercapaian (%)</label><input type="number" class="form-control form-control-sm" id="edit_ketercapaian" value="${item.ketercapaian_job}"></div>
                 <div class="col-8"><label class="form-label small mb-1">Temuan Hambatan</label><input type="text" class="form-control form-control-sm" id="edit_temuan" value="${item.temuan}"></div>
-                <div class="col-12"><label class="form-label small mb-1">Job Pending</label><textarea class="form-control form-control-sm" id="edit_pending" rows="2">${item.job_pending}</textarea></div>
+                <div class="col-12"><label class="form-label small mb-1">Job Pending</label><textarea class="form-control form-control-sm" id="edit_pending" rows="3">${item.job_pending}</textarea></div>
                 <div class="col-12"><label class="form-label small mb-1">Keterangan</label><textarea class="form-control form-control-sm" id="edit_keterangan" rows="2">${item.keterangan || item.ketergan}</textarea></div>
                 <div class="col-6"><label class="form-label small mb-1">Supt Penerima</label><input type="text" class="form-control form-control-sm" id="edit_supt_penerima" value="${item.supervisor_pelaksana}"></div>
                 <div class="col-6"><label class="form-label small mb-1">Foreman Penerima</label><input type="text" class="form-control form-control-sm" id="edit_foreman_penerima" value="${item.foreman_pelaksana}"></div>
@@ -956,7 +1030,6 @@ function tampilkanDetail(index) {
     if (!modalAktif) { modalAktif = new bootstrap.Modal(document.getElementById('modalDetail')); }
     modalAktif.show();
 }
-// =====================================================================================================
 
 function prosesApproveCloud(idBa, index) {
     if(!confirm("Apakah Anda setuju mendelegasikan tanda tangan pada Berita Acara ini?")) return;
