@@ -19,6 +19,11 @@
             --border-color: #e2e8f0;
             --text-main: #0f172a;
             --text-muted: #64748b;
+            
+            /* Palet Warna Kustom Baru (Ramah Mata) */
+            --dstf-blue: #1d4ed8;       /* Biru Tajam untuk Informasi Utama */
+            --dstf-bronze: #9a3412;     /* Cokelat Tembaga Teduh untuk Pending Job */
+            --dstf-red: #b91c1c;        /* Merah gelap untuk Temuan */
         }
 
         body {
@@ -29,196 +34,117 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Top Brand Header Modern */
-        .brand-header {
+        /* SCREEN LOCK PIN */
+        #pinLockScreen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: var(--primary-gradient);
-            color: #ffffff;
-            padding: 30px 20px;
-            border-radius: 20px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
-            position: relative;
-            overflow: hidden;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
-        .brand-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: rgba(59, 130, 246, 0.15);
-            border-radius: 50%;
-            filter: blur(40px);
+        .pin-box { width: 100%; max-width: 360px; padding: 30px 20px; text-align: center; }
+        .pin-input-field {
+            letter-spacing: 15px; font-size: 24px; font-weight: 800; text-align: center;
+            background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); color: white;
+            border-radius: 12px; padding: 12px;
         }
+        .pin-input-field:focus { background: rgba(255,255,255,0.15); color: white; border-color: #3b82f6; box-shadow: none; }
 
-        .brand-header h2 {
-            font-weight: 800;
-            font-size: 1.8rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-        }
-
+        /* BRAND HEADER */
+        .brand-header { background: var(--primary-gradient); color: #ffffff; padding: 30px 20px; border-radius: 20px; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); }
+        .brand-header h2 { font-weight: 800; font-size: 1.8rem; letter-spacing: -0.5px; margin-bottom: 6px; }
         .subtitle-badge {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #93c5fd;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 8px;
-            display: inline-block;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15); color: #93c5fd;
+            font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 8px; display: inline-block;
         }
 
-        /* Container Card Dasar */
-        .card-professional {
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-            background: var(--surface-bg);
-            padding: 24px;
-            margin-bottom: 24px;
-        }
+        .card-professional { border: 1px solid var(--border-color); border-radius: 20px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); background: var(--surface-bg); padding: 24px; margin-bottom: 24px; }
 
-        /* Desktop Table View Custom */
-        .table-responsive-custom {
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        .table-custom th {
-            background-color: #f1f5f9;
-            color: var(--text-muted);
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .table-custom td {
-            padding: 16px;
-            vertical-align: middle;
-            font-size: 0.875rem;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        /* Mobile View Cards (Hidden by default on Desktop) */
-        .mobile-card-list {
-            display: none;
-        }
-        .ba-mobile-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
-        }
-        .ba-mobile-card:active {
-            transform: scale(0.98);
-        }
-
-        /* Badges */
-        .badge-shift {
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-        }
+        /* TABLES & CARDS */
+        .table-responsive-custom { border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); }
+        .table-custom th { background-color: #f1f5f9; color: var(--text-muted); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; padding: 14px 16px; }
+        .table-custom td { padding: 16px; vertical-align: middle; font-size: 0.875rem; border-bottom: 1px solid #f1f5f9; }
+        
+        .mobile-card-list { display: none; }
+        .ba-mobile-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+        
+        .badge-shift { font-weight: 700; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; }
         .bg-siang { background-color: #fef3c7; color: #d97706; }
         .bg-malam { background-color: #e0e7ff; color: #4338ca; }
 
-        /* Form Controls Styling */
-        .form-section-header {
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            padding: 10px 14px;
-            margin-top: 24px;
-            margin-bottom: 16px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        /* TEXT UTILITIES (WARNA BARU) */
+        .txt-dstf-blue { color: var(--dstf-blue) !important; font-weight: 600; }
+        .txt-dstf-bronze { color: var(--dstf-bronze) !important; font-weight: 600; }
+        .txt-dstf-red { color: var(--dstf-red) !important; font-weight: 600; }
+
+        /* FORM */
+        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 10px 14px; margin-top: 24px; margin-bottom: 16px; border-radius: 10px; display: flex; align-items: center; gap: 8px; }
         .sec-utama { background: #eff6ff; color: #1d4ed8; }
         .sec-tim { background: #ecfdf5; color: #047857; }
         .sec-progress { background: #fff7ed; color: #c2410c; }
         .sec-serah { background: #f0fdfa; color: #0f766e; }
 
         .form-label { font-weight: 600; font-size: 0.85rem; color: #334155; margin-bottom: 6px;}
-        .form-control, .form-select {
-            border-radius: 10px;
-            padding: 10px 14px;
-            border: 1.5px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--text-main);
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
-        }
+        .form-control, .form-select { border-radius: 10px; padding: 10px 14px; border: 1.5px solid var(--border-color); font-size: 0.9rem; }
         .auto-filled { background-color: #f0fdf4 !important; border-color: #10b981 !important; font-weight: 600; color: #15803d !important; }
 
-        /* Button Utilities */
-        .btn-action-primary {
-            background: var(--accent-gradient);
-            color: white; font-weight: 600; border: none; border-radius: 10px;
-            padding: 10px 20px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-        .btn-action-primary:hover, .btn-action-primary:focus { color: white; opacity: 0.9; }
-        
-        .btn-action-success {
-            background: var(--success-gradient);
-            color: white; font-weight: 600; border: none; border-radius: 10px;
-            padding: 10px 20px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-        }
+        .btn-action-primary { background: var(--accent-gradient); color: white; font-weight: 600; border: none; border-radius: 10px; padding: 10px 20px; }
+        .btn-action-success { background: var(--success-gradient); color: white; font-weight: 600; border: none; border-radius: 10px; padding: 10px 20px; }
 
-        /* Detail Modal */
         .modal-content { border-radius: 20px; border: none; }
-        .modal-header { background: #f8fafc; border-bottom: 1px solid var(--border-color); padding: 16px 20px; border-radius: 20px 20px 0 0; }
         .detail-row { border-bottom: 1px solid #f1f5f9; padding: 10px 0; }
         .detail-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-        .detail-value { font-size: 0.95rem; font-weight: 500; color: var(--text-main); margin-top: 2px; white-space: pre-line; }
+        .detail-value { font-size: 0.95rem; font-weight: 500; white-space: pre-line; margin-top: 2px;}
 
-        /* Responsive Media Queries (Android & iPhone Fixes) */
         @media (max-width: 767.98px) {
             body { padding: 10px 4px; }
             .container { padding-left: 12px; padding-right: 12px; }
-            .brand-header { padding: 20px 16px; border-radius: 16px; margin-bottom: 16px; }
+            .brand-header { padding: 20px 16px; border-radius: 16px; }
             .brand-header h2 { font-size: 1.4rem; }
             .card-professional { padding: 16px; border-radius: 16px; }
-            
-            /* Sembunyikan Tabel di HP */
             .table-responsive-custom { display: none; }
-            /* Munculkan Card List di HP */
             .mobile-card-list { display: block; }
-            
             .ctrl-title-area { text-align: center; width: 100%; margin-bottom: 10px; }
             .ctrl-btn-area { width: 100%; justify-content: center; }
-            .ctrl-btn-area button, .ctrl-btn-area a { flex: 1; text-align: center; font-size: 0.85rem; padding: 10px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container py-3 py-md-4" style="max-width: 1000px;">
+<!-- LAYAR LOGIN PIN -->
+<div id="pinLockScreen">
+    <div class="pin-box">
+        <div class="display-6 mb-3"><i class="bi bi-shield-lock-fill text-warning"></i></div>
+        <h4 class="fw-bold mb-1">Otorisasi Internal</h4>
+        <p class="text-white-50 small mb-4">Masukkan 4 digit PIN untuk mendaftarkan perangkat ini ke sistem DSTF</p>
+        <div class="mb-3">
+            <input type="password" id="inputPinLog" class="form-control pin-input-field" maxlength="4" placeholder="••••" autocomplete="off">
+        </div>
+        <button class="btn btn-warning w-100 py-2.5 fw-bold rounded-3" onclick="verifikasiPinAwal()">Daftarkan Perangkat</button>
+        <div id="errPinMsg" class="text-danger small mt-2 fw-bold"></div>
+    </div>
+</div>
+
+<!-- KONTEN UTAMA APLIKASI -->
+<div id="mainAppContent" class="container py-3 py-md-4 d-none" style="max-width: 1000px;">
 
     <div class="brand-header text-center text-md-start d-md-flex align-items-center justify-content-between">
         <div>
             <h2><i class="bi bi-journal-check me-2"></i>BA OVERSHIFT DSTF</h2>
             <div class="subtitle-badge">EARTHWORK • HYDRO • IPAL • GEOTECH • PLANNER</div>
         </div>
+        <button class="btn btn-sm btn-outline-light mt-3 mt-md-0" onclick="logoutPerangkat()"><i class="bi bi-box-arrow-right"></i> Keluar</button>
     </div>
 
+    <!-- HALAMAN 1: DASHBOARD UTAMA -->
     <div id="pageDashboard" class="card card-professional">
-        
         <div class="row align-items-center mb-4 g-3">
             <div class="col-md-7 ctrl-title-area">
-                <h4 class="fw-bold m-0" style="letter-spacing: -0.5px;">Records Database</h4>
+                <h4 class="fw-bold m-0">Records Database</h4>
                 <p class="text-muted small m-0">Riwayat sinkronisasi serah terima shift kerja lapangan</p>
             </div>
             <div class="col-md-5 d-flex gap-2 ctrl-btn-area">
@@ -231,157 +157,71 @@
             <table class="table table-custom m-0">
                 <thead>
                     <tr>
-                        <th>ID BA</th>
-                        <th>Tanggal</th>
-                        <th>Shift</th>
-                        <th>Divisi</th>
-                        <th>Dibuat Oleh</th>
-                        <th>Target</th>
-                        <th class="text-center">Aksi</th>
+                        <th>ID BA</th><th>Tanggal</th><th>Shift</th><th>Divisi</th><th>Dibuat Oleh</th><th>Target</th><th class="text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody id="tabelBodyBA">
-                    </tbody>
+                <tbody id="tabelBodyBA"></tbody>
             </table>
         </div>
 
-        <div id="mobileCardContainer" class="mobile-card-list">
-            </div>
-
+        <div id="mobileCardContainer" class="mobile-card-list"></div>
     </div>
 
+    <!-- HALAMAN 2: FORM INPUT DATA -->
     <div id="pageInputForm" class="card card-professional d-none">
-        
         <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
             <h5 class="fw-bold m-0 text-dark"><i class="bi bi-pencil-square me-1 text-primary"></i> Buat Berita Acara Baru</h5>
             <button class="btn btn-sm btn-outline-secondary rounded-3" onclick="kembaliKeDashboard()"><i class="bi bi-x-lg"></i></button>
         </div>
 
         <form id="formBA">
-            <div class="form-section-header sec-utama">
-                <i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI
-            </div>
+            <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI</div>
             <div class="row g-2">
-                <div class="col-6 col-md-6 mb-2">
-                    <label class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" required>
-                </div>
-                <div class="col-6 col-md-6 mb-2">
-                    <label class="form-label">Shift</label>
-                    <select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required>
-                        <option value="">Pilih...</option>
-                        <option value="Siang">Siang</option>
-                        <option value="Malam">Malam</option>
-                    </select>
-                </div>
-                <div class="col-6 col-md-6 mb-2">
-                    <label class="form-label">Divisi</label>
-                    <select class="form-select" id="devisi" required>
-                        <option value="">Pilih...</option>
-                        <option>Earthwork</option>
-                        <option>Hydro</option>
-                        <option>IPAL</option>
-                        <option>Geotech</option>
-                        <option>Planner</option>
-                    </select>
-                </div>
-                <div class="col-6 col-md-6 mb-2">
-                    <label class="form-label">Dibuat Oleh</label>
-                    <input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Anda" required>
-                </div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Tanggal</label><input type="date" class="form-control" id="tanggal" required></div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Shift</label><select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Divisi</label><select class="form-select" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Anda" required></div>
             </div>
 
-            <div class="form-section-header sec-tim">
-                <i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Supervisor (Pengawas Lapangan)</label>
-                <input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor">
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Foreman (Mandor Lapangan)</label>
-                <textarea class="form-control" id="foreman" rows="2" placeholder="Nama-nama foreman..."></textarea>
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Rincian Manpower</label>
-                <textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Contoh: 5 Operator, 2 Driver..."></textarea>
-            </div>
+            <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
+            <div class="mb-2"><label class="form-label">Supervisor</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor"></div>
+            <div class="mb-2"><label class="form-label">Foreman</label><textarea class="form-control" id="foreman" rows="2" placeholder="Nama foreman..."></textarea></div>
+            <div class="mb-2"><label class="form-label">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah kru bertugas..."></textarea></div>
 
-            <div class="form-section-header sec-progress">
-                <i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Ketercapaian Job (%)</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="ketercapaian_job" placeholder="Contoh: 85">
-                    <span class="input-group-text bg-light fw-bold text-muted">%</span>
-                </div>
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Temuan</label>
-                <textarea class="form-control" id="temuan" rows="2" placeholder="Tulis kendala / temuan di sini..."></textarea>
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Job Pending</label>
-                <textarea class="form-control" id="job_pending" rows="2" placeholder="Tulis tugas tertunda..."></textarea>
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Keterangan Tambahan</label>
-                <textarea class="form-control" id="keterangan" rows="2" placeholder="Catatan ekstra jika ada..."></textarea>
-            </div>
+            <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
+            <div class="mb-2"><label class="form-label">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job"><span class="input-group-text bg-light">%</span></div></div>
+            <div class="mb-2"><label class="form-label">Temuan</label><textarea class="form-control" id="temuan" rows="2"></textarea></div>
+            <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="2"></textarea></div>
+            <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan" rows="2"></textarea></div>
 
-            <div class="form-section-header sec-serah">
-                <i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA
-            </div>
+            <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
             <div class="row g-2">
-                <div class="col-md-6 mb-2">
-                    <label class="form-label">Supervisor Pelaksana</label>
-                    <input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Penerima Tugas">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label class="form-label">Foreman Pelaksana</label>
-                    <input type="text" class="form-control" id="foreman_pelaksana" placeholder="Foreman Penerima">
-                </div>
-                <div class="col-12 mb-2">
-                    <label class="form-label">Crew Pelaksana</label>
-                    <textarea class="form-control" id="crew_pelaksana" rows="2" placeholder="Nama-nama crew pelaksana berikutnya..."></textarea>
-                </div>
-                <div class="col-6 col-md-6 mb-2">
-                    <label class="form-label">Shift Berikut</label>
-                    <select class="form-select" id="shift_berikut">
-                        <option value="">Pilih...</option>
-                        <option value="Siang">Siang</option>
-                        <option value="Malam">Malam</option>
-                    </select>
-                </div>
-                <div class="col-6 col-md-6 mb-2">
-                    <label class="form-label">Tanggal Shift Berikut</label>
-                    <input type="date" class="form-control" id="tanggal_shift_berikut">
-                </div>
+                <div class="col-md-6 mb-2"><label class="form-label">Supervisor Pelaksana</label><input type="text" class="form-control" id="supervisor_pelaksana"></div>
+                <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><input type="text" class="form-control" id="foreman_pelaksana"></div>
+                <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2"></textarea></div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Shift Berikut</label><select class="form-select" id="shift_berikut"><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Tanggal Shift Berikut</label><input type="date" class="form-control" id="tanggal_shift_berikut"></div>
             </div>
 
-            <button type="submit" class="btn btn-action-primary w-100 py-3 mt-3 shadow-sm fs-6" id="btnSimpan">
+            <button type="submit" class="btn btn-action-primary w-100 py-3 mt-3 shadow-sm" id="btnSimpan">
                 <i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA
             </button>
         </form>
-        
         <div id="hasil"></div>
-
     </div>
-
 </div>
 
+<!-- POP-UP DETAIL MODAL -->
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title fw-bold" id="modalTitleID" style="color: var(--text-main);"></h6>
+                <h6 class="modal-title fw-bold" id="modalTitleID"></h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-3" id="modalDetailContent">
-                </div>
+            <div class="modal-body p-3" id="modalDetailContent"></div>
             <div class="modal-footer bg-light p-2">
-                <button type="button" class="btn btn-sm btn-secondary rounded-3 px-3" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-sm btn-secondary rounded-3" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
@@ -390,13 +230,39 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-// Ambil token URL Web App Google Sheets Anda
 const API_URL = "https://script.google.com/macros/s/AKfycbxlnPZKT-oK6sAPsfSMPhxl8UdL8sJniV92vhwvax-ubVVARsXjEVxhtdkcFQpdeQcnMw/exec";
+const PIN_MASTER = "2022"; 
 let databaseBA = []; 
 
 window.addEventListener("DOMContentLoaded", () => {
-    loadDaftarBA();
+    const savedToken = localStorage.getItem("dstf_device_token");
+    if (savedToken === "AUTHORIZED_DEVICE_" + PIN_MASTER) { BypassLoginKeAplikasi(); }
 });
+
+function verifikasiPinAwal() {
+    const pinUser = document.getElementById("inputPinLog").value;
+    const errMsg = document.getElementById("errPinMsg");
+    if (pinUser === PIN_MASTER) {
+        localStorage.setItem("dstf_device_token", "AUTHORIZED_DEVICE_" + PIN_MASTER);
+        BypassLoginKeAplikasi();
+    } else {
+        errMsg.innerText = "❌ PIN Salah! Akses khusus internal DSTF.";
+        document.getElementById("inputPinLog").value = "";
+    }
+}
+
+function BypassLoginKeAplikasi() {
+    document.getElementById("pinLockScreen").classList.add("d-none");
+    document.getElementById("mainAppContent").classList.remove("d-none");
+    loadDaftarBA();
+}
+
+function logoutPerangkat() {
+    if(confirm("Hapus otorisasi? Anda harus memasukkan PIN lagi jika membuka web ini.")) {
+        localStorage.removeItem("dstf_device_token");
+        window.location.reload();
+    }
+}
 
 function bukaHalamanInput() {
     document.getElementById("pageDashboard").classList.add("d-none");
@@ -422,12 +288,8 @@ function ubahShiftOtomatis() {
     if (shiftUtama === "Siang") {
         shiftBerikut.value = "Malam";
         shiftBerikut.classList.add("auto-filled");
-        if(tanggalUtama) {
-            tanggalBerikut.value = tanggalUtama;
-            tanggalBerikut.classList.add("auto-filled");
-        }
-    } 
-    else if (shiftUtama === "Malam") {
+        if(tanggalUtama) { tanggalBerikut.value = tanggalUtama; tanggalBerikut.value.classList.add("auto-filled"); }
+    } else if (shiftUtama === "Malam") {
         shiftBerikut.value = "Siang";
         shiftBerikut.classList.add("auto-filled");
         if(tanggalUtama) {
@@ -439,28 +301,24 @@ function ubahShiftOtomatis() {
             tanggalBerikut.value = `${tahun}-${bulan}-${hari}`;
             tanggalBerikut.classList.add("auto-filled");
         }
-    } 
-    else {
+    } else {
         shiftBerikut.value = ""; tanggalBerikut.value = "";
         shiftBerikut.classList.remove("auto-filled"); tanggalBerikut.classList.remove("auto-filled");
     }
 }
 document.getElementById("tanggal").addEventListener("change", ubahShiftOtomatis);
 
-// RENDERING SYSTEM SINKRONISASI DATA DESKTOP & MOBILE
 function loadDaftarBA() {
     const tbody = document.getElementById("tabelBodyBA");
     const mobileContainer = document.getElementById("mobileCardContainer");
     
-    const loader = `<div class="text-center py-5 text-muted w-100"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Sinkronisasi Cloud...</div>`;
-    tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Sinkronisasi database online cloud...</td></tr>`;
-    mobileContainer.innerHTML = loader;
+    tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Menghubungkan ke Cloud...</td></tr>`;
+    mobileContainer.innerHTML = `<div class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Menghubungkan ke Cloud...</div>`;
 
     fetch(API_URL)
     .then(res => res.json())
     .then(data => {
-        tbody.innerHTML = "";
-        mobileContainer.innerHTML = "";
+        tbody.innerHTML = ""; mobileContainer.innerHTML = "";
         databaseBA = data;
         
         if (!data || data.length === 0) {
@@ -472,30 +330,30 @@ function loadDaftarBA() {
         data.forEach((row, index) => {
             let badgeShift = row.shift === "Siang" ? 'bg-siang' : 'bg-malam';
             
-            // 1. Render Tampilan Desktop Table
+            // Render Desktop Table (Tanggal & Divisi diwarnai Biru)
             let tr = document.createElement("tr");
             tr.innerHTML = `
                 <td class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</td>
-                <td>${row.tanggal || '-'}</td>
+                <td class="txt-dstf-blue">${row.tanggal || '-'}</td>
                 <td><span class="badge-shift ${badgeShift}">${row.shift || '-'}</span></td>
-                <td class="fw-semibold text-secondary">${row.devisi || row.divisi || '-'}</td>
+                <td class="txt-dstf-blue">${row.devisi || row.divisi || '-'}</td>
                 <td>${row.dibuat_oleh || '-'}</td>
                 <td><span class="text-success fw-bold">${row.ketercapaian_job || '0'}%</span></td>
                 <td class="text-center"><button class="btn btn-sm btn-outline-primary py-1 px-3 rounded-3" onclick="tampilkanDetail(${index})">👁️ Detail</button></td>
             `;
             tbody.appendChild(tr);
 
-            // 2. Render Tampilan Khusus Smartphone (Android/iPhone Card-List)
+            // Render Mobile Card (Tanggal & Divisi diwarnai Biru)
             let mCard = document.createElement("div");
-            mCard.className = "ba-mobile-card";
+            mCard.className = "ba-mobile-card shadow-sm border";
             mCard.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="fw-bold font-monospace text-primary" style="font-size:0.95rem;">${row.id_ba || '-'}</span>
+                    <span class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</span>
                     <span class="badge-shift ${badgeShift}">${row.shift || '-'}</span>
                 </div>
-                <div class="row g-0 small mb-2 text-secondary">
-                    <div class="col-6"><i class="bi bi-calendar3 me-1"></i> ${row.tanggal || '-'}</div>
-                    <div class="col-6"><i class="bi bi-briefcase me-1"></i> ${row.devisi || row.divisi || '-'}</div>
+                <div class="row g-0 small mb-2">
+                    <div class="col-6 txt-dstf-blue"><i class="bi bi-calendar3 me-1"></i> ${row.tanggal || '-'}</div>
+                    <div class="col-6 txt-dstf-blue"><i class="bi bi-briefcase me-1"></i> ${row.devisi || row.divisi || '-'}</div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                     <div class="small text-muted">Oleh: <b>${row.dibuat_oleh || '-'}</b></div>
@@ -507,8 +365,7 @@ function loadDaftarBA() {
     })
     .catch(err => {
         tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-danger">⚠️ Gagal terhubung ke Cloud.</td></tr>`;
-        mobileContainer.innerHTML = `<div class="alert alert-danger text-center small">⚠️ Gagal terhubung ke Cloud Apps Script.</div>`;
-        console.error(err);
+        mobileContainer.innerHTML = `<div class="alert alert-danger text-center small">⚠️ Gagal terhubung ke Cloud.</div>`;
     });
 }
 
@@ -516,17 +373,18 @@ function tampilkanDetail(index) {
     const item = databaseBA[index];
     document.getElementById("modalTitleID").innerHTML = `<i class="bi bi-search text-primary me-2"></i>Data Lapangan: <span class="font-monospace text-dark">${item.id_ba || 'N/A'}</span>`;
     
+    // Konfigurasi warna kustom di dalam Pop-up Detail
     let items = [
-        { label: "Tanggal Penginputan", val: item.tanggal },
+        { label: "Tanggal Penginputan", val: item.tanggal, highlight: 'txt-dstf-blue' }, // Biru
         { label: "Shift Kerja", val: item.shift },
-        { label: "Divisi Ops", val: item.devisi || item.divisi },
+        { label: "Divisi Ops", val: item.devisi || item.divisi, highlight: 'txt-dstf-blue' }, // Biru
         { label: "Dibuat Oleh", val: item.dibuat_oleh },
         { label: "Supervisor Lapangan", val: item.supervisor },
         { label: "Foreman (Mandor)", val: item.foreman },
         { label: "Rincian Tim Manpower", val: item.jumlah_manpower },
         { label: "Ketercapaian Target Job", val: `${item.ketercapaian_job || '0'}%`, highlight: 'text-success fw-bold' },
-        { label: "Temuan Masalah Lapangan", val: item.temuan, highlight: 'text-danger' },
-        { label: "Pekerjaan Tertunda (Job Pending)", val: item.job_pending, highlight: 'text-warning' },
+        { label: "Temuan Masalah Lapangan", val: item.temuan, highlight: 'txt-dstf-red' },
+        { label: "Pekerjaan Tertunda (Job Pending)", val: item.job_pending, highlight: 'txt-dstf-bronze' }, // Tembaga Teduh
         { label: "Keterangan Tambahan", val: item.keterangan },
         { label: "Supervisor Penerima Tugas", val: item.supervisor_pelaksana },
         { label: "Foreman Penerima", val: item.foreman_pelaksana },
@@ -554,9 +412,10 @@ document.getElementById("formBA").addEventListener("submit", function(e){
     e.preventDefault();
     const btnSimpan = document.getElementById("btnSimpan");
     btnSimpan.disabled = true;
-    btnSimpan.innerHTML = `<span class="spinner-border spinner-border-sm" role="status"></span> Enkripsi & Mengirim Data...`;
+    btnSimpan.innerHTML = `<span class="spinner-border spinner-border-sm" role="status"></span> Mengunci & Mengirim Data...`;
 
     let data = {
+        auth_pin: PIN_MASTER, 
         tanggal : tanggal.value, shift : shift.value, devisi : devisi.value, dibuat_oleh : dibuat_oleh.value,
         supervisor : supervisor.value, foreman : foreman.value, jumlah_manpower : jumlah_manpower.value,
         temuan : temuan.value, job_pending : job_pending.value, ketercapaian_job : ketercapaian_job.value,
@@ -572,7 +431,7 @@ document.getElementById("formBA").addEventListener("submit", function(e){
         btnSimpan.disabled = false;
         btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
 
-        if(!response.success){ alert("Error: " + response.message); return; }
+        if(!response.success){ alert("Error Keamanan: " + response.message); return; }
 
         let pesan = `📋 *BA OVERSHIFT DSTF*\n` +
                     `--------------------------------------\n` +
@@ -589,10 +448,9 @@ document.getElementById("formBA").addEventListener("submit", function(e){
         <div class="text-center mt-4 p-4 border rounded-4 bg-white shadow-sm">
             <div class="text-success display-5 mb-2"><i class="bi bi-check-circle-fill"></i></div>
             <h5 class="fw-bold mb-1">Berita Acara Berhasil Dikunci</h5>
-            <p class="text-muted small mb-3">Data transaksi aman dan sinkron dengan Google Sheets Cloud Database.</p>
             <div class="bg-light py-2 px-4 d-inline-block rounded-3 fw-bold text-dark border mb-3 font-monospace">ID_BA: ${response.id_ba}</div>
             <div class="d-flex flex-column gap-2 mt-2">
-                <button class="btn btn-success py-2 rounded-3 w-100 font-semibold small" onclick="shareWA(\`${pesan.replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`)"><i class="bi bi-whatsapp me-1"></i> Kirim ke WhatsApp Group</button>
+                <button class="btn btn-success py-2 rounded-3 w-100 small" onclick="shareWA(\`${pesan.replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`)"><i class="bi bi-whatsapp me-1"></i> Transmit ke WA Group</button>
                 <button class="btn btn-outline-secondary py-2 rounded-3 w-100 small" onclick="kembaliKeDashboard()"><i class="bi bi-arrow-left"></i> Kembali ke Dashboard</button>
             </div>
         </div>`;
@@ -603,13 +461,10 @@ document.getElementById("formBA").addEventListener("submit", function(e){
         btnSimpan.disabled = false;
         btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
         alert("Gagal mengunggah data.");
-        console.log(err);
     });
 });
 
-function shareWA(pesan){
-    window.open("https://wa.me/?text=" + encodeURIComponent(pesan), "_blank");
-}
+function shareWA(pesan){ window.open("https://wa.me/?text=" + encodeURIComponent(pesan), "_blank"); }
 </script>
 </body>
 </html>
