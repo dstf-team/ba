@@ -116,23 +116,52 @@
         .border-pending { border-left: 4px solid var(--dstf-bronze) !important; background-color: #fff7ed; }
         .border-keterangan { border-left: 4px solid var(--text-muted) !important; background-color: #f8fafc; }
 
-        /* FORM CUSTOMIZATION */
-        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 12px 16px; margin-top: 24px; margin-bottom: 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
-        .sec-utama { background: #eff6ff; color: #2563eb; }
-        .sec-tim { background: #ecfdf5; color: #059669; }
-        .sec-progress { background: #fff7ed; color: #ea580c; }
-        .sec-serah { background: #f0fdfa; color: #0d9488; }
-        .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 6px;}
-        .form-control, .form-select { border-radius: 12px; padding: 11px 16px; border: 1.5px solid var(--border-color); font-size: 0.9rem; }
-        .form-control:focus, .form-select:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08); }
+        /* --- NEW FORM INPUT STYLES (BELAH DUA & NO YELLOW) --- */
+        .form-input-card { background: #ffffff; border-radius: 20px; padding: 24px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        
+        .form-section-header { 
+            font-size: 0.85rem; font-weight: 800; color: #475569; text-transform: uppercase; 
+            letter-spacing: 1px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; 
+            padding-bottom: 10px; border-bottom: 2px solid #f1f5f9; 
+        }
+        
+        /* Section Colors - NO YELLOW */
+        .sec-utama i { color: #2563eb; }
+        .sec-tim i { color: #059669; }
+        .sec-progress i { color: #f97316; } /* Bronze Orange instead of Yellow */
+        .sec-serah i { color: #0d9488; }
+
+        .form-label { font-weight: 600; font-size: 0.8rem; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .form-control, .form-select { 
+            border-radius: 12px; padding: 12px 16px; border: 1.5px solid #e2e8f0; 
+            font-size: 0.95rem; color: #1e293b; font-weight: 500; background-color: #fbfcfd;
+            transition: all 0.2s ease;
+        }
+        .form-control:focus, .form-select:focus { 
+            border-color: #3b82f6; background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08); 
+        }
+        .form-control::placeholder { color: #cbd5e1; font-weight: 400; }
+
+        textarea.form-control { resize: none; line-height: 1.5; }
+
+        /* Progress Input Styling */
+        .input-group-text-dstf { background-color: #f1f5f9; border: 1.5px solid #e2e8f0; border-left: none; border-radius: 0 12px 12px 0; color: #64748b; font-weight: 700; }
+        #ketercapaian_job { border-right: none; }
+        
         .auto-filled { background-color: #f0fdf4 !important; border-color: #10b981 !important; font-weight: 600; color: #16a34a !important; }
 
+        /* Visual Progress Bar in Form */
+        .progress-delivery { height: 6px; border-radius: 3px; background-color: #e2e8f0; margin-top: 8px; overflow: hidden; display: none;}
+        .progress-delivery-bar { height: 100%; background: var(--success-gradient); width: 0%; transition: width 0.3s ease; }
+
         /* BUTTONS */
-        .btn { border-radius: 12px; padding: 10px 20px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease; }
+        .btn { border-radius: 12px; padding: 12px 24px; font-weight: 700; font-size: 0.95rem; transition: all 0.2s ease; letter-spacing: 0.5px;}
         .btn-action-primary { background: var(--accent-gradient); color: white; border: none; }
-        .btn-action-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+        .btn-action-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25); }
         .btn-action-success { background: var(--success-gradient); color: white; border: none; }
-        .btn-action-success:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
+        .btn-action-success:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25); }
 
         /* MODAL DESIGN */
         .modal-content { border-radius: 24px; border: none; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
@@ -152,6 +181,10 @@
             .mobile-card-list { display: block; }
             .ctrl-btn-area { width: 100%; justify-content: stretch; gap: 8px; }
             .ctrl-btn-area .btn { flex-grow: 1; }
+            
+            /* Form Mobile specific */
+            .form-input-card { padding: 18px; border-radius: 16px; }
+            .form-section-header { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -211,46 +244,139 @@
         <div id="mobileCardContainer" class="mobile-card-list"></div>
     </div>
 
-    <div id="pageInputForm" class="card card-professional d-none">
-        <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-            <h5 class="fw-bold m-0 text-dark"><i class="bi bi-pencil-square me-1 text-primary"></i> Buat Berita Acara Baru</h5>
-            <button class="btn btn-sm btn-outline-secondary rounded-3" onclick="kembaliKeDashboard()"><i class="bi bi-x-lg"></i></button>
+    <div id="pageInputForm" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+            <div>
+                <h4 class="fw-extrabold m-0 text-dark"><i class="bi bi-pencil-square me-2 text-primary"></i>Formulir Berita Acara</h4>
+                <p class="text-muted m-0 small">Lengkapi data operasional shift dengan akurat.</p>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="kembaliKeDashboard()"><i class="bi bi-arrow-left me-1"></i> Batal</button>
         </div>
 
         <form id="formBA">
-            <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI</div>
-            <div class="row g-2">
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Tanggal</label><input type="date" class="form-control" id="tanggal" required></div>
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Shift</label><select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Divisi</label><select class="form-select" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Lengkap" required></div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-input-card h-100">
+                        <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> Data Utama & Administrasi BA</div>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label">Tanggal Penginputan</label>
+                                <input type="date" class="form-control" id="tanggal" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Shift Kerja</label>
+                                <select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required>
+                                    <option value="" selected disabled>Pilih Shift</option>
+                                    <option value="Siang">Siang (Day)</option>
+                                    <option value="Malam">Malam (Night)</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Divisi (Sektor)</label>
+                                <select class="form-select" id="devisi" required>
+                                    <option value="" selected disabled>Pilih Divisi</option>
+                                    <option>Earthwork</option>
+                                    <option>Hydro</option>
+                                    <option>IPAL</option>
+                                    <option>Geotech</option>
+                                    <option>Planner</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Dibuat Oleh (PIC)</label>
+                                <input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Lengkap Anda" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-input-card h-100">
+                        <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> Tim Lapangan & Manpower</div>
+                        <div class="mb-3">
+                            <label class="form-label">Supervisor / PLT</label>
+                            <input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor bertugas">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Foreman</label>
+                            <textarea class="form-control" id="foreman" rows="2" placeholder="Nama-nama Pengawas..."></textarea>
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Rincian Manpower (Crew)</label>
+                            <textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Contoh: 5 Operator, 2 Driver, 10 Helper..."></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
-            <div class="mb-2"><label class="form-label">Supervisor / PLT</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor"></div>
-            <div class="mb-2"><label class="form-label">Foreman</label><textarea class="form-control" id="foreman" rows="2" placeholder="Nama foreman..."></textarea></div>
-            <div class="mb-2"><label class="form-label">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..."></textarea></div>
-
-            <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
-            <div class="mb-2"><label class="form-label">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job"><span class="input-group-text bg-light">%</span></div></div>
-            <div class="mb-2"><label class="form-label">Temuan</label><textarea class="form-control" id="temuan" rows="2"></textarea></div>
-            <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="2"></textarea></div>
-            <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan_tambahan" rows="2"></textarea></div>
-
-            <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
-            <div class="row g-2">
-                <div class="col-md-6 mb-2"><label class="form-label">Supervisor / PLT (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap"></div>
-                <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><input type="text" class="form-control" id="foreman_pelaksana"></div>
-                <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2"></textarea></div>
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Shift Berikut</label><select class="form-select" id="shift_berikut"><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Tanggal Shift Berikut</label><input type="date" class="form-control" id="tanggal_shift_berikut"></div>
+            <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                    <div class="form-input-card h-100">
+                        <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> Progress & JOB PENDING KERJA</div>
+                        <div class="mb-3">
+                            <label class="form-label">Ketercapaian Job Aktual</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="ketercapaian_job" placeholder="0 - 100" min="0" max="100" oninput="updateVisualProgress(this.value)">
+                                <span class="input-group-text input-group-text-dstf">%</span>
+                            </div>
+                            <div class="progress-delivery" id="progressVisualContainer">
+                                <div class="progress-delivery-bar" id="progressVisualBar"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Temuan Masalah (Kritikal)</label>
+                            <textarea class="form-control" id="temuan" rows="2" placeholder="Uraikan kendala atau kerusakan alat jika ada..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Job Pending</label>
+                            <textarea class="form-control" id="job_pending" rows="2" placeholder="Pekerjaan yang harus dilanjutkan shift depan..."></textarea>
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Keterangan Tambahan</label>
+                            <textarea class="form-control" id="keterangan_tambahan" rows="2" placeholder="Catatan opsional lainnya..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-input-card h-100">
+                        <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> Operasional Shift Berikutnya</div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <label class="form-label">Shift Berikut</label>
+                                <select class="form-select" id="shift_berikut">
+                                    <option value="" selected disabled>Pilih...</option>
+                                    <option value="Siang">Siang</option>
+                                    <option value="Malam">Malam</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Tanggal Shift Berikut</label>
+                                <input type="date" class="form-control" id="tanggal_shift_berikut">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Supervisor / PLT (Penerima)</label>
+                            <input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap Penerima BA">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Foreman Pelaksana</label>
+                            <input type="text" class="form-control" id="foreman_pelaksana" placeholder="Nama Foreman shift berikutnya">
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Crew/Anggota Pelaksana</label>
+                            <textarea class="form-control" id="crew_pelaksana" rows="3" placeholder="Nama-nama kru yang akan standby (Jika tdk ada pengawas)"></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <button type="submit" class="btn btn-action-primary w-100 py-3 mt-3 shadow-sm" id="btnSimpan">
-                <i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA
-            </button>
+            <div class="form-input-card mt-3 text-center bg-light border-0 shadow-none">
+                <p class="text-muted small mb-3"><i class="bi bi-shield-lock me-1"></i> Data yang disimpan akan dikunci dan memerlukan verifikasi (Approval) untuk dinyatakan sah.</p>
+                <button type="submit" class="btn btn-action-primary w-100 py-3 rounded-pill shadow" id="btnSimpan">
+                    <i class="bi bi-cloud-upload-fill me-2 fs-5"></i> SIMPAN & KUNCI BERITA ACARA KE CLOUD
+                </button>
+            </div>
         </form>
-        <div id="hasil"></div>
+        <div id="hasil" class="mt-3"></div>
     </div>
 </div>
 
@@ -331,7 +457,10 @@ function logoutPerangkat() {
 function bukaHalamanInput() {
     document.getElementById("pageDashboard").classList.add("d-none");
     document.getElementById("pageInputForm").classList.remove("d-none");
-    document.getElementById("formBA").style.display = "block";
+    // Reset visual progress
+    document.getElementById("progressVisualContainer").style.display = "none";
+    document.getElementById("progressVisualBar").style.width = "0%";
+    
     document.getElementById("hasil").innerHTML = "";
     document.getElementById("formBA").reset();
     window.scrollTo(0,0);
@@ -341,6 +470,23 @@ function kembaliKeDashboard() {
     document.getElementById("pageInputForm").classList.add("d-none");
     document.getElementById("pageDashboard").classList.remove("d-none");
     loadDaftarBA();
+}
+
+/* --- NEW INTERACTIVE FUNCT: VISUAL PROGRESS BAR IN FORM --- */
+function updateVisualProgress(value) {
+    const container = document.getElementById("progressVisualContainer");
+    const bar = document.getElementById("progressVisualBar");
+    
+    let val = parseInt(value);
+    if (isNaN(val) || val < 0) {
+        container.style.display = "none";
+        bar.style.width = "0%";
+        return;
+    }
+    if (val > 100) val = 100;
+
+    container.style.display = "block";
+    bar.style.width = val + "%";
 }
 
 function ubahShiftOtomatis() {
@@ -406,7 +552,7 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
     .then(res => res.json())
     .then(data => {
         btnSimpan.disabled = false;
-        btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
+        btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-2 fs-5"></i> SIMPAN & KUNCI BERITA ACARA CLOUD`;
         if (data.success || data.status === "success") {
             alert("✓ Berita Acara Sukses Tersimpan di Cloud Database!");
             document.getElementById("formBA").reset();
@@ -417,7 +563,7 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
     })
     .catch(err => {
         btnSimpan.disabled = false;
-        btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
+        btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-2 fs-5"></i> SIMPAN & KUNCI BERITA ACARA CLOUD`;
         hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Error Jaringan Cloud.</div>`;
     });
 });
