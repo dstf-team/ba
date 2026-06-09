@@ -321,7 +321,7 @@
         <div class="row align-items-center mb-3 g-3">
             <div class="col-md-7 ctrl-title-area">
                 <h4 class="fw-bold m-0">Records Database</h4>
-                <p class="text-muted small m-0">Riwayat sinkronisasi serah terima shift kerja lapangan</p>
+                <p class="text-muted small m-0">Sinkronisasi serah terima shift kerja</p>
             </div>
             <div class="col-md-5 d-flex gap-2 ctrl-btn-area">
                 <button class="btn btn-light border rounded-3 px-3 text-secondary" onclick="loadDaftarBA()"><i class="bi bi-arrow-clockwise"></i></button>
@@ -360,13 +360,13 @@
                 <div class="col-6 col-md-6 mb-2"><label class="form-label">Tanggal</label><input type="date" class="form-control" id="tanggal" required></div>
                 <div class="col-6 col-md-6 mb-2"><label class="form-label">Shift</label><select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
                 <div class="col-6 col-md-6 mb-2"><label class="form-label">Divisi</label><select class="form-select" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
-                <div class="col-6 col-md-6 mb-2"><label class="form-label">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Persis di Database TTD" required></div>
+                <div class="col-6 col-md-6 mb-2"><label class="form-label">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Lengkap" required></div>
             </div>
 
             <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
-            <div class="mb-2"><label class="form-label">Supervisor</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor"></div>
+            <div class="mb-2"><label class="form-label">Supervisor / PLT</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor"></div>
             <div class="mb-2"><label class="form-label">Foreman</label><textarea class="form-control" id="foreman" rows="2" placeholder="Nama foreman..."></textarea></div>
-            <div class="mb-2"><label class="form-label">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah kru bertugas..."></textarea></div>
+            <div class="mb-2"><label class="form-label">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..."></textarea></div>
 
             <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
             <div class="mb-2"><label class="form-label">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job"><span class="input-group-text bg-light">%</span></div></div>
@@ -376,7 +376,7 @@
 
             <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
             <div class="row g-2">
-                <div class="col-md-6 mb-2"><label class="form-label">Supervisor Pelaksana (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Persis di Database TTD"></div>
+                <div class="col-md-6 mb-2"><label class="form-label">Supervisor / PLT (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap"></div>
                 <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><input type="text" class="form-control" id="foreman_pelaksana"></div>
                 <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2"></textarea></div>
                 <div class="col-6 col-md-6 mb-2"><label class="form-label">Shift Berikut</label><select class="form-select" id="shift_berikut"><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
@@ -405,13 +405,13 @@
                     <div class="col-6">
                         <div class="ttd-container-box">
                             <div id="areaTtdPembuat"></div>
-                            <div class="ttd-title" id="lblTtdPembuat">Penyerah</div>
+                            <div class="ttd-title" id="lblTtdPembuat">Penyerah BA</div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="ttd-container-box">
                             <div id="areaTtdPenerima"></div>
-                            <div class="ttd-title" id="lblTtdPenerima">Penerima</div>
+                            <div class="ttd-title" id="lblTtdPenerima">Penerima BA</div>
                         </div>
                     </div>
                 </div>
@@ -678,21 +678,21 @@ function loadDaftarBA() {
 
 function tampilkanDetail(index) {
     const item = databaseBA[index];
-    document.getElementById("modalTitleID").innerHTML = `<i class="bi bi-search text-primary me-2"></i>Data Lapangan: <span class="font-monospace text-dark">${item.id_ba || 'N/A'}</span>`;
+    document.getElementById("modalTitleID").innerHTML = `<i class="bi bi-search text-primary me-2"></i>Data: <span class="font-monospace text-dark">${item.id_ba || 'N/A'}</span>`;
     
     let items = [
         { label: "Tanggal Penginputan", val: item.tanggal, highlight: 'txt-dstf-blue' }, 
         { label: "Shift Kerja", val: item.shift },
-        { label: "Divisi Ops", val: item.devisi, highlight: 'txt-dstf-blue' }, 
-        { label: "Dibuat Oleh (Penyerah)", val: item.dibuat_oleh },
-        { label: "Supervisor Lapangan", val: item.supervisor },
-        { label: "Foreman (Mandor)", val: item.foreman },
+        { label: "Divisi", val: item.devisi, highlight: 'txt-dstf-blue' }, 
+        { label: "Dibuat Oleh", val: item.dibuat_oleh },
+        { label: "Supervisor / PLT", val: item.supervisor },
+        { label: "Foreman", val: item.foreman },
         { label: "Rincian Tim Manpower", val: item.jumlah_manpower },
         { label: "Ketercapaian Target Job", val: `${item.ketercapaian_job || '0'}%`, highlight: 'text-success fw-bold' },
         { label: "Temuan Masalah Lapangan", val: item.temuan, highlight: 'txt-dstf-red' },
-        { label: "Pekerjaan Tertunda (Job Pending)", val: item.job_pending, highlight: 'txt-dstf-bronze' }, 
+        { label: "Job Pendding", val: item.job_pending, highlight: 'txt-dstf-bronze' }, 
         { label: "Keterangan Tambahan", val: item.keterangan },
-        { label: "Supervisor Pelaksana (Penerima)", val: item.supervisor_pelaksana },
+        { label: "Supervisor / PLT (Penerima)", val: item.supervisor_pelaksana },
         { label: "Foreman Penerima", val: item.foreman_pelaksana },
         { label: "Crew Pelaksana Berikutnya", val: item.crew_pelaksana },
         { label: "Serah Terima Ke Shift", val: item.shift_berikut },
@@ -853,3 +853,5 @@ function simpanPerubahanEdit(idBa, index) {
 </script>
 </body>
 </html>
+
+
