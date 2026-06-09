@@ -111,6 +111,11 @@
         .log-val { font-size: 0.9rem; font-weight: 600; color: #1e293b; }
         .log-val.highlight-main { color: #2563eb; font-weight: 700; }
 
+        /* VARIATION BORDER LOGBOOK SECTION */
+        .border-temuan { border-left: 4px solid var(--dstf-red) !important; background-color: #fdf2f2; }
+        .border-pending { border-left: 4px solid var(--dstf-bronze) !important; background-color: #fff7ed; }
+        .border-keterangan { border-left: 4px solid var(--text-muted) !important; background-color: #f8fafc; }
+
         /* FORM CUSTOMIZATION */
         .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 12px 16px; margin-top: 24px; margin-bottom: 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
         .sec-utama { background: #eff6ff; color: #2563eb; }
@@ -310,7 +315,6 @@ function verifikasiPinAwal() {
     }
 }
 
-// BYPASS
 function BypassLoginKeAplikasi() {
     document.getElementById("pinLockScreen").classList.add("d-none");
     document.getElementById("mainAppContent").classList.remove("d-none");
@@ -368,7 +372,6 @@ function ubahShiftOtomatis() {
 }
 document.getElementById("tanggal").addEventListener("change", ubahShiftOtomatis);
 
-// SUBMIT DATA
 document.getElementById("formBA").addEventListener("submit", function(e) {
     e.preventDefault(); 
     const btnSimpan = document.getElementById("btnSimpan");
@@ -519,12 +522,11 @@ function loadDaftarBA() {
     });
 }
 
-/* REVISI TOTAL DISPLAY LOGBOOK TERARAH DI DETAIL */
+/* UPDATE TOTAL: PEMISAHAN MATANG TEMUAN, PENDING, DAN CATATAN */
 function tampilkanDetail(index) {
     const item = databaseBA[index];
     document.getElementById("modalTitleID").innerText = item.id_ba || 'N/A';
     
-    // Desain Logbook Terstruktur & Compact
     let contentHtml = `
     <div id="viewDetailMode">
         <div class="logbook-section">
@@ -547,28 +549,45 @@ function tampilkanDetail(index) {
         </div>
 
         <div class="logbook-section">
-            <div class="logbook-header text-warning"><i class="bi bi-activity"></i> Progres Aktual & Masalah</div>
+            <div class="logbook-header text-primary"><i class="bi bi-activity"></i> Ketercapaian Target Job</div>
             <div class="row g-2">
-                <div class="col-12 log-item mb-2">
-                    <div class="log-lbl">Ketercapaian Target Job</div>
+                <div class="col-12 log-item">
                     <div class="progress mt-1" style="height: 18px; border-radius:6px;">
                         <div class="progress-bar bg-success font-monospace fw-bold" role="progressbar" style="width: ${item.ketercapaian_job || 0}%; font-size:0.75rem;" aria-valuenow="${item.ketercapaian_job || 0}" aria-valuemin="0" aria-valuemax="100">${item.ketercapaian_job || 0}%</div>
                     </div>
                 </div>
-                <div class="col-12 log-item"><div class="log-lbl" style="color:var(--dstf-red);"><i class="bi bi-exclamation-triangle-fill"></i> Temuan Kendala / Masalah</div><div class="log-val text-danger" style="white-space: pre-line;">${item.temuan || '- No Record -'}</div></div>
-                <div class="col-12 log-item"><div class="log-lbl" style="color:var(--dstf-bronze);"><i class="bi bi-pause-circle-fill"></i> Job Pending (Pekerjaan Tertunda)</div><div class="log-val text-warning" style="white-space: pre-line;">${item.job_pending || '- No Record -'}</div></div>
-                <div class="col-12 log-item"><div class="log-lbl">Keterangan Catatan Tambahan</div><div class="log-val text-secondary" style="font-size:0.85rem; white-space: pre-line;">${item.keterangan || '-'}</div></div>
+            </div>
+        </div>
+
+        <div class="logbook-section border-temuan">
+            <div class="logbook-header text-danger" style="border-bottom-color: rgba(239,68,68,0.2);"><i class="bi bi-exclamation-triangle-fill"></i> Temuan Kendala / Masalah</div>
+            <div class="row g-2">
+                <div class="col-12 log-item"><div class="log-val text-danger" style="white-space: pre-line; font-size:0.9rem;">${item.temuan || '• Tidak ada temuan kendala operasional.'}</div></div>
+            </div>
+        </div>
+
+        <div class="logbook-section border-pending">
+            <div class="logbook-header text-warning" style="border-bottom-color: rgba(249,115,22,0.2);"><i class="bi bi-pause-circle-fill"></i> Job Pending (Pekerjaan Tertunda)</div>
+            <div class="row g-2">
+                <div class="col-12 log-item"><div class="log-val text-warning" style="white-space: pre-line; font-size:0.9rem; color:#c2410c !important;">${item.job_pending || '• Seluruh target pekerjaan utama selesai.'}</div></div>
+            </div>
+        </div>
+
+        <div class="logbook-section border-keterangan">
+            <div class="logbook-header text-secondary"><i class="bi bi-chat-right-text-fill"></i> Keterangan & Catatan Tambahan</div>
+            <div class="row g-2">
+                <div class="col-12 log-item"><div class="log-val text-dark" style="font-size:0.85rem; white-space: pre-line; font-style: italic;">${item.keterangan || '- Tidak ada catatan tambahan -'}</div></div>
             </div>
         </div>
 
         <div class="logbook-section" style="border-left: 4px solid #0d9488;">
-            <div class="logbook-header text-info"><i class="bi bi-arrow-left-right"></i> Target Rencana Handover Shift</div>
+            <div class="logbook-header text-info" style="color: #0d9488 !important;"><i class="bi bi-arrow-left-right"></i> Target Rencana Handover Shift</div>
             <div class="row g-2">
                 <div class="col-6 log-item"><div class="log-lbl">Target Shift Berikut</div><div class="log-val"><span class="badge-shift ${item.shift_berikut==='Siang'?'bg-siang':'bg-malam'}">${item.shift_berikut || '-'}</span></div></div>
                 <div class="col-6 log-item"><div class="log-lbl">Tanggal Shift Berikut</div><div class="log-val">${item.tanggal_shift_berikut || '-'}</div></div>
                 <div class="col-6 log-item"><div class="log-lbl">Supervisor Penerima</div><div class="log-val">${item.supervisor_pelaksana || '-'}</div></div>
                 <div class="col-6 log-item"><div class="log-lbl">Foreman Penerima</div><div class="log-val">${item.foreman_pelaksana || '-'}</div></div>
-                <div class="col-12 log-item"><div class="log-lbl">Kru Pelaksana Stanby</div><div class="log-val" style="font-size:0.85rem; white-space: pre-line;">${item.crew_pelaksana || '-'}</div></div>
+                <div class="col-12 log-item"><div class="log-lbl">Kru Pelaksana Standby</div><div class="log-val" style="font-size:0.85rem; white-space: pre-line;">${item.crew_pelaksana || '-'}</div></div>
             </div>
         </div>
     </div>
