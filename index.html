@@ -168,17 +168,28 @@
         .txt-dstf-bronze { color: var(--dstf-bronze) !important; font-weight: 600; }
         .txt-dstf-red { color: var(--dstf-red) !important; font-weight: 600; }
 
-        /* FORM FIELD DESIGN */
-        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 10px 14px; margin-top: 20px; margin-bottom: 14px; border-radius: 8px; display: flex; align-items: center; gap: 10px; letter-spacing: 0.5px; }
-        .sec-utama { background: #eff6ff; color: #2563eb; }
-        .sec-tim { background: #ecfdf5; color: #059669; }
-        .sec-progress { background: #fff7ed; color: #ea580c; }
-        .sec-serah { background: #f0fdfa; color: #0d9488; }
+        /* FORM FIELD DESIGN WITH BACKGROUND CONTAINERS */
+        .form-section-container {
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+        }
+        .form-section-container.container-utama { background-color: #f0f7ff; border-color: #bfdbfe; }
+        .form-section-container.container-tim { background-color: #f0fdf4; border-color: #bbf7d0; }
+        .form-section-container.container-progress { background-color: #fff7ed; border-color: #ffedd5; }
+        .form-section-container.container-serah { background-color: #f0fdfa; border-color: #ccfbf1; }
+
+        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 6px 0; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; letter-spacing: 0.5px; border-bottom: 1px dashed rgba(0,0,0,0.08); }
+        .sec-utama { color: #2563eb; }
+        .sec-tim { color: #059669; }
+        .sec-progress { color: #ea580c; }
+        .sec-serah { color: #0d9488; }
 
         .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 6px;}
         .form-control, .form-select { border-radius: 10px; padding: 10px 14px; border: 1.5px solid var(--border-color); font-size: 0.9rem; background-color: #fff; }
         .form-control:focus, .form-select:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08); }
-        .auto-filled { background-color: #f0fdf4 !important; border-color: #10b981 !important; font-weight: 600; color: #16a34a !important; }
+        .auto-filled { background-color: #e2fbf0 !important; border-color: #10b981 !important; font-weight: 600; color: #16a34a !important; }
 
         /* BUTTONS */
         .btn { border-radius: 10px; padding: 9px 18px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
@@ -384,8 +395,6 @@
             </div>
         </div>
 
-
-
         <div class="search-wrapper">
             <i class="bi bi-search"></i>
             <input type="text" id="inputSearchBA" class="form-control search-input-custom" placeholder="Cari berdasarkan ID BA, Divisi, atau nama pembuat..." onkeyup="filterDaftarBA()">
@@ -395,13 +404,13 @@
             <table class="table table-custom table-hover align-middle m-0">
                 <thead>
                     <tr>
-                        <th style="width: 13%;">ID BA</th>
-                        <th style="width: 15%;">Tanggal</th>
-                        <th style="width: 12%;">Shift</th>
-                        <th style="width: 20%;">Divisi</th>
+                        <th style="width: 12%;">ID BA</th>
+                        <th style="width: 14%;">Tanggal</th>
+                        <th style="width: 10%;">Shift</th>
+                        <th style="width: 18%;">Divisi</th>
                         <th style="width: 18%;">Dibuat Oleh</th>
-                        <th style="width: 12%;">Status</th>
-                        <th style="width: 10%;" class="text-center">Aksi</th>
+                        <th style="width: 14%;">Status</th>
+                        <th style="width: 14%;" class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody id="tabelBodyBA"></tbody>
@@ -417,32 +426,44 @@
         </div>
 
         <form id="formBA">
-            <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI</div>
-            <div class="row g-2">
-                <div class="col-6 mb-2"><label class="form-label">Tanggal</label><input type="date" class="form-control" id="tanggal" required></div>
-                <div class="col-6 mb-2"><label class="form-label">Shift</label><select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
-                <div class="col-6 mb-2"><label class="form-label">Divisi</label><select class="form-select" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
-                <div class="col-6 mb-2"><label class="form-label">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Lengkap" required></div>
+            <!-- CONTAINER DATA UTAMA -->
+            <div class="form-section-container container-utama">
+                <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI</div>
+                <div class="row g-2">
+                    <div class="col-6 mb-2"><label class="form-label">Tanggal</label><input type="date" class="form-control" id="tanggal" required></div>
+                    <div class="col-6 mb-2"><label class="form-label">Shift</label><select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
+                    <div class="col-6 mb-2"><label class="form-label">Divisi</label><select class="form-select" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
+                    <div class="col-6 mb-2"><label class="form-label">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Lengkap" required></div>
+                </div>
             </div>
 
-            <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
-            <div class="mb-2"><label class="form-label">Supervisor / PLT</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor"></div>
-            <div class="mb-2"><label class="form-label">Foreman</label><textarea class="form-control" id="foreman" rows="2" placeholder="Nama foreman..."></textarea></div>
-            <div class="mb-2"><label class="form-label">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..."></textarea></div>
+            <!-- CONTAINER TIM LAPANGAN -->
+            <div class="form-section-container container-tim">
+                <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
+                <div class="mb-2"><label class="form-label">Supervisor / PLT</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor"></div>
+                <div class="mb-2"><label class="form-label">Foreman</label><textarea class="form-control" id="foreman" rows="2" placeholder="Nama foreman..."></textarea></div>
+                <div class="mb-2"><label class="form-label">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..."></textarea></div>
+            </div>
 
-            <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
-            <div class="mb-2"><label class="form-label">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job"><span class="input-group-text bg-light">%</span></div></div>
-            <div class="mb-2"><label class="form-label">Temuan</label><textarea class="form-control" id="temuan" rows="2"></textarea></div>
-            <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="3"></textarea></div>
-            <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan_tambahan" rows="2"></textarea></div>
+            <!-- CONTAINER PROGRESS & CATATAN -->
+            <div class="form-section-container container-progress">
+                <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
+                <div class="mb-2"><label class="form-label">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job"><span class="input-group-text bg-light">%</span></div></div>
+                <div class="mb-2"><label class="form-label">Temuan</label><textarea class="form-control" id="temuan" rows="2"></textarea></div>
+                <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="3"></textarea></div>
+                <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan_tambahan" rows="2"></textarea></div>
+            </div>
 
-            <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
-            <div class="row g-2">
-                <div class="col-md-6 mb-2"><label class="form-label">Supervisor / PLT (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap"></div>
-                <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><input type="text" class="form-control" id="foreman_pelaksana" placeholder="Nama-nama pengawas"></div>
-                <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2" placeholder="Jika tidak ada pengawas"></textarea></div>
-                <div class="col-6 mb-2"><label class="form-label">Shift Berikut</label><select class="form-select" id="shift_berikut"><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
-                <div class="col-6 mb-2"><label class="form-label">Tanggal Shift Berikut</label><input type="date" class="form-control" id="tanggal_shift_berikut"></div>
+            <!-- CONTAINER OPERASIONAL SHIFT BERIKUTNYA -->
+            <div class="form-section-container container-serah">
+                <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
+                <div class="row g-2">
+                    <div class="col-md-6 mb-2"><label class="form-label">Supervisor / PLT (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label">Foreman Pelaksana</label><textarea class="form-control" id="foreman_pelaksana" rows="2" placeholder="Nama-nama pengawas (Bisa enter baris baru)"></textarea></div>
+                    <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2" placeholder="Jika tidak ada pengawas"></textarea></div>
+                    <div class="col-6 mb-2"><label class="form-label">Shift Berikut</label><select class="form-select" id="shift_berikut"><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
+                    <div class="col-6 mb-2"><label class="form-label">Tanggal Shift Berikut</label><input type="date" class="form-control" id="tanggal_shift_berikut"></div>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-action-primary w-100 py-3 mt-3 shadow-sm" id="btnSimpan">
@@ -928,7 +949,7 @@ function tampilkanDetail(index) {
                         <div class="detail-premium-icon text-info"><i class="bi bi-person-badge-fill"></i></div>
                         <div class="detail-premium-info">
                             <div class="detail-premium-label">Foreman Pelaksana</div>
-                            <div class="detail-premium-value preserve-newlines">${item.foreman_pelaksana || '-'}</div>
+                            <div class="detail-premium-value fw-bold preserve-newlines">${item.foreman_pelaksana || '-'}</div>
                         </div>
                     </div>
                 </div>
@@ -968,7 +989,7 @@ function tampilkanDetail(index) {
                 <div class="col-12"><label class="form-label small mb-1">Job Pending</label><textarea class="form-control form-control-sm" id="edit_pending" rows="3">${item.job_pending}</textarea></div>
                 <div class="col-12"><label class="form-label small mb-1">Keterangan</label><textarea class="form-control form-control-sm" id="edit_keterangan" rows="2">${item.keterangan || item.ketergan}</textarea></div>
                 <div class="col-6"><label class="form-label small mb-1">Supt Penerima</label><input type="text" class="form-control form-control-sm" id="edit_supt_penerima" value="${item.supervisor_pelaksana}"></div>
-                <div class="col-6"><label class="form-label small mb-1">Foreman Penerima</label><input type="text" class="form-control form-control-sm" id="edit_foreman_penerima" value="${item.foreman_pelaksana}"></div>
+                <div class="col-6"><label class="form-label small mb-1">Foreman Penerima</label><textarea class="form-control form-control-sm" id="edit_foreman_penerima" rows="2">${item.foreman_pelaksana}</textarea></div>
                 <div class="col-12"><label class="form-label small mb-1">Crew Penerima</label><textarea class="form-control form-control-sm" id="edit_crew_penerima" rows="2">${item.crew_pelaksana}</textarea></div>
                 <div class="col-6"><label class="form-label small mb-1">Shift Berikut</label><select class="form-select form-select-sm" id="edit_shift_berikut"><option ${item.shift_berikut==='Siang'?'selected':''}>Siang</option><option ${item.shift_berikut==='Malam'?'selected':''}>Malam</option></select></div>
                 <div class="col-6"><label class="form-label small mb-1">Tanggal Shift Berikut</label><input type="date" class="form-control form-control-sm" id="edit_tanggal_berikut" value="${item.tanggal_shift_berikut}"></div>
