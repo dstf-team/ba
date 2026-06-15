@@ -314,10 +314,48 @@
         /* PREVIEW MESSAGE */
         .wa-preview-box { background: #efeae2; border-left: 4px solid #075e54; padding: 14px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 0.85rem; color: #303030; max-height: 240px; overflow-y: auto;}
 
+        /* MODAL FOOTER RESPONSIVE FIX */
+        .modal-footer-custom {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-action-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-grow: 1;
+        }
+
         @media (max-width: 767.98px) {
             .table-responsive-custom { display: none; }
             .mobile-card-list { display: block; }
             .brand-header h2 { font-size: 1.35rem; }
+            
+            /* Optimalisasi Footer Modal pada Ponsel */
+            .modal-footer-custom {
+                flex-wrap: nowrap;
+                padding: 10px 14px !important;
+            }
+            .footer-action-group {
+                width: auto;
+            }
+            .footer-action-group .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            .btn-wa-mobile {
+                padding: 8px 10px !important;
+            }
+            .btn-wa-mobile span {
+                display: none; /* Sembunyikan teks 'WhatsApp' di HP agar tidak ramai */
+            }
+            .btn-close-modal-custom {
+                padding: 8px 16px !important;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -384,7 +422,7 @@
         <div class="row align-items-center mb-4 g-3">
             <div class="col-md-7">
                 <h4 class="fw-bold m-0 text-dark" style="letter-spacing: -0.5px;">Database Berita Acara</h4>
-                <p class="text-muted small m-0 mt-1">serah terima shift kerja operasional.</p>
+                <p class="text-muted small m-0 mt-1">Sistem manajemen pemantauan serah terima shift kerja operasional.</p>
             </div>
             <div class="col-md-5 d-flex gap-2 justify-content-md-end">
                 <button class="btn btn-white bg-white border border-secondary-subtle rounded-3 px-3 text-secondary shadow-sm" onclick="loadDaftarBA()" title="Refresh Data">
@@ -426,7 +464,6 @@
             <button class="btn btn-sm btn-outline-secondary rounded-3" onclick="kembaliKeDashboard()"><i class="bi bi-x-lg"></i></button>
         </div>
 
-        <!-- AREA NOTIFIKASI ERROR (VALIDASI FORM) -->
         <div id="formValidationErrorArea" class="d-none alert alert-danger border-start border-4 border-danger rounded-3 p-3 mb-3 small shadow-sm">
             <div class="d-flex align-items-center gap-2 fw-bold text-danger mb-1">
                 <i class="bi bi-exclamation-octagon-fill fs-5"></i> Gagal Melanjutkan! Data Belum Lengkap
@@ -435,7 +472,6 @@
         </div>
 
         <form id="formBA">
-            <!-- CONTAINER DATA UTAMA -->
             <div class="form-section-container container-utama">
                 <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI</div>
                 <div class="row g-2">
@@ -446,7 +482,6 @@
                 </div>
             </div>
 
-            <!-- CONTAINER TIM LAPANGAN -->
             <div class="form-section-container container-tim">
                 <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
                 <div class="mb-2"><label class="form-label label-required">Supervisor / PLT</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor" required></div>
@@ -454,7 +489,6 @@
                 <div class="mb-2"><label class="form-label label-required">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..." required></textarea></div>
             </div>
 
-            <!-- CONTAINER PROGRESS & CATATAN -->
             <div class="form-section-container container-progress">
                 <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
                 <div class="mb-2"><label class="form-label label-required">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job" min="0" max="100" required><span class="input-group-text bg-light">%</span></div></div>
@@ -463,7 +497,6 @@
                 <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan_tambahan" rows="2"></textarea></div>
             </div>
 
-            <!-- CONTAINER OPERASIONAL SHIFT BERIKUTNYA -->
             <div class="form-section-container container-serah">
                 <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
                 <div class="row g-2">
@@ -520,7 +553,7 @@
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-4" style="background-color: #fcfdfe;">
+            <div class="modal-body p-3 p-md-4" style="background-color: #fcfdfe;">
                 <div id="modalDetailContent"></div>
                 
                 <div class="row g-3 mt-1">
@@ -538,9 +571,12 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer bg-light border-top p-3 d-flex justify-content-between">
-                <div id="actionApproveArea"></div>
-                <button type="button" class="btn btn-sm btn-secondary rounded-3 px-4 py-2" data-bs-dismiss="modal">Tutup</button>
+            <!-- FOOTER DENGAN LAYOUT FIXED RESPONSIVE -->
+            <div class="modal-footer bg-light border-top p-2.5">
+                <div class="modal-footer-custom">
+                    <div id="actionApproveArea" class="footer-action-group"></div>
+                    <button type="button" class="btn btn-secondary btn-close-modal-custom rounded-3" data-bs-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
@@ -646,7 +682,6 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
     notifErrorBox.classList.add("d-none");
     errorListContainer.innerHTML = "";
 
-    // Kumpulan element mandatory terstruktur
     const validasiGrup = [
         {
             namaBagian: "Data Utama & Administrasi",
@@ -654,7 +689,7 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
                 { id: "tanggal", label: "Tanggal BA" },
                 { id: "shift", label: "Shift Penyerah" },
                 { id: "devisi", label: "Divisi" },
-                { id: "dibuat_oleh", label: "Nama Pembuat (Dibuat Oleh)" }
+                { id: "dibuat_oleh", label: "Nama Pembuat" }
             ]
         },
         {
@@ -696,18 +731,17 @@ document.getElementById("formBA").addEventListener("submit", function(e) {
         });
 
         if (listFieldKosong.length > 0) {
-            rincianErrorHtml += `<div class="mb-1">🔹 <b>Bagian ${grup.namaBagian}:</b> Belum diisi (${listFieldKosong.join(", ")}).</div>`;
+            rincianErrorHtml += `<div class="mb-1">🔹 <b>Bagian ${grup.namaBagian}:</b> (${listFieldKosong.join(", ")}).</div>`;
         }
     });
 
     if (!formValid) {
         errorListContainer.innerHTML = rincianErrorHtml;
         notifErrorBox.classList.remove("d-none");
-        window.scrollTo(0, 0); // Scroll otomatis ke atas agar user langsung melihat notifikasinya
+        window.scrollTo(0, 0);
         return;
     }
 
-    // Jika lolos validasi, eksekusi push data ke server cloud
     const btnSimpan = document.getElementById("btnSimpan");
     const hasilDiv = document.getElementById("hasil");
     
@@ -1112,16 +1146,18 @@ function tampilkanDetail(index) {
                        `⏩ *Shift Berikut:* ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})`;
     
     let urlWhatsApp = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textDetailWA);
-    let tombolShareWA = `<a href="${urlWhatsApp}" target="_blank" class="btn btn-sm btn-success rounded-3 px-3 py-2"><i class="bi bi-whatsapp"></i> WhatsApp</a>`;
+    
+    // Penyesuaian Tombol WhatsApp Adaptif
+    let tombolShareWA = `<a href="${urlWhatsApp}" target="_blank" class="btn btn-success btn-wa-mobile rounded-3"><i class="bi bi-whatsapp"></i> <span>WhatsApp</span></a>`;
 
     if ((item.status || "PENDING").toString().toUpperCase() === "APPROVED") {
-        btnArea.innerHTML = `<div class="d-flex align-items-center gap-2">${tombolShareWA} <span class="badge bg-success-subtle text-success py-2 px-3 rounded-3 border border-success"><i class="bi bi-shield-fill-check me-1"></i> Terverifikasi Valid</span></div>`;
+        btnArea.innerHTML = `<div class="d-flex align-items-center gap-2">${tombolShareWA} <span class="badge bg-success-subtle text-success py-2 px-2.5 rounded-3 border border-success small"><i class="bi bi-shield-fill-check"></i> Verified</span></div>`;
     } else {
         btnArea.innerHTML = `
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-1.5 w-100">
                 ${tombolShareWA}
-                <button type="button" class="btn btn-sm btn-outline-warning rounded-3 px-3 py-2" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit</button>
-                <button type="button" class="btn btn-sm btn-primary rounded-3 px-4 py-2 fw-bold" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="bi bi-check2-circle"></i> Approve Sign</button>
+                <button type="button" class="btn btn-outline-warning rounded-3" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit</button>
+                <button type="button" class="btn btn-primary rounded-3 fw-bold flex-grow-1" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="bi bi-check2-circle"></i> Approve</button>
             </div>`;
     }
 
