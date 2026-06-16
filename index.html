@@ -5,1221 +5,944 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>BA Overshift DSTF - Dashboard</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght text-slate-800;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --surface-bg: #ffffff;
-            --body-bg: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            
-            --dstf-blue: #2563eb;       
-            --dstf-bronze: #c2410c;     
-            --dstf-red: #dc2626;        
-        }
-
-        body { 
-            background-color: var(--body-bg); 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            color: var(--text-main); 
-            min-height: 100vh; 
-            -webkit-tap-highlight-color: transparent; 
-        }
-
-        /* PIN LOCK SCREEN */
-        #pinLockScreen { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%); 
-            z-index: 9999; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: white; 
-        }
-        .pin-box { 
-            width: 100%; 
-            max-width: 380px; 
-            padding: 40px 30px; 
-            text-align: center; 
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .pin-input-field { 
-            letter-spacing: 18px; 
-            font-size: 28px; 
-            font-weight: 800; 
-            text-align: center; 
-            background: rgba(255,255,255,0.05) !important; 
-            border: 2px solid rgba(255,255,255,0.1); 
-            color: white !important; 
-            border-radius: 14px; 
-            padding: 12px; 
-            transition: all 0.3s ease;
-        }
-
-        /* HEADER */
-        .brand-header { 
-            background: var(--primary-gradient); 
-            color: #ffffff; 
-            padding: 24px; 
-            border-radius: 16px; 
-            margin-bottom: 24px; 
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08); 
-        }
-        .brand-header h2 { font-weight: 800; font-size: 1.6rem; letter-spacing: -0.5px; margin: 0; }
-        .subtitle-badge { 
-            background: rgba(255, 255, 255, 0.07); 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            color: #93c5fd; 
-            font-size: 0.72rem; 
-            font-weight: 700; 
-            padding: 4px 12px; 
-            border-radius: 6px; 
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-top: 6px;
-        }
-
-        /* CARD WORKSPACE */
-        .card-professional { 
-            border: none; 
-            border-radius: 16px; 
-            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03); 
-            background: var(--surface-bg); 
-            padding: 24px; 
-            margin-bottom: 24px; 
-        }
-
-        /* AREA DASHBOARD DEPAN */
-        .stat-widget-card {
-            background: #ffffff;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 14px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.01);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .stat-widget-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03);
-        }
-        .stat-icon-wrapper {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-        }
-
-        .search-wrapper { position: relative; margin-bottom: 22px; }
-        .search-wrapper .bi-search { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.95rem; }
-        .search-input-custom { padding-left: 48px !important; background-color: #ffffff; border-radius: 12px; border: 1.5px solid #e2e8f0; height: 48px; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01); }
-        .search-input-custom:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.06); background-color: #fff; }
-
-        .table-responsive-custom { border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; background: #fff; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.01); }
-        .table-custom th { background-color: #f8fafc; color: #64748b; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; padding: 16px 18px; border-bottom: 1px solid #e2e8f0; letter-spacing: 0.5px; }
-        .table-custom td { padding: 16px 18px; vertical-align: middle; font-size: 0.88rem; border-bottom: 1px solid #f1f5f9; white-space: nowrap; color: #334155; }
-        .table-custom tbody tr { transition: background-color 0.2s; }
-        .table-custom tbody tr:hover { background-color: #f8fafc; }
-        
-        /* MOBILE LIST */
-        .mobile-card-list { display: none; }
-        .ba-mobile-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.01); }
-        
-        /* BADGES */
-        .badge-shift { font-weight: 700; padding: 5px 10px; border-radius: 6px; font-size: 0.72rem; display: inline-block; text-align: center; letter-spacing: 0.3px; }
-        .bg-siang { background-color: #fffbeb; color: #d97706; border: 1px solid #fef3c7; }
-        .bg-malam { background-color: #eef2ff; color: #4f46e5; border: 1px solid #e0e7ff; }
-        
-        .badge-status { font-weight: 700; font-size: 0.72rem; padding: 5px 12px; border-radius: 8px; letter-spacing: 0.3px; display: inline-flex; align-items: center; justify-content: center; min-width: 105px; gap: 4px; }
-        .stat-pending { background-color: #fff5f5; color: #e11d48; border: 1px solid #ffe4e6; }
-        .stat-approved { background-color: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7; }
-
-        /* DIVISI BADGE STYLE */
-        .divisi-badge-wrapper { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
-        .divisi-icon-box { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
-        .icon-earthwork { background: #ffe4e6; color: #e11d48; }
-        .icon-hydro { background: #e0f2fe; color: #0284c7; }
-        .icon-ipal { background: #ccfbf1; color: #0d9488; }
-        .icon-geotech { background: #fef3c7; color: #d97706; }
-        .icon-planner { background: #f3e8ff; color: #9333ea; }
-
-        .txt-dstf-blue { color: var(--dstf-blue) !important; font-weight: 600; }
-        .txt-dstf-bronze { color: var(--dstf-bronze) !important; font-weight: 600; }
-        .txt-dstf-red { color: var(--dstf-red) !important; font-weight: 600; }
-
-        /* FORM FIELD DESIGN WITH BACKGROUND CONTAINERS */
-        .form-section-container {
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-        }
-        .form-section-container.container-utama { background-color: #f0f7ff; border-color: #bfdbfe; }
-        .form-section-container.container-tim { background-color: #f0fdf4; border-color: #bbf7d0; }
-        .form-section-container.container-progress { background-color: #fff7ed; border-color: #ffedd5; }
-        .form-section-container.container-serah { background-color: #f0fdfa; border-color: #ccfbf1; }
-
-        .form-section-header { font-size: 0.8rem; font-weight: 800; padding: 6px 0; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; letter-spacing: 0.5px; border-bottom: 1px dashed rgba(0,0,0,0.08); }
-        .sec-utama { color: #2563eb; }
-        .sec-tim { color: #059669; }
-        .sec-progress { color: #ea580c; }
-        .sec-serah { color: #0d9488; }
-
-        .form-label { font-weight: 600; font-size: 0.85rem; color: #475569; margin-bottom: 6px;}
-        .form-label.label-required::after { content: " *"; color: #dc2626; font-weight: bold; }
-        .form-control, .form-select { border-radius: 10px; padding: 10px 14px; border: 1.5px solid var(--border-color); font-size: 0.9rem; background-color: #fff; }
-        .form-control:focus, .form-select:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08); }
-        .auto-filled { background-color: #e2fbf0 !important; border-color: #10b981 !important; font-weight: 600; color: #16a34a !important; }
-
-        /* BUTTONS */
-        .btn { border-radius: 10px; padding: 9px 18px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
-        .btn:active { transform: scale(0.98); }
-        .btn-action-primary { background: var(--accent-gradient); color: white; border: none; }
-        .btn-action-primary:hover { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); color: white; }
-        .btn-action-success { background: var(--success-gradient); color: white; border: none; }
-        .btn-action-success:hover { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; }
-
-        /* MODAL DETAIL PREMIUM */
-        .detail-card-section {
-            background: #ffffff;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-left: 5px solid #cbd5e1;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 18px;
-            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.03), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .detail-card-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 30px -5px rgba(15, 23, 42, 0.06), 0 8px 16px -2px rgba(15, 23, 42, 0.04);
-        }
-        
-        .card-accent-admin { border-left-color: #3b82f6 !important; background: linear-gradient(to right, #f8fafc 0%, #ffffff 100%); }
-        .card-accent-team { border-left-color: #10b981 !important; background: linear-gradient(to right, #f6fdf9 0%, #ffffff 100%); }
-        .card-accent-metrics { border-left-color: #ef4444 !important; background: linear-gradient(to right, #fffafb 0%, #ffffff 100%); }
-        .card-accent-nextshift { border-left-color: #06b6d4 !important; background: linear-gradient(to right, #f7fdfd 0%, #ffffff 100%); }
-
-        .section-premium-title {
-            font-size: 0.78rem;
-            font-weight: 800;
-            color: #1e293b;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px dashed #e2e8f0;
-            padding-bottom: 10px;
-        }
-        .detail-premium-box {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 6px 4px;
-        }
-        .detail-premium-icon {
-            width: 40px;
-            height: 40px;
-            background: #ffffff;
-            color: #475569;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
-            border: 1px solid #f1f5f9;
-        }
-        .detail-premium-info {
-            flex-grow: 1;
-        }
-        .detail-premium-label {
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 3px;
-        }
-        .detail-premium-value {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 0;
-            white-space: pre-wrap;
-        }
-        
-        .metric-large-box {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            border: none;
-            border-radius: 14px;
-            padding: 18px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
-            color: white;
-        }
-        .metric-large-box .detail-premium-label {
-            color: rgba(255, 255, 255, 0.75) !important;
-            font-weight: 700;
-        }
-
-        /* AREA DENGAN DUKUNGAN MULTI-LINE ENTER */
-        .preserve-newlines {
-            white-space: pre-wrap !important;
-            word-break: break-word;
-        }
-        
-        /* TTD BOXES */
-        .ttd-container-box { 
-            border: 1px dashed #cbd5e1; 
-            background: #ffffff; 
-            border-radius: 16px; 
-            padding: 18px; 
-            text-align: center; 
-            height: 150px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
-        }
-        .ttd-img { max-height: 85px; max-width: 100%; mix-blend-mode: multiply; filter: contrast(1.15); }
-        .ttd-title { font-size: 0.72rem; font-weight: 800; color: var(--text-muted); margin-top: 10px; text-transform: uppercase; border-top: 1px solid var(--border-color); width: 90%; padding-top: 6px; letter-spacing: 0.5px; }
-
-        /* PREVIEW MESSAGE */
-        .wa-preview-box { background: #efeae2; border-left: 4px solid #075e54; padding: 14px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 0.85rem; color: #303030; max-height: 240px; overflow-y: auto;}
-
-        /* MODAL FOOTER RESPONSIVE FIX */
-        .modal-footer-custom {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-        .footer-action-group {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-grow: 1;
-        }
-
-        @media (max-width: 767.98px) {
-            .table-responsive-custom { display: none; }
-            .mobile-card-list { display: block; }
-            .brand-header h2 { font-size: 1.35rem; }
-            
-            /* Optimalisasi Footer Modal pada Ponsel */
-            .modal-footer-custom {
-                flex-wrap: nowrap;
-                padding: 10px 14px !important;
-            }
-            .footer-action-group {
-                width: auto;
-            }
-            .footer-action-group .btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            .btn-wa-mobile {
-                padding: 8px 10px !important;
-            }
-            .btn-wa-mobile span {
-                display: none; /* Sembunyikan teks 'WhatsApp' di HP agar tidak ramai */
-            }
-            .btn-close-modal-custom {
-                padding: 8px 16px !important;
-                font-size: 0.8rem;
-            }
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .preserve-newlines { white-space: pre-wrap !important; word-break: break-word; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
     </style>
 </head>
-<body>
+<body class="bg-[#f1f5f9] text-slate-700 min-h-screen antialiased selection:bg-indigo-600 selection:text-white">
 
-<div id="pinLockScreen">
-    <div class="pin-box">
-        <div class="display-6 mb-3"><i class="bi bi-shield-lock-fill text-warning"></i></div>
-        <h4 class="fw-bold mb-1">Otorisasi Internal</h4>
-        <p class="text-white-50 small mb-4">Masukkan 4 digit PIN untuk mengakses sistem DSTF</p>
-        <div class="mb-3">
-            <input type="password" id="inputPinLog" class="form-control pin-input-field" maxlength="4" placeholder="••••" autocomplete="off">
-        </div>
-        <button class="btn btn-warning w-100 py-2.5 fw-bold rounded-3" onclick="verifikasiPinAwal()">Buka Aplikasi</button>
-        <div id="errPinMsg" class="text-danger small mt-2 fw-bold"></div>
-    </div>
-</div>
-
-<div id="mainAppContent" class="container py-3 py-md-4 d-none" style="max-width: 1000px;">
-
-    <div class="brand-header text-center text-md-start d-md-flex align-items-center justify-content-between">
-        <div>
-            <h2><i class="bi bi-journal-check me-2"></i>BA OVERSHIFT DSTF</h2>
-            <div class="subtitle-badge">EARTHWORK • HYDRO • IPAL • GEOTECH • PLANNER</div>
-        </div>
-        <button class="btn btn-sm btn-outline-light mt-3 mt-md-0" onclick="logoutPerangkat()"><i class="bi bi-box-arrow-right"></i> Keluar</button>
-    </div>
-        <div class="row g-3 mb-4">
-            <div class="col-md-4 col-6">
-                <div class="stat-widget-card">
-                    <div class="stat-icon-wrapper bg-primary-subtle text-primary">
-                        <i class="bi bi-folder2-open"></i>
-                    </div>
-                    <div>
-                        <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Penyimpanan</div>
-                        <h6 class="fw-bold m-0 mt-1 text-dark">Cloud Sync</h6>
-                    </div>
-                </div>
+    <!-- PIN LOCK SCREEN -->
+    <div id="pinLockScreen" class="fixed inset-0 bg-gradient-to-br from-slate-100 to-slate-200 z-[9999] flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-8 text-center shadow-2xl">
+            <div class="text-5xl text-amber-500 mb-4 animate-bounce"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">Otorisasi Internal</h4>
+            <p class="text-slate-500 text-sm mt-1 mb-6">Masukkan 4 digit PIN untuk mengakses sistem DSTF</p>
+            <div class="mb-4">
+                <input type="password" id="inputPinLog" class="w-full tracking-[18px] text-3xl font-extrabold text-center bg-slate-50 border-2 border-slate-200 focus:border-indigo-500 text-slate-800 rounded-2xl p-3 outline-none transition-all placeholder:tracking-normal placeholder:text-slate-300" maxlength="4" placeholder="••••" autocomplete="off">
             </div>
-            <div class="col-md-4 col-6">
-                <div class="stat-widget-card">
-                    <div class="stat-icon-wrapper bg-danger-subtle text-danger">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <div>
-                        <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Otorisasi</div>
-                        <h6 class="fw-bold m-0 mt-1 text-dark">Secure PIN</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="stat-widget-card">
-                    <div class="stat-icon-wrapper bg-success-subtle text-success">
-                        <i class="bi bi-cloud-check"></i>
-                    </div>
-                    <div>
-                        <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Status Jaringan</div>
-                        <h6 class="fw-bold m-0 mt-1 text-success small"><span class="spinner-grow spinner-grow-sm me-1 text-success" style="width:8px; height:8px;"></span> Live Cloud</h6>
-                    </div>
-                </div>
-            </div>
+            <button class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg shadow-amber-500/20 active:scale-[0.98] transition-all" onclick="verifikasiPinAwal()">Buka Aplikasi</button>
+            <div id="errPinMsg" class="text-rose-600 text-xs font-bold mt-3"></div>
         </div>
-    <div id="pageDashboard" class="card card-professional">
-        <div class="row align-items-center mb-4 g-3">
-            <div class="col-md-7">
-                <h4 class="fw-bold m-0 text-dark" style="letter-spacing: -0.5px;">Database Berita Acara</h4>
-                <p class="text-muted small m-0 mt-1">BA serah terima shift kerja operasional.</p>
-            </div>
-            <div class="col-md-5 d-flex gap-2 justify-content-md-end">
-                <button class="btn btn-white bg-white border border-secondary-subtle rounded-3 px-3 text-secondary shadow-sm" onclick="loadDaftarBA()" title="Refresh Data">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </button>
-                <button class="btn btn-action-success px-4 py-2.5 shadow-sm" onclick="bukaHalamanInput()">
-                    <i class="bi bi-plus-circle me-1.5"></i> Input BA Baru
-                </button>
-            </div>
-        </div>
-
-        <div class="search-wrapper">
-            <i class="bi bi-search"></i>
-            <input type="text" id="inputSearchBA" class="form-control search-input-custom" placeholder="Cari berdasarkan ID BA, Divisi, atau nama pembuat..." onkeyup="filterDaftarBA()">
-        </div>
-        
-        <div class="table-responsive table-responsive-custom">
-            <table class="table table-custom table-hover align-middle m-0">
-                <thead>
-                    <tr>
-                        <th style="width: 12%;">ID BA</th>
-                        <th style="width: 14%;">Tanggal</th>
-                        <th style="width: 10%;">Shift</th>
-                        <th style="width: 18%;">Divisi</th>
-                        <th style="width: 18%;">Dibuat Oleh</th>
-                        <th style="width: 14%;">Status</th>
-                        <th style="width: 14%;" class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="tabelBodyBA"></tbody>
-            </table>
-        </div>
-        <div id="mobileCardContainer" class="mobile-card-list"></div>
     </div>
 
-    <div id="pageInputForm" class="card card-professional d-none">
-        <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-            <h5 class="fw-bold m-0 text-dark"><i class="bi bi-pencil-square me-1 text-primary"></i> Buat Berita Acara Baru</h5>
-            <button class="btn btn-sm btn-outline-secondary rounded-3" onclick="kembaliKeDashboard()"><i class="bi bi-x-lg"></i></button>
-        </div>
+    <!-- MAIN APP CONTENT -->
+    <div id="mainAppContent" class="max-w-6xl mx-auto px-4 py-6 md:py-8 d-none hidden">
 
-        <div id="formValidationErrorArea" class="d-none alert alert-danger border-start border-4 border-danger rounded-3 p-3 mb-3 small shadow-sm">
-            <div class="d-flex align-items-center gap-2 fw-bold text-danger mb-1">
-                <i class="bi bi-exclamation-octagon-fill fs-5"></i> Gagal Melanjutkan! Data Belum Lengkap
+        <!-- BRAND HEADER -->
+        <header class="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-6 mb-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl text-white">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-black tracking-tight flex items-center justify-center md:justify-start gap-3">
+                    <i class="fa-solid fa-folder-closed text-indigo-400"></i>BA OVERSHIFT DSTF
+                </h2>
+                <span class="inline-block mt-2 bg-slate-950/40 border border-slate-700/60 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-md">
+                    EARTHWORK • HYDRO • IPAL • GEOTECH • PLANNER
+                </span>
             </div>
-            <div id="errorValidationList" class="ps-4"></div>
-        </div>
-
-        <form id="formBA">
-            <div class="form-section-container container-utama">
-                <div class="form-section-header sec-utama"><i class="bi bi-geo-alt-fill"></i> DATA UTAMA & ADMINISTRASI</div>
-                <div class="row g-2">
-                    <div class="col-6 mb-2"><label class="form-label label-required">Tanggal</label><input type="date" class="form-control" id="tanggal" required></div>
-                    <div class="col-6 mb-2"><label class="form-label label-required">Shift</label><select class="form-select" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
-                    <div class="col-6 mb-2"><label class="form-label label-required">Divisi</label><select class="form-select" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
-                    <div class="col-6 mb-2"><label class="form-label label-required">Dibuat Oleh</label><input type="text" class="form-control" id="dibuat_oleh" placeholder="Nama Lengkap" required></div>
-                </div>
-            </div>
-
-            <div class="form-section-container container-tim">
-                <div class="form-section-header sec-tim"><i class="bi bi-people-fill"></i> TIM LAPANGAN & MANPOWER</div>
-                <div class="mb-2"><label class="form-label label-required">Supervisor / PLT</label><input type="text" class="form-control" id="supervisor" placeholder="Nama Supervisor" required></div>
-                <div class="mb-2"><label class="form-label label-required">Foreman</label><textarea class="form-control" id="foreman" rows="2" placeholder="Nama foreman..." required></textarea></div>
-                <div class="mb-2"><label class="form-label label-required">Rincian Manpower</label><textarea class="form-control" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..." required></textarea></div>
-            </div>
-
-            <div class="form-section-container container-progress">
-                <div class="form-section-header sec-progress"><i class="bi bi-bar-chart-fill"></i> PROGRESS & CATATAN LAPANGAN</div>
-                <div class="mb-2"><label class="form-label label-required">Ketercapaian Job (%)</label><div class="input-group"><input type="number" class="form-control" id="ketercapaian_job" min="0" max="100" required><span class="input-group-text bg-light">%</span></div></div>
-                <div class="mb-2"><label class="form-label">Temuan</label><textarea class="form-control" id="temuan" rows="2" placeholder="Tulis rincian temuan jika ada..."></textarea></div>
-                <div class="mb-2"><label class="form-label">Job Pending</label><textarea class="form-control" id="job_pending" rows="3" placeholder="Tulis rincian pekerjaan tertunda jika ada..."></textarea></div>
-                <div class="mb-2"><label class="form-label">Keterangan Tambahan</label><textarea class="form-control" id="keterangan_tambahan" rows="2"></textarea></div>
-            </div>
-
-            <div class="form-section-container container-serah">
-                <div class="form-section-header sec-serah"><i class="bi bi-arrow-left-right"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
-                <div class="row g-2">
-                    <div class="col-md-6 mb-2"><label class="form-label label-required">Supervisor / PLT (Penerima)</label><input type="text" class="form-control" id="supervisor_pelaksana" placeholder="Nama Lengkap" required></div>
-                    <div class="col-md-6 mb-2"><label class="form-label label-required">Foreman Pelaksana</label><textarea class="form-control" id="foreman_pelaksana" rows="2" placeholder="Nama-nama pengawas" required></textarea></div>
-                    <div class="col-12 mb-2"><label class="form-label">Crew Pelaksana</label><textarea class="form-control" id="crew_pelaksana" rows="2" placeholder="Jika tidak ada pengawas tambahan"></textarea></div>
-                    <div class="col-6 mb-2"><label class="form-label label-required">Shift Berikut</label><select class="form-select" id="shift_berikut" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
-                    <div class="col-6 mb-2"><label class="form-label label-required">Tanggal Shift Berikut</label><input type="date" class="form-control" id="tanggal_shift_berikut" required></div>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-action-primary w-100 py-3 mt-3 shadow-sm" id="btnSimpan">
-                <i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA
+            <button class="w-full md:w-auto bg-slate-700/50 hover:bg-rose-600 text-slate-200 hover:text-white border border-slate-600/40 text-xs font-semibold px-4 py-2.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm" onclick="logoutPerangkat()">
+                <i class="fa-solid fa-power-off"></i> Keluar Sistem
             </button>
-        </form>
-        <div id="hasil"></div>
-    </div>
+        </header>
 
-    <div id="pageSukses" class="card card-professional d-none text-center">
-        <div class="my-3">
-            <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-        </div>
-        <h3 class="fw-bold text-success mb-1">Berita Acara Berhasil Disimpan!</h3>
-        <p class="text-muted small mb-4">Data telah berhasil dikunci ke dalam database cloud DSTF.</p>
-
-        <div class="text-start border rounded-4 p-3 bg-light mb-4">
-            <h6 class="fw-bold border-bottom pb-2 mb-2 text-secondary"><i class="bi bi-chat-left-text-fill text-success me-1"></i> Preview Pesan WhatsApp:</h6>
-            <div class="wa-preview-box mb-1" id="waPreviewText"></div>
-        </div>
-
-        <div class="row g-2">
-            <div class="col-md-7 col-12">
-                <a id="btnKirimWA" target="_blank" class="btn btn-success w-100 py-3 fw-bold">
-                    <i class="bi bi-whatsapp me-2"></i> TERUSKAN KE WHATSAPP
-                </a>
+        <!-- STATS WIDGET BENTO GRID -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <div>
+                    <div class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Penyimpanan</div>
+                    <h6 class="font-bold text-slate-800 text-sm mt-0.5">Cloud Sync</h6>
+                </div>
             </div>
-            <div class="col-md-5 col-12">
-                <button class="btn btn-outline-secondary w-100 py-3 fw-bold" onclick="kembaliKeDashboard()">
-                    <i class="bi bi-house-door me-1"></i> KEMBALI KE DASHBOARD
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg"><i class="fa-solid fa-user-shield"></i></div>
+                <div>
+                    <div class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Otorisasi</div>
+                    <h6 class="font-bold text-slate-800 text-sm mt-0.5">Secure PIN</h6>
+                </div>
+            </div>
+            <div class="col-span-2 md:col-span-1 bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                </div>
+                <div>
+                    <div class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Status Jaringan</div>
+                    <h6 class="font-bold text-emerald-600 text-sm mt-0.5">Live Cloud Connection</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE DASHBOARD / DATA TABLE -->
+        <div id="pageDashboard" class="bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h4 class="text-lg font-black text-slate-800 tracking-tight">Database Berita Acara</h4>
+                    <p class="text-slate-500 text-xs mt-0.5">BA serah terima shift kerja operasional.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button class="bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-600 p-2.5 rounded-xl transition-all active:scale-95" onclick="loadDaftarBA()" title="Refresh Data">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <button class="flex-grow md:flex-none bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/20 transition-all active:scale-95 flex items-center justify-center gap-2" onclick="bukaHalamanInput()">
+                        <i class="fa-solid fa-circle-plus"></i> Input BA Baru
+                    </button>
+                </div>
+            </div>
+
+            <!-- SEARCH SYSTEM -->
+            <div class="relative mb-5">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="inputSearchBA" class="w-full bg-slate-50 border border-slate-200 focus:border-indigo-500 text-slate-700 placeholder:text-slate-400 text-sm rounded-xl pl-11 pr-4 h-12 outline-none transition-all" placeholder="Cari berdasarkan ID BA, Divisi, atau nama pembuat...">
+            </div>
+            
+            <!-- DESKTOP TABLE -->
+            <div class="hidden md:block border border-slate-200 rounded-xl overflow-hidden bg-white">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-[10px] uppercase font-bold tracking-wider text-slate-500">
+                            <th class="p-4 w-[12%]">ID BA</th>
+                            <th class="p-4 w-[14%]">Tanggal</th>
+                            <th class="p-4 w-[10%]">Shift</th>
+                            <th class="p-4 w-[18%]">Divisi</th>
+                            <th class="p-4 w-[18%]">Dibuat Oleh</th>
+                            <th class="p-4 w-[14%]">Status</th>
+                            <th class="p-4 w-[14%] text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelBodyBA" class="divide-y divide-slate-100 text-sm text-slate-600">
+                        <!-- Rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+
+            <!-- MOBILE LIST -->
+            <div id="mobileCardContainer" class="block md:hidden space-y-3">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- PAGINATION NAVIGATION CONTROL -->
+            <div class="flex items-center justify-between border-t border-slate-100 pt-5 mt-5 text-sm">
+                <div class="text-xs text-slate-400 font-semibold" id="paginationInfo">
+                    Menampilkan 0 sampai 0 dari 0 data
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <button id="btnPrevPage" onclick="halamanSebelumnya()" class="h-9 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold text-xs flex items-center gap-1">
+                        <i class="fa-solid fa-chevron-left"></i> Sblm
+                    </button>
+                    <div id="pageNumbersContainer" class="flex items-center gap-1">
+                        <!-- Rendered by JS -->
+                    </div>
+                    <button id="btnNextPage" onclick="halamanBerikutnya()" class="h-9 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold text-xs flex items-center gap-1">
+                        Selut <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE INPUT FORM -->
+        <div id="pageInputForm" class="bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm hidden">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-5">
+                <h5 class="text-base font-extrabold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-pen-to-square text-indigo-600"></i> Buat Berita Acara Baru</h5>
+                <button class="bg-slate-100 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition-all" onclick="kembaliKeDashboard()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- VALIDATION ERROR -->
+            <div id="formValidationErrorArea" class="hidden bg-rose-50 border-l-4 border-rose-500 rounded-xl p-4 mb-5 shadow-sm">
+                <div class="flex items-center gap-2 font-bold text-rose-700 text-sm mb-2">
+                    <i class="fa-solid fa-circle-exclamation text-lg"></i> Gagal Melanjutkan! Data Belum Lengkap
+                </div>
+                <div id="errorValidationList" class="text-xs text-rose-600 space-y-1 pl-6 list-disc"></div>
+            </div>
+
+            <form id="formBA" class="space-y-6">
+                <!-- SECTION 1: UTAMA (Warna Terpisah: Biru Lembut) -->
+                <div class="bg-sky-50/60 border border-sky-100 rounded-2xl p-5 shadow-sm">
+                    <div class="text-xs font-black tracking-wider text-sky-700 uppercase mb-4 border-b border-sky-200/60 pb-2 flex items-center gap-2"><i class="fa-solid fa-circle-info"></i> DATA UTAMA & ADMINISTRASI</div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Tanggal</label><input type="date" class="w-full bg-white border border-sky-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="tanggal" required></div>
+                        <div class="col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Shift</label><select class="w-full bg-white border border-sky-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="shift" onchange="ubahShiftOtomatis()" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
+                        <div class="col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Divisi</label><select class="w-full bg-white border border-sky-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="devisi" required><option value="">Pilih...</option><option>Earthwork</option><option>Hydro</option><option>IPAL</option><option>Geotech</option><option>Planner</option></select></div>
+                        <div class="col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Dibuat Oleh</label><input type="text" class="w-full bg-white border border-sky-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="dibuat_oleh" placeholder="Nama Lengkap" required></div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: TIM (Warna Terpisah: Hijau Lembut) -->
+                <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-5 shadow-sm">
+                    <div class="text-xs font-black tracking-wider text-emerald-700 uppercase mb-4 border-b border-emerald-200/60 pb-2 flex items-center gap-2"><i class="fa-solid fa-users"></i> TIM LAPANGAN & MANPOWER</div>
+                    <div class="space-y-4">
+                        <div><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Supervisor / PLT</label><input type="text" class="w-full bg-white border border-emerald-200 " id="supervisor" placeholder="Nama Supervisor" required></div>
+                        <div><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Foreman</label><textarea class="w-full bg-white border border-emerald-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="foreman" rows="2" placeholder="Nama foreman..." required></textarea></div>
+                        <div><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Rincian Manpower</label><textarea class="w-full bg-white border border-emerald-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="jumlah_manpower" rows="2" placeholder="Jumlah Anggota bertugas..." required></textarea></div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: PROGRESS (Warna Terpisah: Jingga/Amber Lembut) -->
+                <div class="bg-amber-50/50 border border-amber-100 rounded-2xl p-5 shadow-sm">
+                    <div class="text-xs font-black tracking-wider text-amber-700 uppercase mb-4 border-b border-amber-200/60 pb-2 flex items-center gap-2"><i class="fa-solid fa-chart-line"></i> PROGRESS & CATATAN LAPANGAN</div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Ketercapaian Job (%)</label>
+                            <div class="relative flex items-center">
+                                <input type="number" class="w-full bg-white border border-amber-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all pr-12 shadow-sm" id="ketercapaian_job" min="0" max="100" required>
+                                <span class="absolute right-3 text-sm font-bold text-slate-400">%</span>
+                            </div>
+                        </div>
+                        <div><label class="block text-xs font-bold text-slate-600 mb-1.5">Temuan</label><textarea class="w-full bg-white border border-amber-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="temuan" rows="2" placeholder="Tulis rincian temuan jika ada..."></textarea></div>
+                        <div><label class="block text-xs font-bold text-slate-600 mb-1.5">Job Pending</label><textarea class="w-full bg-white border border-amber-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="job_pending" rows="3" placeholder="Tulis rincian pekerjaan tertunda jika ada..."></textarea></div>
+                        <div><label class="block text-xs font-bold text-slate-600 mb-1.5">Keterangan Tambahan</label><textarea class="w-full bg-white border border-amber-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="keterangan_tambahan" rows="2"></textarea></div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: SHIFT BERIKUT (Warna Terpisah: Ungu Lembut) -->
+                <div class="bg-purple-50/50 border border-purple-100 rounded-2xl p-5 shadow-sm">
+                    <div class="text-xs font-black tracking-wider text-purple-700 uppercase mb-4 border-b border-purple-200/60 pb-2 flex items-center gap-2"><i class="fa-solid fa-arrow-right-arrow-left"></i> OPERASIONAL SHIFT BERIKUTNYA</div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2 md:col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Supervisor / PLT (Penerima)</label><input type="text" class="w-full bg-white border border-purple-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="supervisor_pelaksana" placeholder="Nama Lengkap" required></div>
+                        <div class="col-span-2 md:col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Foreman Pelaksana</label><textarea class="w-full bg-white border border-purple-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="foreman_pelaksana" rows="2" placeholder="Nama-nama pengawas" required></textarea></div>
+                        <div class="col-span-2"><label class="block text-xs font-bold text-slate-600 mb-1.5">Crew Pelaksana</label><textarea class="w-full bg-white border border-purple-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm" id="crew_pelaksana" rows="2" placeholder="Jika tidak ada pengawas tambahan"></textarea></div>
+                        <div class="col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Shift Berikut</label><select class="w-full bg-white border border-purple-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm duration-300" id="shift_berikut" required><option value="">Pilih...</option><option value="Siang">Siang</option><option value="Malam">Malam</option></select></div>
+                        <div class="col-span-1"><label class="block text-xs font-bold text-slate-600 mb-1.5 after:content-['*'] after:text-rose-500 after:ml-1">Tanggal Shift Berikut</label><input type="date" class="w-full bg-white border border-purple-200 focus:border-indigo-500 text-slate-800 rounded-xl p-2.5 text-sm outline-none transition-all shadow-sm duration-300" id="tanggal_shift_berikut" required></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-indigo-600/20 active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-sm" id="btnSimpan">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> SIMPAN & KUNCI BERITA ACARA
+                </button>
+            </form>
+            <div id="hasil"></div>
+        </div>
+
+        <!-- PAGE SUKSES REKAP -->
+        <div id="pageSukses" class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 text-center max-w-xl mx-auto hidden shadow-xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-4 animate-pulse"><i class="fa-solid fa-circle-check"></i></div>
+            <h3 class="text-xl font-extrabold text-emerald-600">Berita Acara Berhasil Disimpan!</h3>
+            <p class="text-slate-500 text-xs mt-1 mb-6">Data telah berhasil dikunci ke dalam database cloud DSTF.</p>
+
+            <div class="text-left border border-slate-200 rounded-xl p-4 bg-slate-50 mb-6">
+                <h6 class="text-xs font-black tracking-wider text-slate-500 border-b border-slate-200 pb-2 mb-3 flex items-center gap-2"><i class="fa-solid fa-comment-sms text-emerald-600"></i> Preview Pesan WhatsApp:</h6>
+                <div class="bg-white border border-slate-200 rounded-lg p-3 font-mono text-xs text-slate-700 max-h-52 overflow-y-auto" id="waPreviewText"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2">
+                <a id="btnKirimWA" target="_blank" class="w-full sm:w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-emerald-600/10 active:scale-95 transition-all flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> TERUSKAN KE WHATSAPP
+                </a>
+                <button class="w-full sm:w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl border border-slate-200 active:scale-95 transition-all text-sm" onclick="kembaliKeDashboard()">
+                    <i class="fa-solid fa-house"></i> Dashboard
                 </button>
             </div>
         </div>
+
     </div>
 
-</div>
-
-<div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content" style="border-radius: 24px; border: none; box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.3);">
-            <div class="modal-header bg-dark text-white border-0 py-3.5 px-4">
-                <div class="d-flex align-items-center gap-2">
-                    <div class="bg-primary rounded-3 p-1.5 px-2.5 font-monospace text-white fw-bold small" style="letter-spacing: 0.5px;" id="modalTitleID"></div>
-                    <span class="text-white-50 small">| Review Board</span>
+    <!-- MODERN MODAL OVERLAY DETAIL & EDIT -->
+    <div class="fixed inset-0 bg-slate-900/40 z-50 backdrop-blur-sm hidden flex items-center justify-center p-3 transition-opacity duration-300 opacity-0" id="modalDetail" tabindex="-1" aria-hidden="true">
+        <div class="bg-white border border-slate-200 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden scale-95 transition-transform duration-300" id="modalContainer">
+            <!-- Modal Header -->
+            <div class="bg-slate-50 border-b border-slate-200 py-3.5 px-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="bg-indigo-600 text-white px-3 py-1 rounded-lg font-mono font-bold text-xs tracking-wider" id="modalTitleID"></div>
+                    <span class="text-slate-400 text-xs font-bold">| Review Board</span>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="text-slate-400 hover:text-slate-700 transition-colors p-1" data-bs-dismiss="modal" aria-label="Close" onclick="tutupModalDetail()"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <div class="modal-body p-3 p-md-4" style="background-color: #fcfdfe;">
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-4 overflow-y-auto space-y-4 bg-white" id="modalBodyScrollable">
                 <div id="modalDetailContent"></div>
                 
-                <div class="row g-3 mt-1">
-                    <div class="col-6">
-                        <div class="ttd-container-box bg-white">
-                            <div id="areaTtdPembuat"></div>
-                            <div class="ttd-title" id="lblTtdPembuat">Penyerah BA</div>
-                        </div>
+                <!-- TTD BOX ROW -->
+                <div class="grid grid-cols-2 gap-4 mt-2">
+                    <div class="border border-dashed border-slate-200 bg-slate-50 rounded-xl p-4 text-center min-h-[140px] flex flex-col items-center justify-center relative">
+                        <div id="areaTtdPembuat" class="flex-grow flex items-center justify-center"></div>
+                        <div class="text-[10px] font-black text-slate-400 tracking-wider uppercase border-t border-slate-200 w-full pt-2 mt-2" id="lblTtdPembuat">Penyerah BA</div>
                     </div>
-                    <div class="col-6">
-                        <div class="ttd-container-box bg-white">
-                            <div id="areaTtdPenerima"></div>
-                            <div class="ttd-title" id="lblTtdPenerima">Penerima BA</div>
-                        </div>
+                    <div class="border border-dashed border-slate-200 bg-slate-50 rounded-xl p-4 text-center min-h-[140px] flex flex-col items-center justify-center relative">
+                        <div id="areaTtdPenerima" class="flex-grow flex items-center justify-center"></div>
+                        <div class="text-[10px] font-black text-slate-400 tracking-wider uppercase border-t border-slate-200 w-full pt-2 mt-2" id="lblTtdPenerima">Penerima BA</div>
                     </div>
                 </div>
             </div>
-            <!-- FOOTER DENGAN LAYOUT FIXED RESPONSIVE -->
-            <div class="modal-footer bg-light border-top p-2.5">
-                <div class="modal-footer-custom">
-                    <div id="actionApproveArea" class="footer-action-group"></div>
-                    <button type="button" class="btn btn-secondary btn-close-modal-custom rounded-3" data-bs-dismiss="modal">Tutup</button>
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 border-t border-slate-200 p-3">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div id="actionApproveArea" class="w-full sm:flex-grow"></div>
+                    <button type="button" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-5 py-2 rounded-xl text-sm border border-slate-200 transition-colors" data-bs-dismiss="modal" onclick="tutupModalDetail()">Tutup</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SCRIPT LOGIC JAVASCRIPT -->
+    <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbxdTQQYImXgxnoyn2DbQ5NSDgN0YsniUNcq3HAR2RJkDiDeV_3gcVtdcNXE5WZzSLvBow/exec";
+    const PIN_MASTER = "2022"; 
+    let databaseBA = []; 
 
-<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxdTQQYImXgxnoyn2DbQ5NSDgN0YsniUNcq3HAR2RJkDiDeV_3gcVtdcNXE5WZzSLvBow/exec";
-const PIN_MASTER = "2022"; 
-let databaseBA = []; 
-let modalAktif = null;
+    // GLOBAL VARIABLES FOR PAGINATION
+    let currentPage = 1;
+    const rowsPerPage = 10; // Ubah angka ini untuk menentukan jumlah data per halaman
 
-window.addEventListener("DOMContentLoaded", () => {
-    const savedToken = localStorage.getItem("dstf_device_token");
-    if (savedToken === "AUTHORIZED_DEVICE_" + PIN_MASTER) { BypassLoginKeAplikasi(); }
-});
+    window.addEventListener("DOMContentLoaded", () => {
+        const savedToken = localStorage.getItem("dstf_device_token");
+        if (savedToken === "AUTHORIZED_DEVICE_" + PIN_MASTER) { BypassLoginKeAplikasi(); }
+    });
 
-function verifikasiPinAwal() {
-    const pinUser = document.getElementById("inputPinLog").value;
-    const errMsg = document.getElementById("errPinMsg");
-    if (pinUser === PIN_MASTER) {
-        localStorage.setItem("dstf_device_token", "AUTHORIZED_DEVICE_" + PIN_MASTER);
-        BypassLoginKeAplikasi();
-    } else {
-        errMsg.innerText = "❌ PIN Salah! Akses khusus internal DSTF.";
-        document.getElementById("inputPinLog").value = "";
-    }
-}
-
-function BypassLoginKeAplikasi() {
-    document.getElementById("pinLockScreen").classList.add("d-none");
-    document.getElementById("mainAppContent").classList.remove("d-none");
-    loadDaftarBA();
-}
-
-function logoutPerangkat() {
-    if(confirm("Hapus otorisasi? Perangkat ini perlu login ulang.")) {
-        localStorage.removeItem("dstf_device_token");
-        window.location.reload();
-    }
-}
-
-function bukaHalamanInput() {
-    document.getElementById("pageDashboard").classList.add("d-none");
-    document.getElementById("pageSukses").classList.add("d-none");
-    document.getElementById("pageInputForm").classList.remove("d-none");
-    document.getElementById("formValidationErrorArea").classList.add("d-none");
-    document.getElementById("hasil").innerHTML = "";
-    document.getElementById("formBA").reset();
-    window.scrollTo(0,0);
-}
-
-function kembaliKeDashboard() {
-    document.getElementById("pageInputForm").classList.add("d-none");
-    document.getElementById("pageSukses").classList.add("d-none");
-    document.getElementById("pageDashboard").classList.remove("d-none");
-    loadDaftarBA();
-    window.scrollTo(0,0);
-}
-
-function ubahShiftOtomatis() {
-    const shiftUtama = document.getElementById("shift").value;
-    const shiftBerikut = document.getElementById("shift_berikut");
-    const tanggalUtama = document.getElementById("tanggal").value;
-    const tanggalBerikut = document.getElementById("tanggal_shift_berikut");
-
-    if (!shiftUtama || !tanggalUtama) {
-        shiftBerikut.value = ""; 
-        tanggalBerikut.value = "";
-        shiftBerikut.classList.remove("auto-filled"); 
-        tanggalBerikut.classList.remove("auto-filled");
-        return;
-    }
-
-    const [tahunStr, bulanStr, hariStr] = tanggalUtama.split('-');
-    let tanggalObj = new Date(parseInt(tahunStr), parseInt(bulanStr) - 1, parseInt(hariStr), 12, 0, 0);
-
-    if (shiftUtama === "Siang") {
-        shiftBerikut.value = "Malam";
-    } else if (shiftUtama === "Malam") {
-        shiftBerikut.value = "Siang";
-        tanggalObj.setDate(tanggalObj.getDate() + 1);
-    }
-
-    const opsiFormat = { timeZone: 'Asia/Jayapura', year: 'numeric', month: '2-digit', day: '2-digit' };
-    const formatter = new Intl.DateTimeFormat('fr-CA', opsiFormat);
-    
-    tanggalBerikut.value = formatter.format(tanggalObj);
-    
-    shiftBerikut.classList.add("auto-filled");
-    tanggalBerikut.classList.add("auto-filled");
-}
-
-document.getElementById("tanggal").addEventListener("change", ubahShiftOtomatis);
-document.getElementById("shift").addEventListener("change", ubahShiftOtomatis);
-
-document.getElementById("formBA").addEventListener("submit", function(e) {
-    e.preventDefault(); 
-
-    const notifErrorBox = document.getElementById("formValidationErrorArea");
-    const errorListContainer = document.getElementById("errorValidationList");
-    notifErrorBox.classList.add("d-none");
-    errorListContainer.innerHTML = "";
-
-    const validasiGrup = [
-        {
-            namaBagian: "Data Utama & Administrasi",
-            fields: [
-                { id: "tanggal", label: "Tanggal BA" },
-                { id: "shift", label: "Shift Penyerah" },
-                { id: "devisi", label: "Divisi" },
-                { id: "dibuat_oleh", label: "Nama Pembuat" }
-            ]
-        },
-        {
-            namaBagian: "Tim Lapangan & Manpower",
-            fields: [
-                { id: "supervisor", label: "Supervisor / PLT" },
-                { id: "foreman", label: "Foreman Lapangan" },
-                { id: "jumlah_manpower", label: "Rincian Jumlah Manpower" }
-            ]
-        },
-        {
-            namaBagian: "Progress & Catatan Lapangan",
-            fields: [
-                { id: "ketercapaian_job", label: "Ketercapaian Job (%)" }
-            ]
-        },
-        {
-            namaBagian: "Operasional Shift Berikutnya",
-            fields: [
-                { id: "supervisor_pelaksana", label: "Supervisor / PLT Penerima" },
-                { id: "foreman_pelaksana", label: "Foreman Pelaksana" },
-                { id: "shift_berikut", label: "Shift Berikut" },
-                { id: "tanggal_shift_berikut", label: "Tanggal Shift Berikut" }
-            ]
+    function verifikasiPinAwal() {
+        const pinUser = document.getElementById("inputPinLog").value;
+        const errMsg = document.getElementById("errPinMsg");
+        if (pinUser === PIN_MASTER) {
+            localStorage.setItem("dstf_device_token", "AUTHORIZED_DEVICE_" + PIN_MASTER);
+            BypassLoginKeAplikasi();
+        } else {
+            errMsg.innerText = "❌ PIN Salah! Akses khusus internal DSTF.";
+            document.getElementById("inputPinLog").value = "";
         }
-    ];
+    }
 
-    let rincianErrorHtml = "";
-    let formValid = true;
+    function BypassLoginKeAplikasi() {
+        document.getElementById("pinLockScreen").classList.add("hidden");
+        document.getElementById("mainAppContent").classList.remove("hidden", "d-none");
+        loadDaftarBA();
+    }
 
-    validasiGrup.forEach(grup => {
-        let listFieldKosong = [];
-        grup.fields.forEach(field => {
-            const elemen = document.getElementById(field.id);
-            if (!elemen || !elemen.value.trim()) {
-                listFieldKosong.push(field.label);
-                formValid = false;
+    function logoutPerangkat() {
+        if(confirm("Hapus otorisasi? Perangkat ini perlu login ulang.")) {
+            localStorage.removeItem("dstf_device_token");
+            window.location.reload();
+        }
+    }
+
+    function bukaHalamanInput() {
+        document.getElementById("pageDashboard").classList.add("hidden");
+        document.getElementById("pageSukses").classList.add("hidden");
+        document.getElementById("pageInputForm").classList.remove("hidden");
+        document.getElementById("formValidationErrorArea").classList.add("hidden");
+        document.getElementById("hasil").innerHTML = "";
+        document.getElementById("formBA").reset();
+        window.scrollTo(0,0);
+    }
+
+    function kembaliKeDashboard() {
+        document.getElementById("pageInputForm").classList.add("hidden");
+        document.getElementById("pageSukses").classList.add("hidden");
+        document.getElementById("pageDashboard").classList.remove("hidden");
+        loadDaftarBA();
+        window.scrollTo(0,0);
+    }
+
+    function ubahShiftOtomatis() {
+        const shiftUtama = document.getElementById("shift").value;
+        const shiftBerikut = document.getElementById("shift_berikut");
+        const tanggalUtama = document.getElementById("tanggal").value;
+        const tanggalBerikut = document.getElementById("tanggal_shift_berikut");
+
+        if (!shiftUtama || !tanggalUtama) {
+            shiftBerikut.value = ""; 
+            tanggalBerikut.value = "";
+            return;
+        }
+
+        const [tahunStr, bulanStr, hariStr] = tanggalUtama.split('-');
+        let tanggalObj = new Date(parseInt(tahunStr), parseInt(bulanStr) - 1, parseInt(hariStr), 12, 0, 0);
+
+        if (shiftUtama === "Siang") {
+            shiftBerikut.value = "Malam";
+        } else if (shiftUtama === "Malam") {
+            shiftBerikut.value = "Siang";
+            tanggalObj.setDate(tanggalObj.getDate() + 1);
+        }
+
+        const opsiFormat = { timeZone: 'Asia/Jayapura', year: 'numeric', month: '2-digit', day: '2-digit' };
+        const formatter = new Intl.DateTimeFormat('fr-CA', opsiFormat);
+        tanggalBerikut.value = formatter.format(tanggalObj);
+    }
+
+    document.getElementById("tanggal").addEventListener("change", ubahShiftOtomatis);
+    document.getElementById("shift").addEventListener("change", ubahShiftOtomatis);
+
+    document.getElementById("formBA").addEventListener("submit", function(e) {
+        e.preventDefault(); 
+
+        const notifErrorBox = document.getElementById("formValidationErrorArea");
+        const errorListContainer = document.getElementById("errorValidationList");
+        notifErrorBox.classList.add("hidden");
+        errorListContainer.innerHTML = "";
+
+        const validasiGrup = [
+            {
+                namaBagian: "Data Utama & Administrasi",
+                fields: [
+                    { id: "tanggal", label: "Tanggal BA" },
+                    { id: "shift", label: "Shift Penyerah" },
+                    { id: "devisi", label: "Divisi" },
+                    { id: "dibuat_oleh", label: "Nama Pembuat" }
+                ]
+            },
+            {
+                namaBagian: "Tim Lapangan & Manpower",
+                fields: [
+                    { id: "supervisor", label: "Supervisor / PLT" },
+                    { id: "foreman", label: "Foreman Lapangan" },
+                    { id: "jumlah_manpower", label: "Rincian Jumlah Manpower" }
+                ]
+            },
+            {
+                namaBagian: "Progress & Catatan Lapangan",
+                fields: [
+                    { id: "ketercapaian_job", label: "Ketercapaian Job (%)" }
+                ]
+            },
+            {
+                namaBagian: "Operasional Shift Berikutnya",
+                fields: [
+                    { id: "supervisor_pelaksana", label: "Supervisor / PLT Penerima" },
+                    { id: "foreman_pelaksana", label: "Foreman Pelaksana" },
+                    { id: "shift_berikut", label: "Shift Berikut" },
+                    { id: "tanggal_shift_berikut", label: "Tanggal Shift Berikut" }
+                ]
+            }
+        ];
+
+        let rincianErrorHtml = "";
+        let formValid = true;
+
+        validasiGrup.forEach(grup => {
+            let listFieldKosong = [];
+            grup.fields.forEach(field => {
+                const elemen = document.getElementById(field.id);
+                if (!elemen || !elemen.value.trim()) {
+                    listFieldKosong.push(field.label);
+                    formValid = false;
+                }
+            });
+
+            if (listFieldKosong.length > 0) {
+                rincianErrorHtml += `<div>🔹 <b>Bagian ${grup.namaBagian}:</b> (${listFieldKosong.join(", ")}).</div>`;
             }
         });
 
-        if (listFieldKosong.length > 0) {
-            rincianErrorHtml += `<div class="mb-1">🔹 <b>Bagian ${grup.namaBagian}:</b> (${listFieldKosong.join(", ")}).</div>`;
+        if (!formValid) {
+            errorListContainer.innerHTML = rincianErrorHtml;
+            notifErrorBox.classList.remove("hidden");
+            window.scrollTo(0, 0);
+            return;
         }
+
+        const btnSimpan = document.getElementById("btnSimpan");
+        const hasilDiv = document.getElementById("hasil");
+        
+        btnSimpan.disabled = true;
+        btnSimpan.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Memproses & Mengunci Data...`;
+
+        const valTanggal = document.getElementById("tanggal").value;
+        const valShift = document.getElementById("shift").value;
+        const valDevisi = document.getElementById("devisi").value;
+        const valDibuatOleh = document.getElementById("dibuat_oleh").value;
+        const valManpower = document.getElementById("jumlah_manpower").value;
+        const valKetercapaian = document.getElementById("ketercapaian_job").value;
+        const valTemuan = document.getElementById("temuan").value;
+        const valJobPending = document.getElementById("job_pending").value;
+        const valKeterangan = document.getElementById("keterangan_tambahan").value;
+        const valShiftBerikut = document.getElementById("shift_berikut").value;
+        const valTanggalBerikut = document.getElementById("tanggal_shift_berikut").value;
+
+        let payload = {
+            action: "insert", 
+            auth_pin: PIN_MASTER,
+            tanggal: valTanggal,
+            shift: valShift,
+            devisi: valDevisi,
+            dibuat_oleh: valDibuatOleh,
+            supervisor: document.getElementById("supervisor").value,
+            foreman: document.getElementById("foreman").value,
+            jumlah_manpower: valManpower,
+            ketercapaian_job: valKetercapaian,
+            temuan: valTemuan,
+            job_pending: valJobPending,
+            keterangan: valKeterangan, 
+            supervisor_pelaksana: document.getElementById("supervisor_pelaksana").value,
+            foreman_pelaksana: document.getElementById("foreman_pelaksana").value,
+            crew_pelaksana: document.getElementById("crew_pelaksana").value,
+            shift_berikut: valShiftBerikut,
+            tanggal_shift_berikut: valTanggalBerikut
+        };
+
+        fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            btnSimpan.disabled = false;
+            btnSimpan.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> SIMPAN & KUNCI BERITA ACARA`;
+
+            if (data.success || data.status === "success") {
+                const generatedID = data.id_ba || data.message || "BA-PROCESSED";
+
+                let textWA = `📋 *BA OVERSHIFT DSTF*\n` +
+                             `--------------------------------------\n` +
+                             `*No BA:* ${generatedID}\n` +
+                             `*Tanggal:* ${valTanggal || '-'}\n` +
+                             `*Shift:* ${valShift || '-'}\n` +
+                             `*Divisi:* ${valDevisi || '-'}\n` +
+                             `--------------------------------------\n\n` +
+                             `👤 *Dibuat Oleh:* ${valDibuatOleh || '-'}\n` +
+                             `📈 *Ketercapaian Job:* ${valKetercapaian || '0'}%\n\n` +
+                             `*Rincian Tim Manpower*\n${valManpower || '-'}\n` +
+                             `*Temuan Masalah Lapangan*\n${valTemuan || '-'}\n` +
+                             `*Job Pending*\n${valJobPending || '-'}\n` +
+                             `*Keterangan Tambahan*\n${valKeterangan || '-'}\n\n` +
+                             `⏩ *Shift Berikut:* ${valShiftBerikut || '-'} (${valTanggalBerikut || '-'})`;
+
+                document.getElementById("formBA").reset();
+                document.getElementById("pageInputForm").classList.add("hidden");
+                document.getElementById("pageSukses").classList.remove("hidden");
+                document.getElementById("waPreviewText").innerText = textWA;
+                document.getElementById("btnKirimWA").href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textWA);
+                window.scrollTo(0,0);
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-rose-50 text-rose-700 p-3 rounded-xl mt-4 text-xs font-semibold">⚠️ Gagal Menyimpan: ${data.message || 'Respons cloud tidak valid.'}</div>`;
+            }
+        })
+        .catch(err => {
+            btnSimpan.disabled = false;
+            btnSimpan.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> SIMPAN & KUNCI BERITA ACARA`;
+            hasilDiv.innerHTML = `<div class="bg-rose-50 text-rose-700 p-3 rounded-xl mt-4 text-xs font-semibold">⚠️ Error Jaringan: Gagal menghubungi server cloud.</div>`;
+        });
     });
 
-    if (!formValid) {
-        errorListContainer.innerHTML = rincianErrorHtml;
-        notifErrorBox.classList.remove("d-none");
-        window.scrollTo(0, 0);
-        return;
+    function dapatkanIkonDivisi(namaDivisi) {
+        let divClean = (namaDivisi || "").toString().trim().toUpperCase();
+        let config = { icon: 'fa-cube', wrapper: 'bg-slate-100 text-slate-600', txtColor: 'text-slate-700' };
+
+        if(divClean.includes("EARTHWORK")) { config = { icon: 'fa-trowel-bricks', wrapper: 'bg-rose-100 text-rose-600', txtColor: 'text-slate-800' }; }
+        else if(divClean.includes("HYDRO")) { config = { icon: 'fa-droplet', wrapper: 'bg-sky-100 text-sky-600', txtColor: 'text-slate-800' }; }
+        else if(divClean.includes("IPAL")) { config = { icon: 'fa-flask-vial', wrapper: 'bg-teal-100 text-teal-600', txtColor: 'text-slate-800' }; }
+        else if(divClean.includes("GEOTECH")) { config = { icon: 'fa-layer-group', wrapper: 'bg-amber-100 text-amber-600', txtColor: 'text-slate-800' }; }
+        else if(divClean.includes("PLAN") || divClean.includes("PLANNER")) { config = { icon: 'fa-laptop-code', wrapper: 'bg-purple-100 text-purple-600', txtColor: 'text-slate-800' }; }
+
+        return `<div class="flex items-center gap-2.5 font-bold">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs ${config.wrapper}"><i class="fa-solid ${config.icon}"></i></div>
+                    <span class="${config.txtColor}">${namaDivisi || '-'}</span>
+                </div>`;
     }
 
-    const btnSimpan = document.getElementById("btnSimpan");
-    const hasilDiv = document.getElementById("hasil");
+    function renderDaftarBA(dataSaring) {
+        const tbody = document.getElementById("tabelBodyBA");
+        const mobileContainer = document.getElementById("mobileCardContainer");
+        tbody.innerHTML = ""; mobileContainer.innerHTML = "";
+
+        if (!dataSaring || dataSaring.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-400 font-medium">Data tidak ditemukan.</td></tr>`;
+            mobileContainer.innerHTML = `<div class="text-center py-6 text-slate-400 text-xs font-medium">Data tidak ditemukan.</div>`;
+            updatePaginationControls(0);
+            return;
+        }
+
+        // PAGINATION MATHEMATICS LOGIC
+        const totalItems = dataSaring.length;
+        const totalPages = Math.ceil(totalItems / rowsPerPage);
+        
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = Math.min(startIndex + rowsPerPage, totalItems);
+        
+        const paginatedData = dataSaring.slice(startIndex, endIndex);
+
+        paginatedData.forEach((row) => {
+            let badgeShift = row.shift === "Siang" ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-indigo-50 text-indigo-700 border-indigo-200';
+            let statusBadge = (row.status || "PENDING").toString().toUpperCase() === "APPROVED" ? 
+                               '<span class="inline-flex items-center justify-center gap-1 w-[105px] font-bold text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-circle-check"></i> Approved</span>' : 
+                               '<span class="inline-flex items-center justify-center gap-1 w-[105px] font-bold text-[11px] px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200"><i class="fa-solid fa-hourglass-half"></i> Pending</span>';
+            
+            let htmlDivisi = dapatkanIkonDivisi(row.devisi);
+            
+            let tr = document.createElement("tr");
+            tr.className = "hover:bg-slate-50 transition-colors";
+            tr.innerHTML = `
+                <td class="p-4 font-mono font-bold text-indigo-600">${row.id_ba || '-'}</td>
+                <td class="p-4 text-slate-600 font-medium">${row.tanggal || '-'}</td>
+                <td class="p-4"><span class="px-2 py-0.5 rounded text-[11px] font-bold border ${badgeShift}">${row.shift || '-'}</span></td>
+                <td class="p-4">${htmlDivisi}</td>
+                <td class="p-4 text-slate-700 font-semibold">${row.dibuat_oleh || '-'}</td>
+                <td class="p-4">${statusBadge}</td>
+                <td class="p-4 text-center"><button class="bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-1 px-3 rounded-lg border border-indigo-200 text-xs transition-all active:scale-95" onclick="tampilkanDetail(${row._oriIndex})"><i class="fa-regular fa-eye me-1"></i> Detail</button></td>
+            `;
+            tbody.appendChild(tr);
+
+            let mCard = document.createElement("div");
+            mCard.className = "bg-white border border-slate-200 rounded-xl p-4 shadow-sm";
+            mCard.innerHTML = `
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-mono font-bold text-indigo-600 text-sm">${row.id_ba || '-'}</span>
+                    <div>${statusBadge}</div>
+                </div>
+                <div class="mb-3">${htmlDivisi}</div>
+                <div class="grid grid-cols-2 gap-2 text-xs text-slate-500 mb-3 bg-slate-50 p-2 rounded-lg">
+                    <div><i class="fa-regular fa-calendar me-1"></i> ${row.tanggal || '-'}</div>
+                    <div><i class="fa-regular fa-clock me-1"></i> Shift ${row.shift || '-'}</div>
+                </div>
+                <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                    <div class="text-xs text-slate-500">Oleh: <span class="text-slate-800 font-bold">${row.dibuat_oleh || '-'}</span></div>
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded-lg text-xs transition-all" onclick="tampilkanDetail(${row._oriIndex})"><i class="fa-regular fa-eye"></i> Detail</button>
+                </div>
+            `;
+            mobileContainer.appendChild(mCard);
+        });
+
+        // UPDATE PANELS CONTROL PAGINATION
+        updatePaginationControls(totalItems, startIndex, endIndex);
+    }
+
+    function updatePaginationControls(totalItems, startIndex = 0, endIndex = 0) {
+        const totalPages = Math.ceil(totalItems / rowsPerPage);
+        const infoText = document.getElementById("paginationInfo");
+        const btnPrev = document.getElementById("btnPrevPage");
+        const btnNext = document.getElementById("btnNextPage");
+        const numbersContainer = document.getElementById("pageNumbersContainer");
+
+        numbersContainer.innerHTML = "";
+
+        if (totalItems === 0) {
+            infoText.innerText = "Menampilkan 0 sampai 0 dari 0 data";
+            btnPrev.disabled = true;
+            btnNext.disabled = true;
+            return;
+        }
+
+        // Teks Informasi Negara Data
+        infoText.innerText = `Menampilkan ${startIndex + 1} sampai ${endIndex} dari ${totalItems} data`;
+
+        // Atur Button disable status
+        btnPrev.disabled = (currentPage === 1);
+        btnNext.disabled = (currentPage === totalPages);
+
+        // Render Anggota Halaman Numerik
+        for (let i = 1; i <= totalPages; i++) {
+            let btnNum = document.createElement("button");
+            btnNum.innerText = i;
+            if (i === currentPage) {
+                btnNum.className = "w-9 h-9 font-bold text-xs rounded-xl bg-indigo-600 text-white shadow-md transition-all";
+            } else {
+                btnNum.className = "w-9 h-9 font-semibold text-xs rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-all";
+            }
+            btnNum.onclick = () => {
+                currentPage = i;
+                filterDaftarBA();
+            };
+            numbersContainer.appendChild(btnNum);
+        }
+    }
+
+    function halamanSebelumnya() {
+        if (currentPage > 1) {
+            currentPage--;
+            filterDaftarBA();
+        }
+    }
+
+    function halamanBerikutnya() {
+        const totalPages = Math.ceil(databaseBA.length / rowsPerPage); // Fallback reference saja
+        if (currentPage < totalPages) {
+            currentPage++;
+            filterDaftarBA();
+        }
+    }
+
+    function filterDaftarBA() {
+        const kueri = document.getElementById("inputSearchBA").value.toLowerCase().trim();
+        
+        if(!kueri) { 
+            renderDaftarBA(databaseBA); 
+            return; 
+        }
+        
+        const filtered = databaseBA.filter(item => {
+            return (item.id_ba || "").toLowerCase().includes(kueri) || 
+                   (item.devisi || "").toLowerCase().includes(kueri) || 
+                   (item.dibuat_oleh || "").toLowerCase().includes(kueri);
+        });
+
+        // Setiap kali user mengetik/mencari sesuatu, reset halaman pembacaan ke halaman 1
+        renderDaftarBA(filtered);
+    }
     
-    btnSimpan.disabled = true;
-    btnSimpan.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Memproses & Mengunci Data...`;
-    hasilDiv.innerHTML = "";
+    // Gunakan 'input' handler agar filter pagination bekerja real-time saat teks dihapus
+    document.getElementById("inputSearchBA").addEventListener("input", () => {
+        currentPage = 1;
+        filterDaftarBA();
+    });
 
-    const valTanggal = document.getElementById("tanggal").value;
-    const valShift = document.getElementById("shift").value;
-    const valDevisi = document.getElementById("devisi").value;
-    const valDibuatOleh = document.getElementById("dibuat_oleh").value;
-    const valManpower = document.getElementById("jumlah_manpower").value;
-    const valKetercapaian = document.getElementById("ketercapaian_job").value;
-    const valTemuan = document.getElementById("temuan").value;
-    const valJobPending = document.getElementById("job_pending").value;
-    const valKeterangan = document.getElementById("keterangan_tambahan").value;
-    const valShiftBerikut = document.getElementById("shift_berikut").value;
-    const valTanggalBerikut = document.getElementById("tanggal_shift_berikut").value;
+    function loadDaftarBA() {
+        const tbody = document.getElementById("tabelBodyBA");
+        const mobileContainer = document.getElementById("mobileCardContainer");
+        
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-500 font-medium"><i class="fa-solid fa-spinner animate-spin text-indigo-600 me-2"></i>Menghubungkan ke Cloud...</td></tr>`;
+        mobileContainer.innerHTML = `<div class="text-center py-8 text-slate-500 font-medium text-xs"><i class="fa-solid fa-spinner animate-spin text-indigo-600 me-2"></i>Menghubungkan ke Cloud...</div>`;
 
-    let payload = {
-        action: "insert", 
-        auth_pin: PIN_MASTER,
-        tanggal: valTanggal,
-        shift: valShift,
-        devisi: valDevisi,
-        dibuat_oleh: valDibuatOleh,
-        supervisor: document.getElementById("supervisor").value,
-        foreman: document.getElementById("foreman").value,
-        jumlah_manpower: valManpower,
-        ketercapaian_job: valKetercapaian,
-        temuan: valTemuan,
-        job_pending: valJobPending,
-        keterangan: valKeterangan, 
-        supervisor_pelaksana: document.getElementById("supervisor_pelaksana").value,
-        foreman_pelaksana: document.getElementById("foreman_pelaksana").value,
-        crew_pelaksana: document.getElementById("crew_pelaksana").value,
-        shift_berikut: valShiftBerikut,
-        tanggal_shift_berikut: valTanggalBerikut
-    };
+        fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+            databaseBA = data.map((item, idx) => ({...item, _oriIndex: idx}));
+            currentPage = 1; // Reset halaman ke 1 saat reload data cloud berhasil
+            renderDaftarBA(databaseBA);
+        })
+        .catch(err => {
+            tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-rose-600 font-semibold">⚠️ Gagal terhubung ke Cloud.</td></tr>`;
+        });
+    }
 
-    fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(data => {
-        btnSimpan.disabled = false;
-        btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
+    function bukaModalDetail() {
+        const modal = document.getElementById('modalDetail');
+        const container = document.getElementById('modalContainer');
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            container.classList.remove('scale-95');
+        }, 50);
+    }
 
-        if (data.success || data.status === "success") {
-            const generatedID = data.id_ba || data.message || "BA-PROCESSED";
+    function tutupModalDetail() {
+        const modal = document.getElementById('modalDetail');
+        const container = document.getElementById('modalContainer');
+        modal.classList.add('opacity-0');
+        container.classList.add('scale-95');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+    }
 
-            let textWA = `📋 *BA OVERSHIFT DSTF*\n` +
-                         `--------------------------------------\n` +
-                         `*No BA:* ${generatedID}\n` +
-                         `*Tanggal:* ${valTanggal || '-'}\n` +
-                         `*Shift:* ${valShift || '-'}\n` +
-                         `*Divisi:* ${valDevisi || '-'}\n` +
-                         `--------------------------------------\n\n` +
-                         `👤 *Dibuat Oleh:* ${valDibuatOleh || '-'}\n` +
-                         `📈 *Ketercapaian Job:* ${valKetercapaian || '0'}%\n\n` +
-                         `*Rincian Tim Manpower*\n${valManpower || '-'}\n` +
-                         `*Temuan Masalah Lapangan*\n${valTemuan || '-'}\n` +
-                         `*Job Pending*\n${valJobPending || '-'}\n` +
-                         `*Keterangan Tambahan*\n${valKeterangan || '-'}\n\n` +
-                         `⏩ *Shift Berikut:* ${valShiftBerikut || '-'} (${valTanggalBerikut || '-'})`;
+    function tampilkanDetail(index) {
+        const item = databaseBA[index];
+        document.getElementById("modalTitleID").innerText = item.id_ba || 'N/A';
+        
+        let contentHtml = `
+        <div id="viewDetailMode" class="space-y-4">
+            <!-- ADMIN SECTION -->
+            <div class="bg-slate-50 border-l-4 border-indigo-500 border border-slate-200 rounded-r-xl p-4">
+                <div class="text-[10px] font-black tracking-widest text-slate-500 uppercase mb-3 flex items-center gap-1.5"><i class="fa-solid fa-folder-open text-indigo-600"></i> Administrasi Berita Acara</div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                    <div class="flex items-center gap-3 bg-white p-2.5 rounded-lg border border-slate-200">
+                        <div class="text-indigo-600 text-base w-5 text-center"><i class="fa-regular fa-calendar-days"></i></div>
+                        <div><div class="text-[10px] text-slate-400 uppercase font-bold">Tanggal Input</div><div class="font-bold text-slate-700">${item.tanggal || '-'}</div></div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white p-2.5 rounded-lg border border-slate-200">
+                        <div class="text-amber-600 text-base w-5 text-center"><i class="fa-regular fa-clock"></i></div>
+                        <div><div class="text-[10px] text-slate-400 uppercase font-bold">Shift Penyerah</div><div class="font-bold text-slate-700">${item.shift || '-'}</div></div>
+                    </div>
+                    <div class="col-span-2 md:col-span-1 flex items-center gap-3 bg-white p-2.5 rounded-lg border border-slate-200">
+                        <div class="text-sky-600 text-base w-5 text-center"><i class="fa-solid fa-sitemap"></i></div>
+                        <div><div class="text-[10px] text-slate-400 uppercase font-bold">Divisi</div><div class="font-black text-indigo-600">${item.devisi || '-'}</div></div>
+                    </div>
+                </div>
+            </div>
 
-            document.getElementById("formBA").reset();
-            document.getElementById("pageInputForm").classList.add("d-none");
-            document.getElementById("pageSukses").classList.remove("d-none");
-            document.getElementById("waPreviewText").innerText = textWA;
-            document.getElementById("btnKirimWA").href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textWA);
-            window.scrollTo(0,0);
+            <!-- TEAM WORKSPACE -->
+            <div class="bg-slate-50 border-l-4 border-emerald-500 border border-slate-200 rounded-r-xl p-4">
+                <div class="text-[10px] font-black tracking-widest text-slate-500 uppercase mb-3 flex items-center gap-1.5"><i class="fa-solid fa-users-gear text-emerald-600"></i> Tim Operasional & Manpower Aktif</div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs mb-3">
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200"><div class="text-slate-400 font-bold uppercase mb-0.5">Dibuat Oleh</div><div class="font-bold text-slate-700 preserve-newlines">${item.dibuat_oleh || '-'}</div></div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200"><div class="text-slate-400 font-bold uppercase mb-0.5">Supervisor / PLT</div><div class="font-bold text-slate-700 preserve-newlines">${item.supervisor || '-'}</div></div>
+                    <div class="col-span-2 md:col-span-1 bg-white p-2.5 rounded-lg border border-slate-200"><div class="text-slate-400 font-bold uppercase mb-0.5">Foreman</div><div class="font-bold text-slate-700 preserve-newlines">${item.foreman || '-'}</div></div>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-slate-200">
+                    <div class="text-[10px] text-slate-400 uppercase font-bold mb-1"><i class="fa-solid fa-address-book text-emerald-600 mr-1"></i> Rincian Anggota & Manpower</div>
+                    <div class="text-xs text-slate-600 font-medium preserve-newlines">${item.jumlah_manpower || '-'}</div>
+                </div>
+            </div>
+
+            <!-- PERFORMANCE METRICS -->
+            <div class="bg-slate-50 border-l-4 border-rose-500 border border-slate-200 rounded-r-xl p-4">
+                <div class="text-[10px] font-black tracking-widest text-slate-500 uppercase mb-3 flex items-center gap-1.5"><i class="fa-solid fa-chart-pie text-rose-600"></i> Metrik Kinerja & Job Pending</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-4 flex flex-col justify-center items-center shadow-sm">
+                        <div class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider">Ketercapaian Job</div>
+                        <h2 class="text-3xl font-extrabold mt-1 text-white">${item.ketercapaian_job || '0'}%</h2>
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <div class="bg-rose-50 border border-rose-200 p-2.5 rounded-lg text-xs">
+                            <div class="text-[10px] text-rose-700 font-bold uppercase mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Temuan Hambatan Lapangan</div>
+                            <div class="font-semibold text-slate-700 preserve-newlines">${item.temuan || 'Tidak ada hambatan.'}</div>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-200 p-2.5 rounded-lg text-xs">
+                            <div class="text-[10px] text-amber-700 font-bold uppercase mb-1"><i class="fa-solid fa-circle-pause mr-1"></i> Job Pending</div>
+                            <div class="font-semibold text-slate-700 preserve-newlines">${item.job_pending || 'Semua target shift terpenuhi.'}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-slate-200 mt-3">
+                    <div class="text-[10px] text-slate-400 uppercase font-bold mb-1"><i class="fa-solid fa-quote-left mr-1"></i> Keterangan Tambahan</div>
+                    <div class="text-xs text-slate-600 font-medium preserve-newlines">${item.ketergan || item.keterangan || '-'}</div>
+                </div>
+            </div>
+
+            <!-- NEXT SHIFT OPERATIONAL -->
+            <div class="bg-slate-50 border-l-4 border-purple-500 border border-slate-200 rounded-r-xl p-4">
+                <div class="text-[10px] font-black tracking-widest text-slate-500 uppercase mb-3 flex items-center gap-1.5"><i class="fa-solid fa-share-from-square text-purple-600"></i> Serah Terima Shift Berikutnya</div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs mb-3">
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200"><div class="text-slate-400 font-bold uppercase mb-0.5">Supt / PLT Penerima</div><div class="font-bold text-slate-700 preserve-newlines">${item.supervisor_pelaksana || '-'}</div></div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200"><div class="text-slate-400 font-bold uppercase mb-0.5">Foreman Pelaksana</div><div class="font-bold text-slate-700 preserve-newlines">${item.foreman_pelaksana || '-'}</div></div>
+                    <div class="col-span-2 md:col-span-1 bg-white p-2.5 rounded-lg border border-slate-200"><div class="text-slate-400 font-bold uppercase mb-0.5">Jadwal Shift Berikut</div><div class="font-mono text-purple-700 font-bold mt-0.5">Shift ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})</div></div>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-slate-200">
+                    <div class="text-[10px] text-slate-400 uppercase font-bold mb-1"><i class="fa-solid fa-people-group mr-1"></i> Crew Pelaksana Bertugas</div>
+                    <div class="text-xs text-slate-600 font-medium preserve-newlines">${item.crew_pelaksana || '-'}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EDIT MODE SUBFORM -->
+        <div id="editFormMode" class="hidden">
+            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-4">
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Tanggal</label><input type="date" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_tanggal" value="${item.tanggal}"></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Shift</label><select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_shift"><option ${item.shift==='Siang'?'selected':''}>Siang</option><option ${item.shift==='Malam'?'selected':''}>Malam</option></select></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Divisi</label><select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_devisi"><option ${item.devisi==='Earthwork'?'selected':''}>Earthwork</option><option ${item.devisi==='Hydro'?'selected':''}>Hydro</option><option ${item.devisi==='IPAL'?'selected':''}>IPAL</option><option ${item.devisi==='Geotech'?'selected':''}>Geotech</option><option ${item.devisi==='Planner'?'selected':''}>Planner</option></select></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Supervisor</label><input type="text" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_supervisor" value="${item.supervisor}"></div>
+                    <div class="col-span-2"><label class="block text-slate-500 font-bold mb-1">Foreman</label><input type="text" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_foreman" value="${item.foreman}"></div>
+                    <div class="col-span-2"><label class="block text-slate-500 font-bold mb-1">Manpower</label><textarea class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_manpower" rows="2">${item.jumlah_manpower}</textarea></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Ketercapaian (%)</label><input type="number" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_ketercapaian" value="${item.ketercapaian_job}"></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Temuan Hambatan</label><input type="text" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_temuan" value="${item.temuan}"></div>
+                    <div class="col-span-2"><label class="block text-slate-500 font-bold mb-1">Job Pending</label><textarea class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_pending" rows="3">${item.job_pending}</textarea></div>
+                    <div class="col-span-2"><label class="block text-slate-500 font-bold mb-1">Keterangan</label><textarea class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_keterangan" rows="2">${item.keterangan || item.ketergan}</textarea></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Supt Penerima</label><input type="text" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_supt_penerima" value="${item.supervisor_pelaksana}"></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Foreman Penerima</label><textarea class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_foreman_penerima" rows="2">${item.foreman_pelaksana}</textarea></div>
+                    <div class="col-span-2"><label class="block text-slate-500 font-bold mb-1">Crew Penerima</label><textarea class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_crew_penerima" rows="2">${item.crew_pelaksana}</textarea></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Shift Berikut</label><select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_shift_berikut"><option ${item.shift_berikut==='Siang'?'selected':''}>Siang</option><option ${item.shift_berikut==='Malam'?'selected':''}>Malam</option></select></div>
+                    <div class="col-span-1"><label class="block text-slate-500 font-bold mb-1">Tanggal Shift Berikut</label><input type="date" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-slate-800 outline-none focus:border-indigo-500" id="edit_tanggal_berikut" value="${item.tanggal_shift_berikut}"></div>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-xs" onclick="simpanPerubahanEdit('${item.id_ba}', ${index})"><i class="fa-solid fa-cloud-check"></i> Simpan Perubahan</button>
+                <button class="w-1/3 bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-600 font-bold py-2.5 rounded-xl text-xs" onclick="document.getElementById('viewDetailMode').classList.remove('hidden'); document.getElementById('editFormMode').classList.add('hidden');"><i class="fa-solid fa-ban"></i> Batal</button>
+            </div>
+        </div>`;
+
+        document.getElementById("modalDetailContent").innerHTML = contentHtml;
+
+        if(item.ttd_pembuat && item.ttd_pembuat.startsWith("http")) {
+            document.getElementById("areaTtdPembuat").innerHTML = `<img src="${item.ttd_pembuat}" class="max-h-[80px] object-contain filter multiply" alt="Ttd Pembuat">`;
         } else {
-            hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Gagal Menyimpan: ${data.message || 'Respons cloud tidak valid.'}</div>`;
+            document.getElementById("areaTtdPembuat").innerHTML = `<span class="text-slate-400 text-[11px] font-medium italic">Ttd Tersemat Cloud</span>`;
         }
-    })
-    .catch(err => {
-        btnSimpan.disabled = false;
-        btnSimpan.innerHTML = `<i class="bi bi-cloud-upload-fill me-1"></i> SIMPAN & KUNCI BERITA ACARA`;
-        hasilDiv.innerHTML = `<div class="alert alert-danger mt-3 small">⚠️ Error Jaringan: Gagal menghubungi server cloud.</div>`;
-    });
-});
+        document.getElementById("lblTtdPembuat").innerText = "Penyerah: " + (item.dibuat_oleh || "N/A");
 
-function dapatkanIkonDivisi(namaDivisi) {
-    let divClean = (namaDivisi || "").toString().trim().toUpperCase();
-    if(divClean.includes("EARTHWORK")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-earthwork"><i class="bi bi-cone-striped"></i></div><span class="txt-dstf-blue">Earthwork</span></div>`;
-    } else if(divClean.includes("HYDRO")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-hydro"><i class="bi bi-droplet-fill"></i></div><span class="txt-dstf-blue">Hydro</span></div>`;
-    } else if(divClean.includes("IPAL")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-ipal"><i class="bi bi-moisture"></i></div><span class="txt-dstf-blue">IPAL</span></div>`;
-    } else if(divClean.includes("GEOTECH")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-geotech"><i class="bi bi-layers-half"></i></div><span class="txt-dstf-blue">Geotech</span></div>`;
-    } else if(divClean.includes("PLAN") || divClean.includes("PLANNER")) {
-        return `<div class="divisi-badge-wrapper"><div class="divisi-icon-box icon-planner"><i class="bi bi-journal-code"></i></div><span class="txt-dstf-blue">Planner</span></div>`;
-    } else {
-        return `<span class="text-secondary fw-semibold">${namaDivisi || '-'}</span>`;
-    }
-}
+        if(item.ttd_penerima && item.ttd_penerima.startsWith("http")) {
+            document.getElementById("areaTtdPenerima").innerHTML = `<img src="${item.ttd_penerima}" class="max-h-[80px] object-contain filter multiply" alt="Ttd Penerima">`;
+        } else {
+            document.getElementById("areaTtdPenerima").innerHTML = `<span class="text-rose-600 text-[10px] font-bold px-2 py-1 bg-rose-50 border border-rose-200 rounded flex items-center gap-1"><i class="fa-solid fa-spinner animate-spin"></i> Waiting Approve</span>`;
+        }
+        document.getElementById("lblTtdPenerima").innerText = "Penerima: " + (item.supervisor_pelaksana || "N/A");
 
-function renderDaftarBA(dataSaring) {
-    const tbody = document.getElementById("tabelBodyBA");
-    const mobileContainer = document.getElementById("mobileCardContainer");
-    tbody.innerHTML = ""; mobileContainer.innerHTML = "";
-
-    if (!dataSaring || dataSaring.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Data tidak ditemukan.</td></tr>`;
-        mobileContainer.innerHTML = `<div class="text-center py-4 text-muted small">Data tidak ditemukan.</div>`;
-        return;
-    }
-
-    dataSaring.forEach((row) => {
-        let badgeShift = row.shift === "Siang" ? 'bg-siang' : 'bg-malam';
-        let statusBadge = (row.status || "PENDING").toString().toUpperCase() === "APPROVED" ? 
-                           '<span class="badge-status stat-approved"><i class="bi bi-check2-circle"></i> Approved</span>' : 
-                           '<span class="badge-status stat-pending"><i class="bi bi-hourglass-split"></i> Pending</span>';
+        const btnArea = document.getElementById("actionApproveArea");
         
-        let htmlDivisi = dapatkanIkonDivisi(row.devisi);
+        let textDetailWA = `📋 *BA OVERSHIFT DSTF*\n` +
+                           `--------------------------------------\n` +
+                           `*No BA:* ${item.id_ba || '-'}\n` +
+                           `*Tanggal:* ${item.tanggal || '-'}\n` +
+                           `*Shift:* ${item.shift || '-'}\n` +
+                           `*Divisi:* ${item.devisi || '-'}\n` +
+                           `--------------------------------------\n\n` +
+                           `👤 *Dibuat Oleh:* ${item.dibuat_oleh || '-'}\n` +
+                           `📈 *Ketercapaian Job:* ${item.ketercapaian_job || '0'}%\n\n` +
+                           `*Rincian Tim Manpower*\n${item.jumlah_manpower || '-'}\n` +
+                           `*Temuan Masalah Lapangan*\n${item.temuan || '-'}\n` +
+                           `*Job Pending*\n${item.job_pending || '-'}\n` +
+                           `*Keterangan Tambahan*\n${item.ketergan || item.keterangan || '-'}\n\n` +
+                           `⏩ *Shift Berikut:* ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})`;
         
-        let tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</td>
-            <td class="text-secondary fw-semibold">${row.tanggal || '-'}</td>
-            <td><span class="badge-shift ${badgeShift}">${row.shift || '-'}</span></td>
-            <td>${htmlDivisi}</td>
-            <td><b>${row.dibuat_oleh || '-'}</b></td>
-            <td>${statusBadge}</td>
-            <td class="text-center"><button class="btn btn-sm btn-outline-primary py-1 px-3 rounded-3" onclick="tampilkanDetail(${row._oriIndex})">👁️ Detail</button></td>
-        `;
-        tbody.appendChild(tr);
+        let urlWhatsApp = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textDetailWA);
+        let tombolShareWA = `<a href="${urlWhatsApp}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-center font-bold px-4 py-2 rounded-xl text-xs transition-colors inline-flex items-center justify-center gap-1.5"><i class="fa-brands fa-whatsapp"></i> <span class="hidden sm:inline">WhatsApp</span></a>`;
 
-        let mCard = document.createElement("div");
-        mCard.className = "ba-mobile-card border";
-        mCard.innerHTML = `
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="fw-bold font-monospace text-primary">${row.id_ba || '-'}</span>
-                <div>${statusBadge}</div>
-            </div>
-            <div class="mb-2">${htmlDivisi}</div>
-            <div class="row g-0 small mb-2">
-                <div class="col-6 text-muted"><i class="bi bi-calendar3 me-1"></i> ${row.tanggal || '-'}</div>
-                <div class="col-6 text-muted"><i class="bi bi-clock me-1"></i> ${row.shift || '-'}</div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                <div class="small text-muted">Oleh: <b>${row.dibuat_oleh || '-'}</b></div>
-                <button class="btn btn-sm btn-primary py-1 px-3 rounded-2" style="font-size:0.75rem;" onclick="tampilkanDetail(${row._oriIndex})"><i class="bi bi-eye"></i> Detail</button>
-            </div>
-        `;
-        mobileContainer.appendChild(mCard);
-    });
-}
+        if ((item.status || "PENDING").toString().toUpperCase() === "APPROVED") {
+            btnArea.innerHTML = `<div class="flex items-center gap-2">${tombolShareWA} <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-3 py-1.5 rounded-xl"><i class="fa-solid fa-stamp"></i> Verified Cloud</span></div>`;
+        } else {
+            btnArea.innerHTML = `
+                <div class="flex gap-2 w-100">
+                    ${tombolShareWA}
+                    <button type="button" class="bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-600 font-bold px-3 py-2 rounded-xl text-xs" onclick="aktifkanModeEdit()"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                    <button type="button" class="flex-grow bg-indigo-600 hover:bg-indigo-700 text-white font-black px-4 py-2 rounded-xl text-xs shadow-md transition-all active:scale-95" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="fa-solid fa-file-signature"></i> Approve</button>
+                </div>`;
+        }
 
-function filterDaftarBA() {
-    const kueri = document.getElementById("inputSearchBA").value.toLowerCase().trim();
-    if(!kueri) { renderDaftarBA(databaseBA); return; }
-    const filtered = databaseBA.filter(item => {
-        return (item.id_ba || "").toLowerCase().includes(kueri) || 
-               (item.devisi || "").toLowerCase().includes(kueri) || 
-               (item.dibuat_oleh || "").toLowerCase().includes(kueri);
-    });
-    renderDaftarBA(filtered);
-}
-
-function loadDaftarBA() {
-    const tbody = document.getElementById("tabelBodyBA");
-    const mobileContainer = document.getElementById("mobileCardContainer");
-    document.getElementById("inputSearchBA").value = "";
-    
-    tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Menghubungkan ke Cloud...</td></tr>`;
-    mobileContainer.innerHTML = `<div class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Menghubungkan ke Cloud...</div>`;
-
-    fetch(API_URL)
-    .then(res => res.json())
-    .then(data => {
-        databaseBA = data.map((item, idx) => ({...item, _oriIndex: idx}));
-        renderDaftarBA(databaseBA);
-    })
-    .catch(err => {
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-danger">⚠️ Gagal terhubung ke Cloud.</td></tr>`;
-    });
-}
-
-function tampilkanDetail(index) {
-    const item = databaseBA[index];
-    document.getElementById("modalTitleID").innerText = item.id_ba || 'N/A';
-    
-    let contentHtml = `
-    <div id="viewDetailMode">
-        <div class="detail-card-section card-accent-admin">
-            <div class="section-premium-title"><i class="bi bi-shield-check text-primary"></i> Administrasi & Validitas Berita Acara</div>
-            <div class="row g-3">
-                <div class="col-md-4 col-6">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-primary"><i class="bi bi-calendar3"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Tanggal Input</div>
-                            <div class="detail-premium-value">${item.tanggal || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-warning"><i class="bi bi-clock-history"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Shift Penyerah BA</div>
-                            <div class="detail-premium-value">${item.shift || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-info"><i class="bi bi-diagram-3-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Divisi</div>
-                            <div class="detail-premium-value text-primary fw-bold">${item.devisi || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-card-section card-accent-team">
-            <div class="section-premium-title"><i class="bi bi-people text-success"></i> Tim Operasional & Manpower Aktif</div>
-            <div class="row g-3">
-                <div class="col-md-4 col-6">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-secondary"><i class="bi bi-person-badge"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Dibuat Oleh</div>
-                            <div class="detail-premium-value fw-bold preserve-newlines">${item.dibuat_oleh || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-secondary"><i class="bi bi-person-workspace"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Supervisor / PLT</div>
-                            <div class="detail-premium-value preserve-newlines">${item.supervisor || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-secondary"><i class="bi bi-person-lines-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Foreman</div>
-                            <div class="detail-premium-value preserve-newlines">${item.foreman || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 border-top pt-3 mt-1">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-success"><i class="bi bi-grid-3x3-gap-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Rincian Anggota & Manpower</div>
-                            <div class="detail-premium-value text-secondary small fw-medium preserve-newlines">${item.jumlah_manpower || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-card-section card-accent-metrics">
-            <div class="section-premium-title"><i class="bi bi-bar-chart-line text-danger"></i> Metrik Kinerja & Job Pending Pekerjaan</div>
-            <div class="row g-3">
-                <div class="col-md-4 col-12">
-                    <div class="metric-large-box">
-                        <div class="detail-premium-label">Ketercapaian Job</div>
-                        <h2 class="fw-extrabold m-0 mt-1" style="font-size: 2.2rem; font-weight: 800; letter-spacing: -1px;">${item.ketercapaian_job || '0'}%</h2>
-                    </div>
-                </div>
-                <div class="col-md-8 col-12">
-                    <div class="row g-2">
-                        <div class="col-12">
-                            <div class="p-2.5 px-3 rounded-3 text-danger" style="background-color: #fef2f2; border: 1px solid #fee2e2;">
-                                <div class="detail-premium-label text-danger" style="font-size:0.65rem;"><i class="bi bi-exclamation-triangle-fill"></i> Temuan Hambatan Lapangan</div>
-                                <div class="small fw-bold mt-0.5 preserve-newlines">${item.temuan || 'Tidak ada hambatan kritikal.'}</div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <div class="p-2.5 px-3 rounded-3 text-warning-emphasis" style="background-color: #fffbeb; border: 1px solid #fef3c7;">
-                                <div class="detail-premium-label text-warning-emphasis" style="font-size:0.65rem;"><i class="bi bi-hourglass-split"></i> Job Pending</div>
-                                <div class="small fw-bold mt-0.5 preserve-newlines">${item.job_pending || 'Semua target shift terpenuhi.'}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 border-top pt-3 mt-1">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-secondary"><i class="bi bi-chat-right-quote-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Keterangan Tambahan</div>
-                            <div class="detail-premium-value text-secondary small fw-medium preserve-newlines">${item.ketergan || item.keterangan || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-card-section card-accent-nextshift">
-            <div class="section-premium-title"><i class="bi bi-arrow-right-square text-info"></i> Rencana Kerja & Serah Terima Shift Berikutnya</div>
-            <div class="row g-3">
-                <div class="col-md-4 col-6">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-info"><i class="bi bi-person-check-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Supervisor / PLT Penerima</div>
-                            <div class="detail-premium-value fw-bold preserve-newlines">${item.supervisor_pelaksana || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-info"><i class="bi bi-person-badge-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Foreman Pelaksana</div>
-                            <div class="detail-premium-value fw-bold preserve-newlines">${item.foreman_pelaksana || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-info"><i class="bi bi-calendar-event-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Jadwal Shift Berikut</div>
-                            <div class="detail-premium-value small text-dark-emphasis font-monospace">Shift ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 border-top pt-3 mt-1">
-                    <div class="detail-premium-box">
-                        <div class="detail-premium-icon text-info"><i class="bi bi-people-fill"></i></div>
-                        <div class="detail-premium-info">
-                            <div class="detail-premium-label">Crew Pelaksana Bertugas</div>
-                            <div class="detail-premium-value text-secondary small fw-medium preserve-newlines">${item.crew_pelaksana || '-'}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="editFormMode" class="container-fluid d-none px-0">
-        <div class="card p-3 border rounded-4 bg-white shadow-sm mb-3">
-            <div class="row g-2">
-                <div class="col-6"><label class="form-label small mb-1">Tanggal</label><input type="date" class="form-control form-control-sm" id="edit_tanggal" value="${item.tanggal}"></div>
-                <div class="col-6"><label class="form-label small mb-1">Shift</label><select class="form-select form-select-sm" id="edit_shift"><option ${item.shift==='Siang'?'selected':''}>Siang</option><option ${item.shift==='Malam'?'selected':''}>Malam</option></select></div>
-                <div class="col-6"><label class="form-label small mb-1">Divisi</label><select class="form-select form-select-sm" id="edit_devisi"><option ${item.devisi==='Earthwork'?'selected':''}>Earthwork</option><option ${item.devisi==='Hydro'?'selected':''}>Hydro</option><option ${item.devisi==='IPAL'?'selected':''}>IPAL</option><option ${item.devisi==='Geotech'?'selected':''}>Geotech</option><option ${item.devisi==='Planner'?'selected':''}>Planner</option></select></div>
-                <div class="col-6"><label class="form-label small mb-1">Supervisor</label><input type="text" class="form-control form-control-sm" id="edit_supervisor" value="${item.supervisor}"></div>
-                <div class="col-12"><label class="form-label small mb-1">Foreman</label><input type="text" class="form-control form-control-sm" id="edit_foreman" value="${item.foreman}"></div>
-                <div class="col-12"><label class="form-label small mb-1">Manpower</label><textarea class="form-control form-control-sm" id="edit_manpower" rows="2">${item.jumlah_manpower}</textarea></div>
-                <div class="col-4"><label class="form-label small mb-1">Ketercapaian (%)</label><input type="number" class="form-control form-control-sm" id="edit_ketercapaian" value="${item.ketercapaian_job}"></div>
-                <div class="col-8"><label class="form-label small mb-1">Temuan Hambatan</label><input type="text" class="form-control form-control-sm" id="edit_temuan" value="${item.temuan}"></div>
-                <div class="col-12"><label class="form-label small mb-1">Job Pending</label><textarea class="form-control form-control-sm" id="edit_pending" rows="3">${item.job_pending}</textarea></div>
-                <div class="col-12"><label class="form-label small mb-1">Keterangan</label><textarea class="form-control form-control-sm" id="edit_keterangan" rows="2">${item.keterangan || item.ketergan}</textarea></div>
-                <div class="col-6"><label class="form-label small mb-1">Supt Penerima</label><input type="text" class="form-control form-control-sm" id="edit_supt_penerima" value="${item.supervisor_pelaksana}"></div>
-                <div class="col-6"><label class="form-label small mb-1">Foreman Penerima</label><textarea class="form-control form-control-sm" id="edit_foreman_penerima" rows="2">${item.foreman_pelaksana}</textarea></div>
-                <div class="col-12"><label class="form-label small mb-1">Crew Penerima</label><textarea class="form-control form-control-sm" id="edit_crew_penerima" rows="2">${item.crew_pelaksana}</textarea></div>
-                <div class="col-6"><label class="form-label small mb-1">Shift Berikut</label><select class="form-select form-select-sm" id="edit_shift_berikut"><option ${item.shift_berikut==='Siang'?'selected':''}>Siang</option><option ${item.shift_berikut==='Malam'?'selected':''}>Malam</option></select></div>
-                <div class="col-6"><label class="form-label small mb-1">Tanggal Shift Berikut</label><input type="date" class="form-control form-control-sm" id="edit_tanggal_berikut" value="${item.tanggal_shift_berikut}"></div>
-            </div>
-        </div>
-        <div class="d-flex gap-2">
-            <button class="btn btn-sm btn-primary w-100 py-2.5 rounded-3 shadow-sm" onclick="simpanPerubahanEdit('${item.id_ba}', ${index})"><i class="bi bi-cloud-check-fill"></i> Simpan Perubahan</button>
-            <button class="btn btn-sm btn-light border w-50 py-2.5 rounded-3" onclick="document.getElementById('viewDetailMode').classList.remove('d-none'); document.getElementById('editFormMode').classList.add('d-none');"><i class="bi bi-x"></i> Batal</button>
-        </div>
-    </div>`;
-
-    document.getElementById("modalDetailContent").innerHTML = contentHtml;
-
-    if(item.ttd_pembuat && item.ttd_pembuat.startsWith("http")) {
-        document.getElementById("areaTtdPembuat").innerHTML = `<img src="${item.ttd_pembuat}" class="ttd-img" alt="Ttd Pembuat">`;
-    } else {
-        document.getElementById("areaTtdPembuat").innerHTML = `<span class="text-muted small italic">Ttd Tersemat Cloud</span>`;
-    }
-    document.getElementById("lblTtdPembuat").innerText = "Penyerah: " + (item.dibuat_oleh || "N/A");
-
-    if(item.ttd_penerima && item.ttd_penerima.startsWith("http")) {
-        document.getElementById("areaTtdPenerima").innerHTML = `<img src="${item.ttd_penerima}" class="ttd-img" alt="Ttd Penerima">`;
-    } else {
-        document.getElementById("areaTtdPenerima").innerHTML = `<span class="text-danger small fw-bold px-2 py-1 bg-danger-subtle rounded"><i class="bi bi-clock-history"></i> Menunggu Approve</span>`;
-    }
-    document.getElementById("lblTtdPenerima").innerText = "Penerima: " + (item.supervisor_pelaksana || "N/A");
-
-    const btnArea = document.getElementById("actionApproveArea");
-    
-    let textDetailWA = `📋 *BA OVERSHIFT DSTF*\n` +
-                       `--------------------------------------\n` +
-                       `*No BA:* ${item.id_ba || '-'}\n` +
-                       `*Tanggal:* ${item.tanggal || '-'}\n` +
-                       `*Shift:* ${item.shift || '-'}\n` +
-                       `*Divisi:* ${item.devisi || '-'}\n` +
-                       `--------------------------------------\n\n` +
-                       `👤 *Dibuat Oleh:* ${item.dibuat_oleh || '-'}\n` +
-                       `📈 *Ketercapaian Job:* ${item.ketercapaian_job || '0'}%\n\n` +
-                       `*Rincian Tim Manpower*\n${item.jumlah_manpower || '-'}\n` +
-                       `*Temuan Masalah Lapangan*\n${item.temuan || '-'}\n` +
-                       `*Job Pending*\n${item.job_pending || '-'}\n` +
-                       `*Keterangan Tambahan*\n${item.ketergan || item.keterangan || '-'}\n\n` +
-                       `⏩ *Shift Berikut:* ${item.shift_berikut || '-'} (${item.tanggal_shift_berikut || '-'})`;
-    
-    let urlWhatsApp = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textDetailWA);
-    
-    // Penyesuaian Tombol WhatsApp Adaptif
-    let tombolShareWA = `<a href="${urlWhatsApp}" target="_blank" class="btn btn-success btn-wa-mobile rounded-3"><i class="bi bi-whatsapp"></i> <span>WhatsApp</span></a>`;
-
-    if ((item.status || "PENDING").toString().toUpperCase() === "APPROVED") {
-        btnArea.innerHTML = `<div class="d-flex align-items-center gap-2">${tombolShareWA} <span class="badge bg-success-subtle text-success py-2 px-2.5 rounded-3 border border-success small"><i class="bi bi-shield-fill-check"></i> Verified</span></div>`;
-    } else {
-        btnArea.innerHTML = `
-            <div class="d-flex gap-1.5 w-100">
-                ${tombolShareWA}
-                <button type="button" class="btn btn-outline-warning rounded-3" onclick="aktifkanModeEdit()"><i class="bi bi-pencil-square"></i> Edit</button>
-                <button type="button" class="btn btn-primary rounded-3 fw-bold flex-grow-1" onclick="prosesApproveCloud('${item.id_ba}', ${index})"><i class="bi bi-check2-circle"></i> Approve</button>
-            </div>`;
+        bukaModalDetail();
     }
 
-    if (!modalAktif) { modalAktif = new bootstrap.Modal(document.getElementById('modalDetail')); }
-    modalAktif.show();
-}
+    function prosesApproveCloud(idBa, index) {
+        if(!confirm("Apakah Anda setuju mendelegasikan tanda tangan pada Berita Acara ini?")) return;
+        const btnArea = document.getElementById("actionApproveArea");
+        btnArea.innerHTML = `<i class="fa-solid fa-spinner animate-spin text-indigo-600"></i> Menandatangani...`;
 
-function prosesApproveCloud(idBa, index) {
-    if(!confirm("Apakah Anda setuju mendelegasikan tanda tangan pada Berita Acara ini?")) return;
-    const btnArea = document.getElementById("actionApproveArea");
-    btnArea.innerHTML = `<div class="spinner-border spinner-border-sm text-primary"></div> Menandatangani...`;
+        let payload = { action: "approve", auth_pin: PIN_MASTER, id_ba: idBa };
+        fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
+        .then(res => res.json())
+        .then(res => {
+            if(res.success) { alert("✓ Berita Acara Berhasil Disahkan!"); tutupModalDetail(); loadDaftarBA(); } 
+            else { alert("Gagal Approve: " + res.message); tampilkanDetail(index); }
+        })
+        .catch(err => { alert("Gagal memproses approval."); tampilkanDetail(index); });
+    }
 
-    let payload = { action: "approve", auth_pin: PIN_MASTER, id_ba: idBa };
-    fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
-    .then(res => res.json())
-    .then(res => {
-        if(res.success) { alert("✓ Berita Acara Berhasil Disahkan!"); modalAktif.hide(); loadDaftarBA(); } 
-        else { alert("Gagal Approve: " + res.message); tampilkanDetail(index); }
-    })
-    .catch(err => { alert("Gagal memproses approval."); tampilkanDetail(index); });
-}
+    function aktifkanModeEdit() {
+        document.getElementById("viewDetailMode").classList.add("hidden");
+        document.getElementById("editFormMode").classList.remove("hidden");
+    }
 
-function aktifkanModeEdit() {
-    document.getElementById("viewDetailMode").classList.add("d-none");
-    document.getElementById("editFormMode").classList.remove("d-none");
-}
+    function simpanPerubahanEdit(idBa, index) {
+        if(!confirm("Simpan perubahan untuk data BA " + idBa + "?")) return;
+        const btnArea = document.getElementById("actionApproveArea");
+        document.getElementById("editFormMode").classList.add("hidden");
+        document.getElementById("viewDetailMode").classList.remove("hidden");
+        document.getElementById("modalDetailContent").innerHTML = `<div class="text-center py-8 text-slate-500 font-medium text-xs"><i class="fa-solid fa-spinner animate-spin text-indigo-600 me-2"></i>Menyinkronkan data cloud baru...</div>`;
 
-function simpanPerubahanEdit(idBa, index) {
-    if(!confirm("Simpan perubahan untuk data BA " + idBa + "?")) return;
-    const btnArea = document.getElementById("actionApproveArea");
-    document.getElementById("editFormMode").classList.add("d-none");
-    document.getElementById("viewDetailMode").classList.remove("d-none");
-    document.getElementById("modalDetailContent").innerHTML = `<div class="text-center py-5"><div class="spinner-border text-primary mb-2"></div><br>Menyinkronkan data cloud baru...</div>`;
-    btnArea.innerHTML = "Processing...";
+        let updatePayload = {
+            action: "update", auth_pin: PIN_MASTER, id_ba: idBa,
+            tanggal: document.getElementById("edit_tanggal").value,
+            shift: document.getElementById("edit_shift").value,
+            devisi: document.getElementById("edit_devisi").value,
+            supervisor: document.getElementById("edit_supervisor").value,
+            foreman: document.getElementById("edit_foreman").value,
+            jumlah_manpower: document.getElementById("edit_manpower").value,
+            ketercapaian_job: document.getElementById("edit_ketercapaian").value,
+            temuan: document.getElementById("edit_temuan").value,
+            job_pending: document.getElementById("edit_pending").value,
+            keterangan: document.getElementById("edit_keterangan").value,
+            supervisor_pelaksana: document.getElementById("edit_supt_penerima").value,
+            foreman_pelaksana: document.getElementById("edit_foreman_penerima").value,
+            crew_pelaksana: document.getElementById("edit_crew_penerima").value,
+            shift_berikut: document.getElementById("edit_shift_berikut").value,
+            tanggal_shift_berikut: document.getElementById("edit_tanggal_berikut").value
+        };
 
-    let updatePayload = {
-        action: "update", auth_pin: PIN_MASTER, id_ba: idBa,
-        tanggal: document.getElementById("edit_tanggal").value,
-        shift: document.getElementById("edit_shift").value,
-        devisi: document.getElementById("edit_devisi").value,
-        supervisor: document.getElementById("edit_supervisor").value,
-        foreman: document.getElementById("edit_foreman").value,
-        jumlah_manpower: document.getElementById("edit_manpower").value,
-        ketercapaian_job: document.getElementById("edit_ketercapaian").value,
-        temuan: document.getElementById("edit_temuan").value,
-        job_pending: document.getElementById("edit_pending").value,
-        keterangan: document.getElementById("edit_keterangan").value,
-        supervisor_pelaksana: document.getElementById("edit_supt_penerima").value,
-        foreman_pelaksana: document.getElementById("edit_foreman_penerima").value,
-        crew_pelaksana: document.getElementById("edit_crew_penerima").value,
-        shift_berikut: document.getElementById("edit_shift_berikut").value,
-        tanggal_shift_berikut: document.getElementById("edit_tanggal_berikut").value
-    };
-
-    fetch(API_URL, { method: "POST", body: JSON.stringify(updatePayload) })
-    .then(res => res.json())
-    .then(res => {
-        if(res.success) { alert("✓ Data BA Berhasil Diperbarui!"); modalAktif.hide(); loadDaftarBA(); } 
-        else { alert("Gagal Update: " + res.message); tampilkanDetail(index); }
-    })
-    .catch(err => { alert("Gagal memproses update."); tampilkanDetail(index); });
-}
-</script>
+        fetch(API_URL, { method: "POST", body: JSON.stringify(updatePayload) })
+        .then(res => res.json())
+        .then(res => {
+            if(res.success) { alert("✓ Data BA Berhasil Diperbarui!"); tutupModalDetail(); loadDaftarBA(); } 
+            else { alert("Gagal Update: " + res.message); tampilkanDetail(index); }
+        })
+        .catch(err => { alert("Gagal memproses update."); tampilkanDetail(index); });
+    }
+    </script>
 </body>
 </html>
